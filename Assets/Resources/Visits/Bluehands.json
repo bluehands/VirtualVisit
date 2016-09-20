@@ -1,0 +1,42 @@
+{
+	"id":"Bluehands",	"nodeSettings":[
+			{
+				"id":"P0",				"title":"Terasse",				"postion":{	
+					"x":0.0,					"y":0.0,					"z":0.0
+				},				"edgeIds":"P1"
+			},			{
+				"id":"P1",				"title":"Fensterfront",				"postion":{	
+					"x":0.0,					"y":0.0,					"z":30.0
+				},				"edgeIds":"P0,P2"
+			},
+			{
+				"id":"P2",
+				"title":"Flur",
+				"postion":{	
+					"x":15.0,
+					"y":0.0,
+					"z":60.0
+				},
+				"edgeIds":"P1,P3"
+			},
+			{
+				"id":"P3",
+				"title":"Treppe unten",
+				"postion":{	
+					"x":0.0,
+					"y":0.0,
+					"z":90.0
+				},
+				"edgeIds":"P2,P4"
+			},
+			{
+				"id":"P4",
+				"title":"Oben",
+				"postion":{	
+					"x":-30.0,
+					"y":30.0,
+					"z":60.0
+				},
+				"edgeIds":"P3"
+			}]
+}

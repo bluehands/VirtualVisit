@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 
 public class UIScreen : MonoBehaviour {
 
-    public Camera mainCamera;
+    private Camera mainCamera;
     public Camera uiCamera;
 
     private Vector3[] initVerts;
@@ -20,16 +20,19 @@ public class UIScreen : MonoBehaviour {
     // Use this for initialization
     void Start () {
         initVerts = GetComponent<MeshFilter>().mesh.vertices;
+        mainCamera = Camera.main;
 
-        shrinking = true;
-        isShrinked = true;
+        //shrinking = true;
+        //isShrinked = true;
     }
 	
 	// Update is called once per frame
 	void Update () {
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began || Input.GetMouseButtonDown(0))
         {
+            /*
             toggleShrinking();
+            */
 
         }
         if (Input.GetKey(KeyCode.P))
@@ -64,7 +67,7 @@ public class UIScreen : MonoBehaviour {
         }
 	}
 
-    private void toggleShrinking()
+    public void toggleShrinking()
     {
         if (shrinking == false && exspanding == false)
         {
@@ -79,7 +82,20 @@ public class UIScreen : MonoBehaviour {
                 isShrinked = true;
             }
         }
-        
+    }
+
+    public void toggleShrinkingForce()
+    {
+        if (isShrinked)
+        {
+            exspanding = true;
+            isShrinked = false;
+        }
+        else
+        {
+            shrinking = true;
+            isShrinked = true;
+        }
     }
 
     private bool SrinkDisplay()

@@ -2,13 +2,13 @@
 using System.Collections;
 using System;
 
-public class MapNode : MonoBehaviour {
+public class MapNodeStereo : MonoBehaviour {
 
     public Material selectedMaterial;
 
     public Material unselectedMaterial;
 
-    public void Initialize(VisitNode visitNode, Map map)
+    public void Initialize(VisitNodeStereo visitNode, MapStereo map)
     {
         transform.position = visitNode.transform.position;
         transform.parent = map.transform;

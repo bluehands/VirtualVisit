@@ -2,10 +2,12 @@
 
 public class ButtonStart : ButtonBase
 {
-    public int nextLevelIndex;
+    public string nextVisitId;
 
     protected override void DoAction()
     {
-        SceneManager.LoadScene(nextLevelIndex);
+        ApplicationModel.selectedVisitId = nextVisitId;
+
+        SceneManager.LoadScene(1);
     }
 }

@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Levels/Tour_EppleSee.unity
+- path: Assets/Levels/VisitPrefabs.unity
   isLoaded: 1
   isActive: 1
