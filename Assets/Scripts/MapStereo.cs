@@ -22,18 +22,19 @@ public class MapStereo : MonoBehaviour {
         nodes[0].select();
     }
 
-    public void Generate(VisitStereo visit)
+    public void Generate(List<VisitNodeStereo> visitNodes)
     {
-        foreach (VisitNodeStereo visitNode in visit.getNodes())
+        foreach (VisitNodeStereo visitNode in visitNodes)
         {
             MapNodeStereo node = Instantiate(nodePrefab) as MapNodeStereo;
+            node.Initialize(visitNode.position, this.transform);
             nodes.Add(node);
-            node.Initialize(visitNode, this);
+            visitNode.mapNode = node;
 
             foreach (VisitEdgeStereo visitEdge in visitNode.getEdges())
             {
-                createGameObject(0.2f, 0, visitEdge, node);
-                createGameObject(0, 0.2f, visitEdge, node);
+                createMapEdge(0.2f, 0, visitEdge, node);
+                createMapEdge(0, 0.2f, visitEdge, node);
             }
         }
 
@@ -41,7 +42,7 @@ public class MapStereo : MonoBehaviour {
         transform.Translate(new Vector3(0, -1, 3));
     }
 
-    private void createGameObject(float width, float height, VisitEdgeStereo visitEdge, MapNodeStereo mapNode)
+    private void createMapEdge(float width, float height, VisitEdgeStereo visitEdge, MapNodeStereo mapNode)
     {
         GameObject plane = new GameObject("MapEdge");
         plane.transform.parent = mapNode.transform;
@@ -60,8 +61,8 @@ public class MapStereo : MonoBehaviour {
     {
         Mesh m = new Mesh();
         m.name = "ScriptedMesh";
-        var fromPos = visitEdge.fromNode.transform.position;
-        var toPos = visitEdge.toNode.transform.position;
+        var fromPos = visitEdge.fromNode.position;
+        var toPos = visitEdge.toNode.position;
         m.vertices = new Vector3[] {
              new Vector3(fromPos.x + width, fromPos.y + height, fromPos.z + width),
              new Vector3(fromPos.x - width, fromPos.y - height, fromPos.z - width),

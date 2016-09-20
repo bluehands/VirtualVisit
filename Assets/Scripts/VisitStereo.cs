@@ -16,44 +16,39 @@ public class VisitStereo : MonoBehaviour {
 
     private VisitSettingsStereo visitSettings;
 
-    private List<VisitNodeStereo> nodes = new List<VisitNodeStereo>();
+    private List<VisitNodeStereo> visitNodes = new List<VisitNodeStereo>();
 
     public MapStereo map;
 
-    public List<VisitNodeStereo> getNodes()
-    {
-        return nodes;
-    }
-
     public void Generate(string visitId)
     {
-        this.visitSettings = getVisitSettings(visitId); ;
+        visitSettings = getVisitSettings(visitId); ;
 
-        VisitNodeSettingsStereo[] nodeSettings = visitSettings.nodeSettings;
-        for (int i = 0; i < nodeSettings.Length; i++)
+        foreach (var visitNodeSetting in visitSettings.nodeSettings)
         {
-            VisitNodeSettingsStereo settings = nodeSettings[i];
-            Texture textureLeft = null;
-            Texture textureRight = null;
-
-            bool isStereo = tryToLoadTextures(visitSettings.id, settings.id, out textureLeft, out textureRight);
-
-            createNode(settings.id, settings.title, settings.postion, textureLeft, textureRight, isStereo);
+            createNode(visitSettings.id, visitNodeSetting.id, visitNodeSetting.title, visitNodeSetting.postion);
         }
-        for (int i = 0; i < nodeSettings.Length; i++)
+
+        foreach(var visitNodeSetting in visitSettings.nodeSettings)
         {
-            VisitNodeSettingsStereo settings = nodeSettings[i];
-            string[] edgeIds = getEdgeIds(settings.edgeIds);
-            for (int k = 0; k < edgeIds.Length; k++)
+            foreach(var edgeId in getEdgeIds(visitNodeSetting.edgeIds))
             {
-                createEdge(settings.id, edgeIds[k]);
+                createEdge(visitNodeSetting.id, edgeId);
             }
         }
 
         map = Instantiate(mapPrefab) as MapStereo;
-
-        map.Generate(this);
+        map.Generate(visitNodes);
         map.Initialize();
+    }
+
+    public void Initialize()
+    {
+        foreach(var visitNode in visitNodes)
+        {
+            visitNode.unselect();
+        }
+        visitNodes[0].select();
     }
 
     private VisitSettingsStereo getVisitSettings(string visitId)
@@ -92,21 +87,26 @@ public class VisitStereo : MonoBehaviour {
         return edgeIdsStr.Split(',');
     }
 
-    public void createNode(string id, string title, Vector3 position, Texture sphereLeft, Texture sphereRight, bool isStereo)
+    private void createNode(string visitId, string nodeId, string title, Vector3 position)
     {
         VisitNodeStereo node = Instantiate(nodePrefab) as VisitNodeStereo;
-        nodes.Add(node);
-        if(isStereo)
+
+        Texture textureLeft = null;
+        Texture textureRight = null;
+
+        bool isStereo = tryToLoadTextures(visitId, nodeId, out textureLeft, out textureRight);
+
+        if (isStereo)
         {
-            node.Initialize(id, title, position, sphereLeft, sphereRight);
+            node.Initialize(nodeId, title, position, transform, textureLeft, textureRight);
         } else
         {
-            node.Initialize(id, title, position, sphereLeft);
+            node.Initialize(nodeId, title, position, transform, textureLeft);
         }
-        node.transform.parent = this.transform;
+        visitNodes.Add(node);
     }
 
-    public void createEdge(string fromId, string toId)
+    private void createEdge(string fromId, string toId)
     {
         VisitEdgeStereo edge = Instantiate(edgePrefab) as VisitEdgeStereo;
         VisitNodeStereo fromNode = getNode(fromId);
@@ -119,11 +119,11 @@ public class VisitStereo : MonoBehaviour {
 
     private VisitNodeStereo getNode(string id)
     {
-        for (int i = 0; i < nodes.Count; i++)
+        for (int i = 0; i < visitNodes.Count; i++)
         {
-            if(nodes[i].id.Equals(id))
+            if(visitNodes[i].id.Equals(id))
             {
-                return nodes[i];
+                return visitNodes[i];
             }
         }
         throw new InvalidOperationException(String.Format("Tour couldn't find node for {0} in visit {1}." , id, visitSettings.id));
@@ -133,11 +133,9 @@ public class VisitStereo : MonoBehaviour {
     {
         VisitNodeStereo fromNode = edge.fromNode;
         VisitNodeStereo toNode = edge.toNode;
-        var position = fromNode.transform.position - toNode.transform.position;
 
-        Debug.Log("move to " + position);
+        Debug.Log(String.Format("MoveTo({0},{1})", fromNode.id, toNode.id));
 
-        transform.Translate(position);
         fromNode.unselect();
         toNode.select();
     }

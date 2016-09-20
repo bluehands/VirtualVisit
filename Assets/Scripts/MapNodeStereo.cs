@@ -2,17 +2,16 @@
 using System.Collections;
 using System;
 
-public class MapNode : MonoBehaviour {
+public class MapNodeStereo : MonoBehaviour {
 
     public Material selectedMaterial;
 
     public Material unselectedMaterial;
 
-    public void Initialize(VisitNode visitNode, Map map)
+    public void Initialize(Vector3 position, Transform parent)
     {
-        transform.position = visitNode.transform.position;
-        transform.parent = map.transform;
-        visitNode.mapNode = this;
+        transform.position = position;
+        transform.parent = parent;
     }
 
     internal void unselect()

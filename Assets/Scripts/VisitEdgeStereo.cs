@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
 
 public class VisitEdgeStereo : MonoBehaviour {
@@ -16,22 +15,21 @@ public class VisitEdgeStereo : MonoBehaviour {
         this.fromNode = fromNode;
         this.toNode = toNode;
 
-        name = "Tour Edge from " + fromNode.id + " to " + toNode.id;
+        name = string.Format("VisitEdge({0},{1})", fromNode.id, toNode.id);
         transform.parent = fromNode.transform;
-        transform.position = fromNode.transform.position;
 
         textNext.text = toNode.title;
 
-        setRotation(fromNode, toNode);
+        setRotation(fromNode.position, toNode.position);
 
         fromNode.addEdge(this);
 
         nextButton.transform.SetParent(canvasNext.transform, false);
     }
 
-    private void setRotation(VisitNodeStereo fromNode, VisitNodeStereo toNode)
+    private void setRotation(Vector3 fromNodePosition, Vector3 toNodePosition)
     {
-        var dir = toNode.transform.position - fromNode.transform.position;
+        var dir = toNodePosition - fromNodePosition;
         transform.rotation = Quaternion.LookRotation(dir);
     }
 }

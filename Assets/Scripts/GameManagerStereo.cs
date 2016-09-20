@@ -1,8 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-using System;
-using System.IO;
 
 public class GameManagerStereo : MonoBehaviour
 {
@@ -29,6 +25,7 @@ public class GameManagerStereo : MonoBehaviour
 
         visitInstance = Instantiate(visitPrefab) as VisitStereo;
         visitInstance.Generate(visitId);
+        visitInstance.Initialize();
 
         playerInstance = Instantiate(playerPrefab) as PlayerStereo;
         playerInstance.Initialize(visitInstance.map);

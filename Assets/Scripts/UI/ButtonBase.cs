@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 public abstract class ButtonBase : MonoBehaviour, ISelectHandler, IPointerEnterHandler, IPointerExitHandler
 {
     private bool selected;
+    private bool doneAction;
 
     private Text buttonText;
 
@@ -27,7 +28,7 @@ public abstract class ButtonBase : MonoBehaviour, ISelectHandler, IPointerEnterH
         if (timeCounter >= 1)
         {
             timeCounter = 0;
-            if (selected)
+            if (selected && !doneAction)
             {
                 if (waitingCounter > 0)
                 {
@@ -35,6 +36,10 @@ public abstract class ButtonBase : MonoBehaviour, ISelectHandler, IPointerEnterH
                 }
                 else
                 {
+                    //Animator animator = transform.GetComponent<Animator>();
+                    //animator.Rebind();
+                    doneAction = true;
+                    waitingCounter = waitingTimeInSeconds;
                     DoAction();
                 }
             }
@@ -50,11 +55,13 @@ public abstract class ButtonBase : MonoBehaviour, ISelectHandler, IPointerEnterH
     public void OnPointerEnter(PointerEventData eventData)
     {
         selected = true;
+        doneAction = false;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         selected = false;
+        doneAction = false;
         waitingCounter = waitingTimeInSeconds;
     }
 

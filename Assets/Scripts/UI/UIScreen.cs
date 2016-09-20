@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.EventSystems;
 
 public class UIScreen : MonoBehaviour {
@@ -17,7 +16,6 @@ public class UIScreen : MonoBehaviour {
     private GameObject lastPointedTarget = null;
     private GameObject currentPointedTarget = null;
 
-    // Use this for initialization
     void Start () {
         initVerts = GetComponent<MeshFilter>().mesh.vertices;
         mainCamera = Camera.main;
@@ -26,26 +24,7 @@ public class UIScreen : MonoBehaviour {
         //isShrinked = true;
     }
 	
-	// Update is called once per frame
 	void Update () {
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began || Input.GetMouseButtonDown(0))
-        {
-            /*
-            toggleShrinking();
-            */
-
-        }
-        if (Input.GetKey(KeyCode.P))
-        {
-            toggleShrinking();
-            //SrinkDisplay();
-            //shrinking = true;
-        }
-        if(Input.GetKey(KeyCode.O))
-        {
-            //ExspandDisplay();
-            exspanding = true;
-        }
         if(shrinking)
         {
             shrinking = SrinkDisplay();
