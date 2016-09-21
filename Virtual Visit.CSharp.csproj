@@ -98,6 +98,7 @@
     <Compile Include="Assets\Scripts\UI\Button3DStereo.cs" />
     <Compile Include="Assets\Scripts\UI\ButtonBackStereo.cs" />
     <Compile Include="Assets\Scripts\UI\ButtonBase.cs" />
+    <Compile Include="Assets\Scripts\UI\ButtonInfo.cs" />
     <Compile Include="Assets\Scripts\UI\ButtonMapStereo.cs" />
     <Compile Include="Assets\Scripts\UI\ButtonNextStereo.cs" />
     <Compile Include="Assets\Scripts\UI\ButtonStart.cs" />
