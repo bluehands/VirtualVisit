@@ -30,6 +30,7 @@ public class UIScreen : MonoBehaviour {
             shrinking = SrinkDisplay();
             if(shrinking == false)
             {
+                gameObject.SetActive(false);
             }
             exspanding = false;
         }
@@ -67,6 +68,7 @@ public class UIScreen : MonoBehaviour {
     {
         if (isShrinked)
         {
+            gameObject.SetActive(true);
             exspanding = true;
             isShrinked = false;
         }

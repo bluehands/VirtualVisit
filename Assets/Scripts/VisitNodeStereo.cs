@@ -80,19 +80,20 @@ public class VisitNodeStereo : MonoBehaviour {
 
     internal void unselect()
     {
-        isDisappearing = true;
-        isAppearing = false;
+        gameObject.SetActive(false);
+        //isDisappearing = true;
+        //isAppearing = false;
         mapNode.unselect();
     }
 
     internal void select()
     {
         gameObject.SetActive(true);
-        isAppearing = true;
-        isDisappearing = false;
+        //isAppearing = true;
+        //isDisappearing = false;
         mapNode.select();
     }
-
+    /*
     void Update()
     {
         if(isAppearing)
@@ -194,5 +195,5 @@ public class VisitNodeStereo : MonoBehaviour {
         Renderer rendLeft = transform.GetChild(0).GetComponent<Renderer>();
         return rendLeft.material.GetColor("_Color").a;
     }
-
+    */
 }

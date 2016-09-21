@@ -13,13 +13,11 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile>
-    </CompilerResponseFile>
+    <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>Android:13</UnityBuildTarget>
     <UnityVersion>5.4.1f1</UnityVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -94,39 +92,39 @@
     <Compile Include="Assets\Cardboard\Scripts\VRDevices\CardboardiOSDevice.cs" />
     <Compile Include="Assets\Cardboard\Scripts\VRDevices\UnityEditorDevice.cs" />
     <Compile Include="Assets\Scripts\ApplicationModel.cs" />
-    <Compile Include="Assets\Scripts\old\GameController.cs" />
-    <Compile Include="Assets\Scripts\old\GameManager.cs" />
     <Compile Include="Assets\Scripts\GameManagerStereo.cs" />
-    <Compile Include="Assets\Scripts\old\Map.cs" />
-    <Compile Include="Assets\Scripts\old\MapNode.cs" />
     <Compile Include="Assets\Scripts\MapNodeStereo.cs" />
     <Compile Include="Assets\Scripts\MapStereo.cs" />
-    <Compile Include="Assets\Scripts\old\Player.cs" />
     <Compile Include="Assets\Scripts\PlayerStereo.cs" />
-    <Compile Include="Assets\Scripts\old\UI\ButtonBack.cs" />
     <Compile Include="Assets\Scripts\UI\ButtonBackStereo.cs" />
     <Compile Include="Assets\Scripts\UI\ButtonBase.cs" />
+    <Compile Include="Assets\Scripts\UI\ButtonMapStereo.cs" />
+    <Compile Include="Assets\Scripts\UI\ButtonNextStereo.cs" />
+    <Compile Include="Assets\Scripts\UI\ButtonStart.cs" />
+    <Compile Include="Assets\Scripts\UI\UICamera.cs" />
+    <Compile Include="Assets\Scripts\UI\UIScreen.cs" />
+    <Compile Include="Assets\Scripts\VisitEdgeStereo.cs" />
+    <Compile Include="Assets\Scripts\VisitNodeSettingsStereo.cs" />
+    <Compile Include="Assets\Scripts\VisitNodeStereo.cs" />
+    <Compile Include="Assets\Scripts\VisitSettingsStereo.cs" />
+    <Compile Include="Assets\Scripts\VisitStereo.cs" />
+    <Compile Include="Assets\Scripts\old\GameController.cs" />
+    <Compile Include="Assets\Scripts\old\GameManager.cs" />
+    <Compile Include="Assets\Scripts\old\Map.cs" />
+    <Compile Include="Assets\Scripts\old\MapNode.cs" />
+    <Compile Include="Assets\Scripts\old\Player.cs" />
+    <Compile Include="Assets\Scripts\old\UI\ButtonBack.cs" />
     <Compile Include="Assets\Scripts\old\UI\ButtonCount.cs" />
     <Compile Include="Assets\Scripts\old\UI\ButtonForward.cs" />
     <Compile Include="Assets\Scripts\old\UI\ButtonMap.cs" />
-    <Compile Include="Assets\Scripts\UI\ButtonMapStereo.cs" />
     <Compile Include="Assets\Scripts\old\UI\ButtonNext.cs" />
-    <Compile Include="Assets\Scripts\UI\ButtonNextStereo.cs" />
-    <Compile Include="Assets\Scripts\old\UI\ButtonStart.cs" />
-    <Compile Include="Assets\Scripts\UI\UICamera.cs" />
-    <Compile Include="Assets\Scripts\UI\UIScreen.cs" />
     <Compile Include="Assets\Scripts\old\UI\UIScreenTest.cs" />
     <Compile Include="Assets\Scripts\old\VRInputModule.cs" />
     <Compile Include="Assets\Scripts\old\Visit.cs" />
     <Compile Include="Assets\Scripts\old\VisitEdge.cs" />
-    <Compile Include="Assets\Scripts\VisitEdgeStereo.cs" />
     <Compile Include="Assets\Scripts\old\VisitNode.cs" />
     <Compile Include="Assets\Scripts\old\VisitNodeSettings.cs" />
-    <Compile Include="Assets\Scripts\VisitNodeSettingsStereo.cs" />
-    <Compile Include="Assets\Scripts\VisitNodeStereo.cs" />
     <Compile Include="Assets\Scripts\old\VisitSettings.cs" />
-    <Compile Include="Assets\Scripts\VisitSettingsStereo.cs" />
-    <Compile Include="Assets\Scripts\VisitStereo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Cardboard\Distortion\CardboardDistortion.cginc" />
@@ -136,6 +134,5 @@
     <None Include="Assets\Cardboard\Resources\UnlitTexture.shader" />
     <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

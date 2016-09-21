@@ -8,6 +8,6 @@ public class ButtonStart : ButtonBase
     {
         ApplicationModel.selectedVisitId = nextVisitId;
 
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(0);
     }
 }

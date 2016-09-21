@@ -36,8 +36,6 @@ public abstract class ButtonBase : MonoBehaviour, ISelectHandler, IPointerEnterH
                 }
                 else
                 {
-                    //Animator animator = transform.GetComponent<Animator>();
-                    //animator.Rebind();
                     doneAction = true;
                     waitingCounter = waitingTimeInSeconds;
                     DoAction();

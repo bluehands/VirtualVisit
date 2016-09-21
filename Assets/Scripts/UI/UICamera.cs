@@ -6,9 +6,6 @@ public class UICamera : MonoBehaviour {
 
     public ButtonStart buttonStartPrefebs;
 
-	void Start () {
-    }
-
     public void Generate()
     {
         initVisitPanel("Epple", "Epple_P0", new Vector3(200, 0, 0));
@@ -66,7 +63,4 @@ public class UICamera : MonoBehaviour {
         descriptionText.transform.SetParent(panel.transform, false);
     }
 
-	void Update () {
-	
-	}
 }
