@@ -5,6 +5,9 @@ using System;
 
 public class VisitNodeStereo : MonoBehaviour {
 
+    private const int LEFT_EYE = 0;
+    private const int RIGHT_EYE = 1;
+
     public string id;
 
     public string title;
@@ -18,6 +21,8 @@ public class VisitNodeStereo : MonoBehaviour {
     private bool isAppearing;
     private bool isDisappearing;
 
+    private bool isStereo;
+
     public enum BlendMode
     {
         Opaque,
@@ -26,36 +31,48 @@ public class VisitNodeStereo : MonoBehaviour {
         Transparent
     }
 
+    private Transform getLeftSphere()
+    {
+        return transform.GetChild(LEFT_EYE);
+    }
+
+    private Transform getRightSphere()
+    {
+        return transform.GetChild(RIGHT_EYE);
+    }
+
     public void Initialize(string id, string title, Vector3 position, Transform parent, Texture sphereTexture)
     {
         init(id, title, position, parent);
+        isStereo = false;
 
-        Renderer rendLeft = transform.GetChild(0).GetComponent<Renderer>();
+        Renderer rendLeft = getLeftSphere().GetComponent<Renderer>();
         rendLeft.enabled = true;
         rendLeft.material.SetTextureScale("_MainTex", new Vector2(-1, 1));
         rendLeft.material.mainTexture = sphereTexture;
 
-        transform.GetChild(0).gameObject.layer = LayerMask.NameToLayer("Default");
+        getLeftSphere().gameObject.layer = LayerMask.NameToLayer("Default");
 
-        Renderer rendRight = transform.GetChild(1).GetComponent<Renderer>();
+        Renderer rendRight = getRightSphere().GetComponent<Renderer>();
         rendRight.enabled = false;
     }
 
     public void Initialize(string id, string title, Vector3 position, Transform parent, Texture sphereLeft, Texture sphereRight)
     {
         init(id, title, position, parent);
+        isStereo = true;
 
-        Renderer rendLeft = transform.GetChild(0).GetComponent<Renderer>();
+        Renderer rendLeft = getLeftSphere().GetComponent<Renderer>();
         rendLeft.enabled = true;
         rendLeft.material.SetTextureScale("_MainTex", new Vector2(-1, 1));
         rendLeft.material.mainTexture = sphereLeft;
-        transform.GetChild(0).gameObject.layer = LayerMask.NameToLayer("Left Eye");
+        getLeftSphere().gameObject.layer = LayerMask.NameToLayer("Left Eye");
 
         Renderer rendRight = transform.GetChild(1).GetComponent<Renderer>();
         rendRight.enabled = true;
         rendRight.material.SetTextureScale("_MainTex", new Vector2(-1, 1));
         rendRight.material.mainTexture = sphereRight;
-        transform.GetChild(1).gameObject.layer = LayerMask.NameToLayer("Right Eye");
+        getRightSphere().gameObject.layer = LayerMask.NameToLayer("Right Eye");
     }
 
     private void init(string id, string title, Vector3 position, Transform parent)
@@ -66,6 +83,23 @@ public class VisitNodeStereo : MonoBehaviour {
         transform.parent = parent;
 
         name = String.Format("VisitNode({0})", id);
+    }
+
+    internal void ToggleStereoView()
+    {
+        if(isStereo)
+        {
+            if (getLeftSphere().gameObject.layer == LayerMask.NameToLayer("Left Eye"))
+            {
+                getLeftSphere().gameObject.layer = LayerMask.NameToLayer("Default");
+                getRightSphere().gameObject.SetActive(false);
+            }
+            else
+            {
+                getLeftSphere().gameObject.layer = LayerMask.NameToLayer("Left Eye");
+                getRightSphere().gameObject.SetActive(true);
+            }
+        }
     }
 
     public void addEdge(VisitEdgeStereo edge)

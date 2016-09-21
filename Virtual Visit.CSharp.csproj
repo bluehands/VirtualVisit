@@ -95,6 +95,7 @@
     <Compile Include="Assets\Scripts\MapNodeStereo.cs" />
     <Compile Include="Assets\Scripts\MapStereo.cs" />
     <Compile Include="Assets\Scripts\PlayerStereo.cs" />
+    <Compile Include="Assets\Scripts\UI\Button3DStereo.cs" />
     <Compile Include="Assets\Scripts\UI\ButtonBackStereo.cs" />
     <Compile Include="Assets\Scripts\UI\ButtonBase.cs" />
     <Compile Include="Assets\Scripts\UI\ButtonMapStereo.cs" />

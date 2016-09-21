@@ -33,7 +33,7 @@ public class GameManagerStereo : MonoBehaviour
         visitInstance.Initialize();
 
         playerInstance = Instantiate(playerPrefab) as PlayerStereo;
-        playerInstance.Initialize(visitInstance.map);
+        playerInstance.Initialize(visitInstance);
 
         cameraInstance = Instantiate(cameraPrefabs) as UICamera;
         cameraInstance.Generate(visitSettingsFactory);

@@ -9,6 +9,8 @@ public class PlayerStereo : MonoBehaviour {
 
     public ButtonMapStereo mapButtonPrefab;
 
+    public Button3DStereo d3ButtonPrefab;
+
     public UIScreen uiScreenPrefabs;
 
     private Cardboard cardboardInstance;
@@ -17,31 +19,33 @@ public class PlayerStereo : MonoBehaviour {
 
     private ButtonMapStereo mapButtonInstance;
 
+    private Button3DStereo d3ButtonInstance;
+
     private UIScreen uiScreenInstance;
 
-    public void Initialize(MapStereo map)
+    public void Initialize(VisitStereo visit)
     {
         var canvasBack = GameObject.Find("Canvas Back");
         var canvasMap = GameObject.Find("Canvas Map");
+        var canvas3D = GameObject.Find("Canvas 3D");
 
         cardboardInstance = Instantiate(cardboardPrefab) as Cardboard;
         cardboardInstance.transform.parent = transform;
 
         CardboardHead cardboardHead = cardboardInstance.GetComponentInChildren<CardboardHead>();
-        map.transform.parent = cardboardHead.transform;
+        visit.map.transform.parent = cardboardHead.transform;
 
         uiScreenInstance = Instantiate(uiScreenPrefabs) as UIScreen;
         uiScreenInstance.transform.parent = transform;
 
         backButtonInstance = Instantiate(backButtonPrefab) as ButtonBackStereo;
-        backButtonInstance.Initialize(uiScreenInstance);
-        backButtonInstance.transform.SetParent(canvasBack.transform, false);
+        backButtonInstance.Initialize(uiScreenInstance, canvasBack.transform);
 
         mapButtonInstance = Instantiate(mapButtonPrefab) as ButtonMapStereo;
-        mapButtonInstance.Initialize(map);
-        mapButtonInstance.transform.SetParent(canvasMap.transform, false);
+        mapButtonInstance.Initialize(visit.map, canvasMap.transform);
 
-
+        d3ButtonInstance = Instantiate(d3ButtonPrefab) as Button3DStereo;
+        d3ButtonInstance.Initialize(visit, canvas3D.transform);
     }
 
 }

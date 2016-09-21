@@ -18,6 +18,8 @@ public class VisitStereo : MonoBehaviour {
 
     public MapStereo map;
 
+    private VisitNodeStereo currentVisitNode;
+
     public void Generate(string visitId, VisitSettingsFactory visitSettingsFactory)
     {
         visitSettings = visitSettingsFactory.getVisitSetting(visitId);
@@ -47,6 +49,12 @@ public class VisitStereo : MonoBehaviour {
             visitNode.unselect();
         }
         visitNodes[0].select();
+        currentVisitNode = visitNodes[0];
+    }
+
+    public VisitNodeStereo getCurrentVisitNode()
+    {
+        return currentVisitNode;
     }
 
     private void createNode(VisitSettingsStereo visitSettings, VisitNodeSettingsStereo visitNodeSetting, VisitSettingsFactory visitSettingsFactory)
@@ -101,6 +109,7 @@ public class VisitStereo : MonoBehaviour {
 
         fromNode.unselect();
         toNode.select();
+        currentVisitNode = toNode;
     }
 
 }
