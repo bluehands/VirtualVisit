@@ -1,5 +1,8 @@
 {
-	"id":"Epple",	"nodeSettings":[
+	"id":"Epple",
+	"author":"Marcel Weigel",
+	"created":"17.07.2016",
+	"previewNodeIndex":0,	"nodeSettings":[
 			{
 				"id":"P0",				"title":"Hallo 3",				"postion":{	
 					"x":0.0,					"y":0.0,					"z":0.0

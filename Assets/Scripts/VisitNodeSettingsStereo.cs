@@ -12,4 +12,9 @@ public class VisitNodeSettingsStereo {
 
     public string edgeIds;
 
+    public string[] getEdgeIds()
+    {
+        return edgeIds.Split(',');
+    }
+
 }

@@ -1,5 +1,8 @@
 {
-	"id":"Bluehands",	"nodeSettings":[
+	"id":"Bluehands",
+	"author":"Marcel Weigel",
+	"created":"25.06.2016",
+	"previewNodeIndex":0,	"nodeSettings":[
 			{
 				"id":"P0",				"title":"Terasse",				"postion":{	
 					"x":0.0,					"y":0.0,					"z":0.0

@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 using System;
-using System.IO;
 
 public class VisitStereo : MonoBehaviour {
 
@@ -20,18 +18,18 @@ public class VisitStereo : MonoBehaviour {
 
     public MapStereo map;
 
-    public void Generate(string visitId)
+    public void Generate(string visitId, VisitSettingsFactory visitSettingsFactory)
     {
-        visitSettings = getVisitSettings(visitId); ;
+        visitSettings = visitSettingsFactory.getVisitSetting(visitId);
 
         foreach (var visitNodeSetting in visitSettings.nodeSettings)
         {
-            createNode(visitSettings.id, visitNodeSetting.id, visitNodeSetting.title, visitNodeSetting.postion);
+            createNode(visitSettings, visitNodeSetting, visitSettingsFactory);
         }
 
         foreach(var visitNodeSetting in visitSettings.nodeSettings)
         {
-            foreach(var edgeId in getEdgeIds(visitNodeSetting.edgeIds))
+            foreach(var edgeId in visitNodeSetting.getEdgeIds())
             {
                 createEdge(visitNodeSetting.id, edgeId);
             }
@@ -51,57 +49,22 @@ public class VisitStereo : MonoBehaviour {
         visitNodes[0].select();
     }
 
-    private VisitSettingsStereo getVisitSettings(string visitId)
-    {
-        if (visitId == null || visitId.Equals(""))
-        {
-            visitId = "Epple";
-        }
-        VisitSettingsStereo visitSettings = null;
-
-        var jsonText = Resources.Load(String.Format("Visits\\{0}", visitId)) as TextAsset;
-
-        visitSettings = JsonUtility.FromJson<VisitSettingsStereo>(jsonText.text);
-
-        return visitSettings;
-    }
-
-    private bool tryToLoadTextures(string visitId, string nodeId, out Texture textureLeft, out Texture textureRight)
-    {
-        bool isStereo;
-        textureLeft = Resources.Load(String.Format("Panoramas\\{0}_{1}_{2}", visitId, nodeId, "l")) as Texture;
-        textureRight = Resources.Load(String.Format("Panoramas\\{0}_{1}_{2}", visitId, nodeId, "r")) as Texture;
-        if (textureLeft != null && textureRight != null)
-        {
-            isStereo = true;
-        } else
-        {
-            textureLeft = Resources.Load(String.Format("Panoramas\\{0}_{1}", visitId, nodeId)) as Texture;
-            isStereo = false;
-        }
-        return isStereo;
-    }
-
-    private string[] getEdgeIds(string edgeIdsStr)
-    {
-        return edgeIdsStr.Split(',');
-    }
-
-    private void createNode(string visitId, string nodeId, string title, Vector3 position)
+    private void createNode(VisitSettingsStereo visitSettings, VisitNodeSettingsStereo visitNodeSetting, VisitSettingsFactory visitSettingsFactory)
     {
         VisitNodeStereo node = Instantiate(nodePrefab) as VisitNodeStereo;
 
         Texture textureLeft = null;
         Texture textureRight = null;
 
-        bool isStereo = tryToLoadTextures(visitId, nodeId, out textureLeft, out textureRight);
+        bool isStereo = visitSettingsFactory.tryToLoadTextures(visitSettings, visitNodeSetting, out textureLeft, out textureRight);
 
         if (isStereo)
         {
-            node.Initialize(nodeId, title, position, transform, textureLeft, textureRight);
-        } else
+            node.Initialize(visitNodeSetting.id, visitNodeSetting.title, visitNodeSetting.postion, transform, textureLeft, textureRight);
+        }
+        else
         {
-            node.Initialize(nodeId, title, position, transform, textureLeft);
+            node.Initialize(visitNodeSetting.id, visitNodeSetting.title, visitNodeSetting.postion, transform, textureLeft);
         }
         visitNodes.Add(node);
     }

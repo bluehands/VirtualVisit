@@ -6,19 +6,23 @@ public class UICamera : MonoBehaviour {
 
     public ButtonStart buttonStartPrefebs;
 
-    public void Generate()
+    public void Generate(VisitSettingsFactory visitSettingsFactory)
     {
-        initVisitPanel("Epple", "Epple_P0", new Vector3(200, 0, 0));
-        initVisitPanel("UStrab", "UStrab_P0", new Vector3(-200, 0, 0));
-        initVisitPanel("Dougeon", "Dungeon_P1", new Vector3(-600, 0, 0));
-        initVisitPanel("Bluehands", "Bluehands_P0", new Vector3(600, 0, 0));
+        var visitSettings = visitSettingsFactory.getVisitSettings();
+        var xStep = 1680 / visitSettings.Length;
+        var currentStep = -(1680/2) + 200;
+        foreach (var visitSetting in visitSettings)
+        {
+            initVisitPanel(visitSetting, new Vector3(currentStep, 0, 0), visitSettingsFactory);
+            currentStep += xStep;
+        }
     }
 
-    private void initVisitPanel(string visitId, string startImage, Vector3 position)
+    private void initVisitPanel(VisitSettingsStereo visitSetting, Vector3 position, VisitSettingsFactory visitSettingsFactory)
     {
         Canvas canvase = this.transform.GetComponentInChildren<Canvas>();
 
-        GameObject panel = new GameObject("Panel " + visitId);
+        GameObject panel = new GameObject("Panel " + visitSetting.id);
         panel.AddComponent<CanvasRenderer>();
         RectTransform panelRectTransform = panel.AddComponent<RectTransform>();
         panelRectTransform.sizeDelta = new Vector2(400, 300);
@@ -31,13 +35,19 @@ public class UICamera : MonoBehaviour {
         RectTransform panelRectTransformImage = backgroundImage.AddComponent<RectTransform>();
         panelRectTransformImage.sizeDelta = new Vector2(300, 200);
         RawImage rawImage = backgroundImage.AddComponent<RawImage>();
-        rawImage.texture = Resources.Load(String.Format("Panoramas\\{0}", startImage)) as Texture;
+
+        Texture textureLeft = null;
+        Texture textureRight = null;
+
+        visitSettingsFactory.tryToLoadTextures(visitSetting, visitSetting.getPreviewNodeSetting(), out textureLeft, out textureRight);
+
+        rawImage.texture = textureLeft;
         backgroundImage.transform.SetParent(panel.transform, false);
 
         ButtonStart buttonStart = Instantiate(buttonStartPrefebs) as ButtonStart;
         RectTransform buttonStartRectTransform = buttonStart.GetComponent<RectTransform>();
         buttonStartRectTransform.localPosition = new Vector3(130, -80, 0);
-        buttonStart.nextVisitId = visitId;
+        buttonStart.nextVisitId = visitSetting.id;
         buttonStart.transform.SetParent(panel.transform, false);
 
         GameObject headlineText = new GameObject("Headline Text");
@@ -46,7 +56,7 @@ public class UICamera : MonoBehaviour {
         headlineTextRectTransform.localScale = new Vector3(0.1f, 0.1f, 1);
         headlineTextRectTransform.localPosition = new Vector3(-35, 120, 0);
         Text text = headlineText.AddComponent<Text>();
-        text.text = visitId;
+        text.text = visitSetting.id;
         text.fontSize = 200;
         text.font = Resources.GetBuiltinResource(typeof(Font), "Arial.ttf") as Font;
         headlineText.transform.SetParent(panel.transform, false);
@@ -57,7 +67,9 @@ public class UICamera : MonoBehaviour {
         descriptionTextRectTransform.localScale = new Vector3(0.1f, 0.1f, 1);
         descriptionTextRectTransform.localPosition = new Vector3(0, -60, 0);
         Text textDescription = descriptionText.AddComponent<Text>();
-        textDescription.text = "Erstellt \n von: Marcel Weigel \n am: 24.7.2016";
+
+        textDescription.text = String.Format("Erstellt \n von: {0} \n am: {1}", visitSetting.author, visitSetting.created);
+
         textDescription.fontSize = 140;
         textDescription.font = Resources.GetBuiltinResource(typeof(Font), "Arial.ttf") as Font;
         descriptionText.transform.SetParent(panel.transform, false);
