@@ -18,6 +18,14 @@ public class VisitNodeStereo : MonoBehaviour {
     private bool isAppearing;
     private bool isDisappearing;
 
+    public enum BlendMode
+    {
+        Opaque,
+        Cutout,
+        Fade,
+        Transparent
+    }
+
     public void Initialize(string id, string title, Vector3 position, Transform parent, Texture sphereTexture)
     {
         init(id, title, position, parent);
@@ -26,10 +34,6 @@ public class VisitNodeStereo : MonoBehaviour {
         rendLeft.enabled = true;
         rendLeft.material.SetTextureScale("_MainTex", new Vector2(-1, 1));
         rendLeft.material.mainTexture = sphereTexture;
-/*
-        Color color = rendLeft.material.GetColor("_Color");
-        color.a = 0.5f;
-        rendLeft.material.SetColor("_Color", color);*/
 
         transform.GetChild(0).gameObject.layer = LayerMask.NameToLayer("Default");
 
@@ -94,17 +98,28 @@ public class VisitNodeStereo : MonoBehaviour {
         if(isAppearing)
         {
             float a = getAlpha();
-            if(a <= 1.0f)
+            
+            if (getMode() != BlendMode.Transparent)
             {
-                setAlpha(a + 0.01f);
-            } else
+                setMode(BlendMode.Transparent);
+            }
+            if (a <= 1.0f)
+            {
+                setAlpha(a + 0.009f);
+            }
+            else
             {
                 isAppearing = false;
+                setMode(BlendMode.Opaque);
             }
         }
         if (isDisappearing)
         {
             float a = getAlpha();
+            if(getMode() != BlendMode.Transparent)
+            {
+                setMode(BlendMode.Transparent);
+            }
             if (a >= 0.0f)
             {
                 setAlpha(a - 0.01f);
@@ -113,7 +128,52 @@ public class VisitNodeStereo : MonoBehaviour {
             {
                 gameObject.SetActive(false);
                 isDisappearing = false;
+                setMode(BlendMode.Opaque);
             }
+        }
+    }
+
+    private BlendMode getMode()
+    {
+        Material materialLeft = transform.GetChild(0).GetComponent<Renderer>().material;
+        var value = materialLeft.GetFloat("_Mode");
+        if (value == 1)
+            return BlendMode.Cutout;
+        if (value == 2)
+            return BlendMode.Fade;
+        if (value == 3)
+            return BlendMode.Transparent;
+        return BlendMode.Opaque;
+    }
+
+    private void setMode(BlendMode mode)
+    {
+        setMaterialMode(transform.GetChild(0).GetComponent<Renderer>().material, mode);
+        setMaterialMode(transform.GetChild(1).GetComponent<Renderer>().material, mode);
+    }
+
+    private void setMaterialMode(Material material, BlendMode mode)
+    {
+        if(mode == BlendMode.Transparent)
+        {
+            material.SetFloat("_Mode", (float)mode);
+            material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
+            material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+            material.SetInt("_ZWrite", 0);
+            material.DisableKeyword("_ALPHATEST_ON");
+            material.EnableKeyword("_ALPHABLEND_ON");
+            material.DisableKeyword("_ALPHAPREMULTIPLY_ON");
+            material.renderQueue = 3000;
+        } else
+        {
+            material.SetFloat("_Mode", (float)mode);
+            material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.One);
+            material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.Zero);
+            material.SetInt("_ZWrite", 1);
+            material.EnableKeyword("_ALPHATEST_ON");
+            material.DisableKeyword("_ALPHABLEND_ON");
+            material.EnableKeyword("_ALPHAPREMULTIPLY_ON");
+            material.renderQueue = 2000;
         }
     }
 
