@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class MapStereo : MonoBehaviour {
 
@@ -81,10 +82,16 @@ public class MapStereo : MonoBehaviour {
         return m;
     }
 
-    public void ToggleVisibility()
+    internal bool GetVisibility()
+    {
+        return mapVisibility;
+    }
+
+    public bool ToggleVisibility()
     {
         mapVisibility = !mapVisibility;
         SetVisibility();
+        return mapVisibility;
     }
 
     public void SetVisibility()

@@ -10,7 +10,7 @@ public class VisitStereo : MonoBehaviour {
 
     public MapStereo mapPrefab;
 
-    public ButtonNextStereo nextButtonPrefab;
+    public ButtonStep btnStepPrefab;
 
     private VisitSettingsStereo visitSettings;
 
@@ -77,15 +77,29 @@ public class VisitStereo : MonoBehaviour {
         visitNodes.Add(node);
     }
 
+    internal void SetVisitEdgeVisibility(bool visibility)
+    {
+        foreach(var node in visitNodes)
+        {
+            if(node.gameObject.activeInHierarchy)
+            {
+                foreach (var edge in node.getEdges())
+                {
+                    edge.gameObject.SetActive(visibility);
+                }
+            }
+        }
+    }
+
     private void createEdge(string fromId, string toId)
     {
         VisitEdgeStereo edge = Instantiate(edgePrefab) as VisitEdgeStereo;
         VisitNodeStereo fromNode = getNode(fromId);
         VisitNodeStereo toNode = getNode(toId);
 
-        ButtonNextStereo nextButton = Instantiate(nextButtonPrefab) as ButtonNextStereo;
+        ButtonStep btnStep = Instantiate(btnStepPrefab) as ButtonStep;
 
-        edge.Initialize(fromNode, toNode, nextButton);
+        edge.Initialize(fromNode, toNode, btnStep);
     }
 
     private VisitNodeStereo getNode(string id)

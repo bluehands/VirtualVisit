@@ -11,6 +11,7 @@ public class ButtonInfo : ButtonBase
         this.infoIndex = infoIndex;
         this.uiCamera = uiCamera;
         transform.SetParent(parent.transform, false);
+        setSelected(infoIndex == -1);
     }
 
     protected override void DoAction()

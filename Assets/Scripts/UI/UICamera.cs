@@ -5,7 +5,7 @@ using System;
 
 public class UICamera : MonoBehaviour {
 
-    public ButtonStart buttonStartPrefebs;
+    public ButtonGo buttonGoPrefebs;
 
     public ButtonInfo buttonInfoPrefebs;
 
@@ -106,7 +106,7 @@ public class UICamera : MonoBehaviour {
 
         ButtonInfo buttonInfo = Instantiate(buttonInfoPrefebs) as ButtonInfo;
         buttonInfo.Initialize(-1, this, panel.transform);
-        buttonInfo.GetComponent<RectTransform>().localPosition = new Vector3(130, -80, 0);
+        buttonInfo.GetComponent<RectTransform>().localPosition = new Vector3(-130, -80, 0);
 
         GameObject headlineText = new GameObject("Headline Text");
         RectTransform headlineTextRectTransform = headlineText.AddComponent<RectTransform>();
@@ -176,9 +176,9 @@ public class UICamera : MonoBehaviour {
         rawImage.texture = textureLeft;
         backgroundImage.transform.SetParent(panel.transform, false);
 
-        ButtonStart buttonStart = Instantiate(buttonStartPrefebs) as ButtonStart;
-        buttonStart.Initialize(visitSetting.id, panel.transform);
-        buttonStart.GetComponent<RectTransform>().localPosition = new Vector3(130, -80, 0);
+        ButtonGo buttonGo = Instantiate(buttonGoPrefebs) as ButtonGo;
+        buttonGo.Initialize(visitSetting.id, panel.transform);
+        buttonGo.GetComponent<RectTransform>().localPosition = new Vector3(130, -80, 0);
 
         ButtonInfo buttonInfo = Instantiate(buttonInfoPrefebs) as ButtonInfo;
         buttonInfo.Initialize(index, this, panel.transform);

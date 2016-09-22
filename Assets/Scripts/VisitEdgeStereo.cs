@@ -7,7 +7,7 @@ public class VisitEdgeStereo : MonoBehaviour {
 
     public VisitNodeStereo toNode;
 
-    public void Initialize(VisitNodeStereo fromNode, VisitNodeStereo toNode, ButtonNextStereo nextButton)
+    public void Initialize(VisitNodeStereo fromNode, VisitNodeStereo toNode, ButtonStep btnStep)
     {
         var canvasNext = GetComponentInChildren<Canvas>();
         var textNext = canvasNext.GetComponentInChildren<Text>();
@@ -24,7 +24,7 @@ public class VisitEdgeStereo : MonoBehaviour {
 
         fromNode.addEdge(this);
 
-        nextButton.transform.SetParent(canvasNext.transform, false);
+        btnStep.transform.SetParent(canvasNext.transform, false);
     }
 
     private void setRotation(Vector3 fromNodePosition, Vector3 toNodePosition)

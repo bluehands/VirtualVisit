@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>Android:13</UnityBuildTarget>
     <UnityVersion>5.4.1f1</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -95,13 +97,14 @@
     <Compile Include="Assets\Scripts\MapNodeStereo.cs" />
     <Compile Include="Assets\Scripts\MapStereo.cs" />
     <Compile Include="Assets\Scripts\PlayerStereo.cs" />
-    <Compile Include="Assets\Scripts\UI\Button3DStereo.cs" />
-    <Compile Include="Assets\Scripts\UI\ButtonBackStereo.cs" />
+    <Compile Include="Assets\Scripts\UI\Button3D.cs" />
     <Compile Include="Assets\Scripts\UI\ButtonBase.cs" />
+    <Compile Include="Assets\Scripts\UI\ButtonGo.cs" />
     <Compile Include="Assets\Scripts\UI\ButtonInfo.cs" />
-    <Compile Include="Assets\Scripts\UI\ButtonMapStereo.cs" />
-    <Compile Include="Assets\Scripts\UI\ButtonNextStereo.cs" />
-    <Compile Include="Assets\Scripts\UI\ButtonStart.cs" />
+    <Compile Include="Assets\Scripts\UI\ButtonListener.cs" />
+    <Compile Include="Assets\Scripts\UI\ButtonMap.cs" />
+    <Compile Include="Assets\Scripts\UI\ButtonMenu.cs" />
+    <Compile Include="Assets\Scripts\UI\ButtonStep.cs" />
     <Compile Include="Assets\Scripts\UI\UICamera.cs" />
     <Compile Include="Assets\Scripts\UI\UIScreen.cs" />
     <Compile Include="Assets\Scripts\VisitEdgeStereo.cs" />

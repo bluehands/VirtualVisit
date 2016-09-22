@@ -85,7 +85,12 @@ public class VisitNodeStereo : MonoBehaviour {
         name = String.Format("VisitNode({0})", id);
     }
 
-    internal void ToggleStereoView()
+    internal bool IsStereoView()
+    {
+        return getLeftSphere().gameObject.layer == LayerMask.NameToLayer("Left Eye");
+    }
+
+    internal bool ToggleStereoView()
     {
         if(isStereo)
         {
@@ -93,13 +98,16 @@ public class VisitNodeStereo : MonoBehaviour {
             {
                 getLeftSphere().gameObject.layer = LayerMask.NameToLayer("Default");
                 getRightSphere().gameObject.SetActive(false);
+                return false;
             }
             else
             {
                 getLeftSphere().gameObject.layer = LayerMask.NameToLayer("Left Eye");
                 getRightSphere().gameObject.SetActive(true);
+                return true;
             }
         }
+        return false;
     }
 
     public void addEdge(VisitEdgeStereo edge)

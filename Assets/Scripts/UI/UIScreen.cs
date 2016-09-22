@@ -64,7 +64,12 @@ public class UIScreen : MonoBehaviour {
         }
     }
 
-    public void toggleShrinkingForce()
+    internal bool IsShrinked()
+    {
+        return isShrinked;
+    }
+
+    internal bool toggleShrinkingForce()
     {
         if (isShrinked)
         {
@@ -77,6 +82,7 @@ public class UIScreen : MonoBehaviour {
             shrinking = true;
             isShrinked = true;
         }
+        return isShrinked;
     }
 
     private bool SrinkDisplay()
