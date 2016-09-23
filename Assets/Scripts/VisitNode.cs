@@ -1,27 +1,26 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 using System;
 
-public class VisitNodeStereo : MonoBehaviour {
+public class VisitNode : MonoBehaviour {
 
     private const int LEFT_EYE = 0;
     private const int RIGHT_EYE = 1;
 
-    public string id;
+    public string Id { get; private set; }
 
-    public string title;
+    public string Title { get; private set; }
 
-    public Vector3 position;
+    public Vector3 Position { get; private set; }
 
-    private List<VisitEdgeStereo> edges = new List<VisitEdgeStereo>();
+    public MapNode MapNode { get; set; }
 
-    public MapNodeStereo mapNode;
+    private List<VisitEdge> m_Edges;
 
-    private bool isAppearing;
-    private bool isDisappearing;
+    private bool m_IsStereo;
 
-    private bool isStereo;
+    //private bool isAppearing;
+    //private bool isDisappearing;
 
     public enum BlendMode
     {
@@ -44,7 +43,7 @@ public class VisitNodeStereo : MonoBehaviour {
     public void Initialize(string id, string title, Vector3 position, Transform parent, Texture sphereTexture)
     {
         init(id, title, position, parent);
-        isStereo = false;
+        m_IsStereo = false;
 
         Renderer rendLeft = getLeftSphere().GetComponent<Renderer>();
         rendLeft.enabled = true;
@@ -60,7 +59,7 @@ public class VisitNodeStereo : MonoBehaviour {
     public void Initialize(string id, string title, Vector3 position, Transform parent, Texture sphereLeft, Texture sphereRight)
     {
         init(id, title, position, parent);
-        isStereo = true;
+        m_IsStereo = true;
 
         Renderer rendLeft = getLeftSphere().GetComponent<Renderer>();
         rendLeft.enabled = true;
@@ -77,12 +76,14 @@ public class VisitNodeStereo : MonoBehaviour {
 
     private void init(string id, string title, Vector3 position, Transform parent)
     {
-        this.id = id;
-        this.title = title;
-        this.position = position;
-        transform.parent = parent;
+        Id = id;
+        Title = title;
+        Position = position;
 
+        transform.parent = parent;
         name = String.Format("VisitNode({0})", id);
+
+        m_Edges = new List<VisitEdge>();
     }
 
     internal bool IsStereoView()
@@ -92,7 +93,7 @@ public class VisitNodeStereo : MonoBehaviour {
 
     internal bool ToggleStereoView()
     {
-        if(isStereo)
+        if(m_IsStereo)
         {
             if (getLeftSphere().gameObject.layer == LayerMask.NameToLayer("Left Eye"))
             {
@@ -110,30 +111,30 @@ public class VisitNodeStereo : MonoBehaviour {
         return false;
     }
 
-    public void addEdge(VisitEdgeStereo edge)
+    public void AddEdge(VisitEdge edge)
     {
-        edges.Add(edge);
+        m_Edges.Add(edge);
     }
 
-    public List<VisitEdgeStereo> getEdges()
+    public List<VisitEdge> GetEdges()
     {
-        return edges;
+        return m_Edges;
     }
 
-    internal void unselect()
+    internal void Unselect()
     {
         gameObject.SetActive(false);
         //isDisappearing = true;
         //isAppearing = false;
-        mapNode.unselect();
+        MapNode.Unselect();
     }
 
-    internal void select()
+    internal void Select()
     {
         gameObject.SetActive(true);
         //isAppearing = true;
         //isDisappearing = false;
-        mapNode.select();
+        MapNode.Select();
     }
     /*
     void Update()

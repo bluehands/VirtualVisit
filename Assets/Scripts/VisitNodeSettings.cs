@@ -2,7 +2,7 @@
 using System;
 
 [Serializable]
-public class VisitNodeSettingsStereo {
+public class VisitNodeSettings {
 
     public string id;
 

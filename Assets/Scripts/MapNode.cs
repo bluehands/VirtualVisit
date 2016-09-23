@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System;
 
-public class MapNodeStereo : MonoBehaviour {
+public class MapNode : MonoBehaviour {
 
     public Material selectedMaterial;
 
@@ -14,12 +12,12 @@ public class MapNodeStereo : MonoBehaviour {
         transform.parent = parent;
     }
 
-    internal void unselect()
+    internal void Unselect()
     {
         transform.GetChild(0).GetComponent<Renderer>().material = unselectedMaterial;
     }
 
-    internal void select()
+    internal void Select()
     {
         transform.GetChild(0).GetComponent<Renderer>().material = selectedMaterial;
     }

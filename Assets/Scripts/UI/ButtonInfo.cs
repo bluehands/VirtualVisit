@@ -18,12 +18,12 @@ public class ButtonInfo : ButtonBase
     {
         if(infoIndex == -1)
         {
-            uiCamera.hideInfo();
-            uiCamera.showMainMenu();
+            uiCamera.HideInfo();
+            uiCamera.ShowMainMenu();
         } else
         {
-            uiCamera.hideMainMenu();
-            uiCamera.showInfo(infoIndex);
+            uiCamera.HideMainMenu();
+            uiCamera.ShowInfo(infoIndex);
         }
     }
 }

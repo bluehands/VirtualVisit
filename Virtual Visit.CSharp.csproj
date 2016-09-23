@@ -91,10 +91,10 @@
     <Compile Include="Assets\Cardboard\Scripts\VRDevices\CardboardiOSDevice.cs" />
     <Compile Include="Assets\Cardboard\Scripts\VRDevices\UnityEditorDevice.cs" />
     <Compile Include="Assets\Scripts\ApplicationModel.cs" />
-    <Compile Include="Assets\Scripts\GameManagerStereo.cs" />
-    <Compile Include="Assets\Scripts\MapNodeStereo.cs" />
-    <Compile Include="Assets\Scripts\MapStereo.cs" />
-    <Compile Include="Assets\Scripts\PlayerStereo.cs" />
+    <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Map.cs" />
+    <Compile Include="Assets\Scripts\MapNode.cs" />
+    <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\UI\Button3D.cs" />
     <Compile Include="Assets\Scripts\UI\ButtonBase.cs" />
     <Compile Include="Assets\Scripts\UI\ButtonGo.cs" />
@@ -108,12 +108,12 @@
     <Compile Include="Assets\Scripts\UI\ButtonStep.cs" />
     <Compile Include="Assets\Scripts\UI\UICamera.cs" />
     <Compile Include="Assets\Scripts\UI\UIScreen.cs" />
-    <Compile Include="Assets\Scripts\VisitEdgeStereo.cs" />
-    <Compile Include="Assets\Scripts\VisitNodeSettingsStereo.cs" />
-    <Compile Include="Assets\Scripts\VisitNodeStereo.cs" />
+    <Compile Include="Assets\Scripts\Visit.cs" />
+    <Compile Include="Assets\Scripts\VisitEdge.cs" />
+    <Compile Include="Assets\Scripts\VisitNode.cs" />
+    <Compile Include="Assets\Scripts\VisitNodeSettings.cs" />
+    <Compile Include="Assets\Scripts\VisitSettings.cs" />
     <Compile Include="Assets\Scripts\VisitSettingsFactory.cs" />
-    <Compile Include="Assets\Scripts\VisitSettingsStereo.cs" />
-    <Compile Include="Assets\Scripts\VisitStereo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Cardboard\Distortion\CardboardDistortion.cginc" />

@@ -39,7 +39,7 @@ public abstract class ButtonPageBase: MonoBehaviour, ISelectHandler, IPointerEnt
     {
         if(m_buttonListener != null)
         {
-            m_buttonListener.doAction(m_Class);
+            m_buttonListener.DoAction(m_Class);
         }
     }
 

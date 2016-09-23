@@ -67,7 +67,7 @@ public abstract class ButtonBase : MonoBehaviour, ISelectHandler, IPointerEnterH
     {
         if(m_buttonListener != null)
         {
-            m_buttonListener.doAction(m_Class);
+            m_buttonListener.DoAction(m_Class);
         }
     }
 

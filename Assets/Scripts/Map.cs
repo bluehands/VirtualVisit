@@ -1,15 +1,13 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
-using System;
 
-public class MapStereo : MonoBehaviour {
+public class Map : MonoBehaviour {
 
-    public MapNodeStereo nodePrefab;
+    public MapNode nodePrefab;
 
-    private List<MapNodeStereo> nodes = new List<MapNodeStereo>();
+    private List<MapNode> m_Nodes;
 
-    private bool mapVisibility;
+    private bool m_IsVisible;
 
     void Update()
     {
@@ -20,19 +18,21 @@ public class MapStereo : MonoBehaviour {
     {
         SetVisibility();
 
-        nodes[0].select();
+        m_Nodes[0].Select();
     }
 
-    public void Generate(List<VisitNodeStereo> visitNodes)
+    public void Generate(List<VisitNode> visitNodes)
     {
-        foreach (VisitNodeStereo visitNode in visitNodes)
-        {
-            MapNodeStereo node = Instantiate(nodePrefab) as MapNodeStereo;
-            node.Initialize(visitNode.position, this.transform);
-            nodes.Add(node);
-            visitNode.mapNode = node;
+        m_Nodes = new List<MapNode>();
 
-            foreach (VisitEdgeStereo visitEdge in visitNode.getEdges())
+        foreach (VisitNode visitNode in visitNodes)
+        {
+            MapNode node = Instantiate(nodePrefab) as MapNode;
+            node.Initialize(visitNode.Position, this.transform);
+            m_Nodes.Add(node);
+            visitNode.MapNode = node;
+
+            foreach (VisitEdge visitEdge in visitNode.GetEdges())
             {
                 createMapEdge(0.2f, 0, visitEdge, node);
                 createMapEdge(0, 0.2f, visitEdge, node);
@@ -43,7 +43,7 @@ public class MapStereo : MonoBehaviour {
         transform.Translate(new Vector3(0, -1, 3));
     }
 
-    private void createMapEdge(float width, float height, VisitEdgeStereo visitEdge, MapNodeStereo mapNode)
+    private void createMapEdge(float width, float height, VisitEdge visitEdge, MapNode mapNode)
     {
         GameObject plane = new GameObject("MapEdge");
         plane.transform.parent = mapNode.transform;
@@ -58,12 +58,12 @@ public class MapStereo : MonoBehaviour {
         renderer.material.color = Color.green;
     }
 
-    private Mesh CreateMesh(float width, float height, VisitEdgeStereo visitEdge)
+    private Mesh CreateMesh(float width, float height, VisitEdge visitEdge)
     {
         Mesh m = new Mesh();
         m.name = "ScriptedMesh";
-        var fromPos = visitEdge.fromNode.position;
-        var toPos = visitEdge.toNode.position;
+        var fromPos = visitEdge.FromNode.Position;
+        var toPos = visitEdge.ToNode.Position;
         m.vertices = new Vector3[] {
              new Vector3(fromPos.x + width, fromPos.y + height, fromPos.z + width),
              new Vector3(fromPos.x - width, fromPos.y - height, fromPos.z - width),
@@ -84,22 +84,22 @@ public class MapStereo : MonoBehaviour {
 
     internal bool GetVisibility()
     {
-        return mapVisibility;
+        return m_IsVisible;
     }
 
     public bool ToggleVisibility()
     {
-        mapVisibility = !mapVisibility;
+        m_IsVisible = !m_IsVisible;
         SetVisibility();
-        return mapVisibility;
+        return m_IsVisible;
     }
 
     public void SetVisibility()
     {
-        gameObject.SetActive(mapVisibility);
-        foreach(MapNodeStereo mapNode in nodes)
+        gameObject.SetActive(m_IsVisible);
+        foreach(MapNode mapNode in m_Nodes)
         {
-            if(mapVisibility)
+            if(m_IsVisible)
             {
                 mapNode.Show();
             } else

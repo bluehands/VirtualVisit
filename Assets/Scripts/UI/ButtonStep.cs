@@ -3,8 +3,8 @@ public class ButtonStep : ButtonBase
 {
     protected override void DoAction()
     {
-        VisitEdgeStereo edge = GetComponentInParent<VisitEdgeStereo>();
-        VisitStereo visit = GetComponentInParent<VisitStereo>();
-        visit.moveTo(edge);
+        VisitEdge edge = GetComponentInParent<VisitEdge>();
+        Visit visit = GetComponentInParent<Visit>();
+        visit.MoveTo(edge);
     }
 }

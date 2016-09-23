@@ -2,7 +2,7 @@
 using System;
 
 [Serializable]
-public class VisitSettingsStereo {
+public class VisitSettings {
 
     public string id;
 
@@ -12,9 +12,9 @@ public class VisitSettingsStereo {
 
     public int previewNodeIndex;
 
-    public VisitNodeSettingsStereo[] nodeSettings;
+    public VisitNodeSettings[] nodeSettings;
 
-    public VisitNodeSettingsStereo getPreviewNodeSetting()
+    public VisitNodeSettings getPreviewNodeSetting()
     {
         if(nodeSettings.Length == 0)
         {

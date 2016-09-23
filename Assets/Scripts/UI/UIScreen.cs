@@ -3,8 +3,9 @@ using UnityEngine.EventSystems;
 
 public class UIScreen : MonoBehaviour {
 
-    private Camera mainCamera;
     public Camera uiCamera;
+
+    private Camera mainCamera;
 
     private Vector3[] initVerts;
 
@@ -13,8 +14,8 @@ public class UIScreen : MonoBehaviour {
 
     private bool isShrinked = false;
 
-    private GameObject lastPointedTarget = null;
-    private GameObject currentPointedTarget = null;
+    private GameObject lastPointedTarget;
+    private GameObject currentPointedTarget;
 
     void Start () {
         initVerts = GetComponent<MeshFilter>().mesh.vertices;
@@ -22,12 +23,13 @@ public class UIScreen : MonoBehaviour {
 
         //shrinking = true;
         //isShrinked = true;
+        //gameObject.SetActive(false);
     }
 	
 	void Update () {
         if(shrinking)
         {
-            shrinking = SrinkDisplay();
+            shrinking = srinkDisplay();
             if(shrinking == false)
             {
                 gameObject.SetActive(false);
@@ -36,7 +38,7 @@ public class UIScreen : MonoBehaviour {
         }
         if(exspanding)
         {
-            exspanding = ExspandDisplay();
+            exspanding = exspandDisplay();
             if(exspanding == false)
             {
             }
@@ -47,7 +49,7 @@ public class UIScreen : MonoBehaviour {
         }
 	}
 
-    public void toggleShrinking()
+    internal void ToggleShrinking()
     {
         if (shrinking == false && exspanding == false)
         {
@@ -69,7 +71,7 @@ public class UIScreen : MonoBehaviour {
         return isShrinked;
     }
 
-    internal bool toggleShrinkingForce()
+    internal bool ToggleShrinkingForce()
     {
         if (isShrinked)
         {
@@ -85,7 +87,7 @@ public class UIScreen : MonoBehaviour {
         return isShrinked;
     }
 
-    private bool SrinkDisplay()
+    private bool srinkDisplay()
     {
         bool isSrink = false;
         var mesh = GetComponent<MeshFilter>().mesh;
@@ -105,7 +107,7 @@ public class UIScreen : MonoBehaviour {
         return isSrink;
     }
 
-    private bool ExspandDisplay()
+    private bool exspandDisplay()
     {
         bool isExspand = false;
         var mesh = GetComponent<MeshFilter>().mesh;
@@ -159,12 +161,12 @@ public class UIScreen : MonoBehaviour {
         {
             if (currentPointedTarget != null)
             {
-                print("Pointed Enter " + currentPointedTarget.name);
+                Debug.Log("Pointed Enter " + currentPointedTarget.name);
                 ExecuteEvents.Execute(currentPointedTarget, pt, ExecuteEvents.pointerEnterHandler);
             }
             if (lastPointedTarget != null)
             {
-                print("Pointed Exet " + lastPointedTarget.name);
+                Debug.Log("Pointed Exet " + lastPointedTarget.name);
                 ExecuteEvents.Execute(lastPointedTarget, pt, ExecuteEvents.pointerExitHandler);
             }
         }

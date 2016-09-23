@@ -13,7 +13,7 @@ public class ButtonGo : ButtonBase
 
     protected override void DoAction()
     {
-        ApplicationModel.selectedVisitId = nextVisitId;
+        ApplicationModel.SelectedVisitId = nextVisitId;
 
         SceneManager.LoadScene(0);
     }

@@ -1,6 +1,6 @@
 ﻿
 public class ApplicationModel {
 
-    static public string selectedVisitId = "";
+    static public string SelectedVisitId = "";
 
 }

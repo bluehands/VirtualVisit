@@ -1,50 +1,50 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections.Generic;
 using System;
 
 public class UICamera : MonoBehaviour, ButtonListener {
 
-    public ButtonGo buttonGoPrefebs;
+    public ButtonGo buttonGoPrefab;
 
-    public ButtonInfo buttonInfoPrefebs;
+    public ButtonInfo buttonInfoPrefab;
 
-    public ButtonPageLeft buttonPageLeftPrefebs;
+    public ButtonPageLeft buttonPageLeftPrefab;
 
-    public ButtonPageRight buttonPageRightPrefebs;
+    public ButtonPageRight buttonPageRightPrefab;
 
-    private VisitSettingsFactory visitSettingsFactory;
+    private VisitSettingsFactory m_VisitSettingsFactory;
 
-    private GameObject[] mainMenuPanels;
+    private GameObject[] m_MainMenuPanels;
 
-    private GameObject[] infoMenuPanels;
+    private GameObject[] m_InfoMenuPanels;
 
-    private GameObject canvaseMenu;
+    private GameObject m_CanvaseMenu;
 
     public void Generate(VisitSettingsFactory visitSettingsFactory)
     {
-        this.visitSettingsFactory = visitSettingsFactory;
+        this.m_VisitSettingsFactory = visitSettingsFactory;
 
-        canvaseMenu = GameObject.Find("Menu Canvas");
+        m_CanvaseMenu = GameObject.Find("Menu Canvas");
         var canvasePage = GameObject.Find("Page Canvas");
+
         generatePage(canvasePage.transform);
-        generateMainMenu(canvaseMenu.transform);
-        showMainMenu();
-        generateInfoMenus(canvaseMenu.transform);
-        hideInfo();
+        generateMainMenu(m_CanvaseMenu.transform);
+        ShowMainMenu();
+        generateInfoMenus(m_CanvaseMenu.transform);
+        HideInfo();
     }
 
-    public void showInfo(int infoIndex)
+    public void ShowInfo(int infoIndex)
     {
-        GameObject visitInfoPanel = infoMenuPanels[infoIndex];
+        GameObject visitInfoPanel = m_InfoMenuPanels[infoIndex];
         visitInfoPanel.SetActive(true);
     }
 
-    public void hideInfo()
+    public void HideInfo()
     {
-        if(infoMenuPanels != null)
+        if(m_InfoMenuPanels != null)
         {
-            foreach (var panel in infoMenuPanels)
+            foreach (var panel in m_InfoMenuPanels)
             {
                 panel.SetActive(false);
             }
@@ -52,22 +52,22 @@ public class UICamera : MonoBehaviour, ButtonListener {
     }
 
 
-    public void showMainMenu()
+    public void ShowMainMenu()
     {
-        if (mainMenuPanels != null)
+        if (m_MainMenuPanels != null)
         {
-            foreach (var panel in mainMenuPanels)
+            foreach (var panel in m_MainMenuPanels)
             {
                 panel.SetActive(true);
             }
         }
     }
 
-    public void hideMainMenu()
+    public void HideMainMenu()
     {
-        if (mainMenuPanels != null)
+        if (m_MainMenuPanels != null)
         {
-            foreach (var panel in mainMenuPanels)
+            foreach (var panel in m_MainMenuPanels)
             {
                 panel.SetActive(false);
             }
@@ -76,8 +76,8 @@ public class UICamera : MonoBehaviour, ButtonListener {
 
     private void generateInfoMenus(Transform parent)
     {
-        var visitSettings = visitSettingsFactory.getVisitSettings();
-        infoMenuPanels = new GameObject[visitSettings.Length];
+        var visitSettings = m_VisitSettingsFactory.GetVisitSettings();
+        m_InfoMenuPanels = new GameObject[visitSettings.Length];
 
         for (int i = 0; i < visitSettings.Length; i++)
         {
@@ -87,7 +87,7 @@ public class UICamera : MonoBehaviour, ButtonListener {
 
     private void moveMainMenuToLeft()
     {
-        RectTransform panelRectTransform = canvaseMenu.GetComponent<RectTransform>();
+        RectTransform panelRectTransform = m_CanvaseMenu.GetComponent<RectTransform>();
         var position = panelRectTransform.localPosition;
         position.x -= 0.01f;
         panelRectTransform.localPosition = position;
@@ -95,7 +95,7 @@ public class UICamera : MonoBehaviour, ButtonListener {
 
     private void moveMainMenuToRight()
     {
-        RectTransform panelRectTransform = canvaseMenu.GetComponent<RectTransform>();
+        RectTransform panelRectTransform = m_CanvaseMenu.GetComponent<RectTransform>();
         var position = panelRectTransform.localPosition;
         position.x += 0.01f;
         panelRectTransform.localPosition = position;
@@ -103,8 +103,8 @@ public class UICamera : MonoBehaviour, ButtonListener {
 
     private void generateInfoMenu(int index, Transform parent)
     {
-        VisitSettingsStereo visitSetting = visitSettingsFactory.getVisitSettings()[index];
-        GameObject mainMenu = mainMenuPanels[index];
+        VisitSettings visitSetting = m_VisitSettingsFactory.GetVisitSettings()[index];
+        GameObject mainMenu = m_MainMenuPanels[index];
 
         GameObject panel = new GameObject("InfoPanel " + visitSetting.id);
         panel.AddComponent<CanvasRenderer>();
@@ -123,12 +123,12 @@ public class UICamera : MonoBehaviour, ButtonListener {
         Texture textureLeft = null;
         Texture textureRight = null;
 
-        visitSettingsFactory.tryToLoadTextures(visitSetting, visitSetting.getPreviewNodeSetting(), out textureLeft, out textureRight);
+        m_VisitSettingsFactory.TryToLoadTextures(visitSetting, visitSetting.getPreviewNodeSetting(), out textureLeft, out textureRight);
 
         rawImage.texture = textureLeft;
         backgroundImage.transform.SetParent(panel.transform, false);
 
-        ButtonInfo buttonInfo = Instantiate(buttonInfoPrefebs) as ButtonInfo;
+        ButtonInfo buttonInfo = Instantiate(buttonInfoPrefab) as ButtonInfo;
         buttonInfo.Initialize(-1, this, panel.transform);
         buttonInfo.GetComponent<RectTransform>().localPosition = new Vector3(-130, -80, 0);
 
@@ -156,18 +156,16 @@ public class UICamera : MonoBehaviour, ButtonListener {
         textDescription.font = Resources.GetBuiltinResource(typeof(Font), "Arial.ttf") as Font;
         descriptionText.transform.SetParent(panel.transform, false);
 
-        infoMenuPanels[index] = panel;
+        m_InfoMenuPanels[index] = panel;
     }
 
     private void generateMainMenu(Transform parent)
     {
-        var visitSettings = visitSettingsFactory.getVisitSettings();
+        var visitSettings = m_VisitSettingsFactory.GetVisitSettings();
 
-        mainMenuPanels = new GameObject[visitSettings.Length];
+        m_MainMenuPanels = new GameObject[visitSettings.Length];
 
-        //var xStep = 1680 / visitSettings.Length;
         var xStep = 400;
-        //var currentStep = -(1680 / 2) + 200;
         var currentStep = -600;
         for (int i=0; i< visitSettings.Length; i++)
         {
@@ -178,18 +176,18 @@ public class UICamera : MonoBehaviour, ButtonListener {
 
     private void generatePage(Transform parent)
     {
-        ButtonPageLeft buttonPageLeft = Instantiate(buttonPageLeftPrefebs) as ButtonPageLeft;
+        ButtonPageLeft buttonPageLeft = Instantiate(buttonPageLeftPrefab) as ButtonPageLeft;
         buttonPageLeft.Initialize(parent.transform, this);
         buttonPageLeft.gameObject.GetComponent<RectTransform>().localPosition = new Vector3(-800, 0, 0);
 
-        ButtonPageRight buttonPageRight = Instantiate(buttonPageRightPrefebs) as ButtonPageRight;
+        ButtonPageRight buttonPageRight = Instantiate(buttonPageRightPrefab) as ButtonPageRight;
         buttonPageRight.Initialize(parent.transform, this);
         buttonPageRight.gameObject.GetComponent<RectTransform>().localPosition = new Vector3(800, 0, 0);
     }
 
     private void generateMenu(int index, Vector3 position, Transform parent)
     {
-        VisitSettingsStereo visitSetting = visitSettingsFactory.getVisitSettings()[index];
+        VisitSettings visitSetting = m_VisitSettingsFactory.GetVisitSettings()[index];
 
         GameObject panel = new GameObject("MenuPanel " + visitSetting.id);
         panel.AddComponent<CanvasRenderer>();
@@ -208,16 +206,16 @@ public class UICamera : MonoBehaviour, ButtonListener {
         Texture textureLeft = null;
         Texture textureRight = null;
 
-        visitSettingsFactory.tryToLoadTextures(visitSetting, visitSetting.getPreviewNodeSetting(), out textureLeft, out textureRight);
+        m_VisitSettingsFactory.TryToLoadTextures(visitSetting, visitSetting.getPreviewNodeSetting(), out textureLeft, out textureRight);
 
         rawImage.texture = textureLeft;
         backgroundImage.transform.SetParent(panel.transform, false);
 
-        ButtonGo buttonGo = Instantiate(buttonGoPrefebs) as ButtonGo;
+        ButtonGo buttonGo = Instantiate(buttonGoPrefab) as ButtonGo;
         buttonGo.Initialize(visitSetting.id, panel.transform);
         buttonGo.GetComponent<RectTransform>().localPosition = new Vector3(130, -80, 0);
 
-        ButtonInfo buttonInfo = Instantiate(buttonInfoPrefebs) as ButtonInfo;
+        ButtonInfo buttonInfo = Instantiate(buttonInfoPrefab) as ButtonInfo;
         buttonInfo.Initialize(index, this, panel.transform);
         buttonInfo.GetComponent<RectTransform>().localPosition = new Vector3(-130, -80, 0);
 
@@ -232,14 +230,13 @@ public class UICamera : MonoBehaviour, ButtonListener {
         text.font = Resources.GetBuiltinResource(typeof(Font), "Arial.ttf") as Font;
         headlineText.transform.SetParent(panel.transform, false);
 
-        mainMenuPanels[index] = panel;
+        m_MainMenuPanels[index] = panel;
     }
 
-    public void doAction(Type clazz)
+    public void DoAction(Type clazz)
     {
         if(clazz.Equals(typeof(ButtonGo)))
         {
-
         }
         if(clazz.Equals(typeof(ButtonPageLeft)))
         {

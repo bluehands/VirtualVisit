@@ -1,28 +1,28 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class VisitEdgeStereo : MonoBehaviour {
+public class VisitEdge : MonoBehaviour {
 
-    public VisitNodeStereo fromNode;
+    public VisitNode FromNode { get; private set; }
 
-    public VisitNodeStereo toNode;
+    public VisitNode ToNode { get; private set; }
 
-    public void Initialize(VisitNodeStereo fromNode, VisitNodeStereo toNode, ButtonStep btnStep)
+    public void Initialize(VisitNode fromNode, VisitNode toNode, ButtonStep btnStep)
     {
         var canvasNext = GetComponentInChildren<Canvas>();
         var textNext = canvasNext.GetComponentInChildren<Text>();
 
-        this.fromNode = fromNode;
-        this.toNode = toNode;
+        FromNode = fromNode;
+        ToNode = toNode;
 
-        name = string.Format("VisitEdge({0},{1})", fromNode.id, toNode.id);
+        name = string.Format("VisitEdge({0},{1})", fromNode.Id, toNode.Id);
         transform.parent = fromNode.transform;
 
-        textNext.text = toNode.title;
+        textNext.text = toNode.Title;
 
-        setRotation(fromNode.position, toNode.position);
+        setRotation(fromNode.Position, toNode.Position);
 
-        fromNode.addEdge(this);
+        fromNode.AddEdge(this);
 
         btnStep.transform.SetParent(canvasNext.transform, false);
     }
