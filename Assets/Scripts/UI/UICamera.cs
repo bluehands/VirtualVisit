@@ -138,7 +138,7 @@ public class UICamera : MonoBehaviour, ButtonListener {
         headlineTextRectTransform.localScale = new Vector3(0.1f, 0.1f, 1);
         headlineTextRectTransform.localPosition = new Vector3(-35, 120, 0);
         Text text = headlineText.AddComponent<Text>();
-        text.text = visitSetting.id;
+        text.text = visitSetting.title;
         text.fontSize = 200;
         text.font = Resources.GetBuiltinResource(typeof(Font), "Arial.ttf") as Font;
         headlineText.transform.SetParent(panel.transform, false);
@@ -225,7 +225,7 @@ public class UICamera : MonoBehaviour, ButtonListener {
         headlineTextRectTransform.localScale = new Vector3(0.1f, 0.1f, 1);
         headlineTextRectTransform.localPosition = new Vector3(-35, 120, 0);
         Text text = headlineText.AddComponent<Text>();
-        text.text = visitSetting.id;
+        text.text = visitSetting.title;
         text.fontSize = 200;
         text.font = Resources.GetBuiltinResource(typeof(Font), "Arial.ttf") as Font;
         headlineText.transform.SetParent(panel.transform, false);

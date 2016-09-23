@@ -6,6 +6,8 @@ public class VisitSettings {
 
     public string id;
 
+    public string title;
+
     public string author;
 
     public string created;
