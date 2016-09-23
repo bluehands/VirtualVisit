@@ -3,11 +3,15 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using System;
 
-public class UICamera : MonoBehaviour {
+public class UICamera : MonoBehaviour, ButtonListener {
 
     public ButtonGo buttonGoPrefebs;
 
     public ButtonInfo buttonInfoPrefebs;
+
+    public ButtonPageLeft buttonPageLeftPrefebs;
+
+    public ButtonPageRight buttonPageRightPrefebs;
 
     private VisitSettingsFactory visitSettingsFactory;
 
@@ -15,14 +19,18 @@ public class UICamera : MonoBehaviour {
 
     private GameObject[] infoMenuPanels;
 
+    private GameObject canvaseMenu;
+
     public void Generate(VisitSettingsFactory visitSettingsFactory)
     {
         this.visitSettingsFactory = visitSettingsFactory;
 
-        var canvase = GameObject.Find("UI Canvas");
-        generateMainMenu(canvase.transform);
-        shopMainMenu();
-        generateInfoMenus(canvase.transform);
+        canvaseMenu = GameObject.Find("Menu Canvas");
+        var canvasePage = GameObject.Find("Page Canvas");
+        generatePage(canvasePage.transform);
+        generateMainMenu(canvaseMenu.transform);
+        showMainMenu();
+        generateInfoMenus(canvaseMenu.transform);
         hideInfo();
     }
 
@@ -44,7 +52,7 @@ public class UICamera : MonoBehaviour {
     }
 
 
-    public void shopMainMenu()
+    public void showMainMenu()
     {
         if (mainMenuPanels != null)
         {
@@ -75,6 +83,22 @@ public class UICamera : MonoBehaviour {
         {
             generateInfoMenu(i, parent);
         }
+    }
+
+    private void moveMainMenuToLeft()
+    {
+        RectTransform panelRectTransform = canvaseMenu.GetComponent<RectTransform>();
+        var position = panelRectTransform.localPosition;
+        position.x -= 0.01f;
+        panelRectTransform.localPosition = position;
+    }
+
+    private void moveMainMenuToRight()
+    {
+        RectTransform panelRectTransform = canvaseMenu.GetComponent<RectTransform>();
+        var position = panelRectTransform.localPosition;
+        position.x += 0.01f;
+        panelRectTransform.localPosition = position;
     }
 
     private void generateInfoMenu(int index, Transform parent)
@@ -141,13 +165,26 @@ public class UICamera : MonoBehaviour {
 
         mainMenuPanels = new GameObject[visitSettings.Length];
 
-        var xStep = 1680 / visitSettings.Length;
-        var currentStep = -(1680 / 2) + 200;
-        for(int i=0; i< visitSettings.Length; i++)
+        //var xStep = 1680 / visitSettings.Length;
+        var xStep = 400;
+        //var currentStep = -(1680 / 2) + 200;
+        var currentStep = -600;
+        for (int i=0; i< visitSettings.Length; i++)
         {
             generateMenu(i, new Vector3(currentStep, 0, 0), parent);
             currentStep += xStep;
-        }
+        }  
+    }
+
+    private void generatePage(Transform parent)
+    {
+        ButtonPageLeft buttonPageLeft = Instantiate(buttonPageLeftPrefebs) as ButtonPageLeft;
+        buttonPageLeft.Initialize(parent.transform, this);
+        buttonPageLeft.gameObject.GetComponent<RectTransform>().localPosition = new Vector3(-800, 0, 0);
+
+        ButtonPageRight buttonPageRight = Instantiate(buttonPageRightPrefebs) as ButtonPageRight;
+        buttonPageRight.Initialize(parent.transform, this);
+        buttonPageRight.gameObject.GetComponent<RectTransform>().localPosition = new Vector3(800, 0, 0);
     }
 
     private void generateMenu(int index, Vector3 position, Transform parent)
@@ -195,21 +232,22 @@ public class UICamera : MonoBehaviour {
         text.font = Resources.GetBuiltinResource(typeof(Font), "Arial.ttf") as Font;
         headlineText.transform.SetParent(panel.transform, false);
 
-        /*
-        GameObject descriptionText = new GameObject("Info Text");
-        RectTransform descriptionTextRectTransform = descriptionText.AddComponent<RectTransform>();
-        descriptionTextRectTransform.sizeDelta = new Vector2(3000, 500);
-        descriptionTextRectTransform.localScale = new Vector3(0.1f, 0.1f, 1);
-        descriptionTextRectTransform.localPosition = new Vector3(0, -60, 0);
-        Text textDescription = descriptionText.AddComponent<Text>();
-
-        textDescription.text = String.Format("Erstellt \n von: {0} \n am: {1}", visitSetting.author, visitSetting.created);
-
-        textDescription.fontSize = 140;
-        textDescription.font = Resources.GetBuiltinResource(typeof(Font), "Arial.ttf") as Font;
-        descriptionText.transform.SetParent(panel.transform, false);*/
-
         mainMenuPanels[index] = panel;
     }
 
+    public void doAction(Type clazz)
+    {
+        if(clazz.Equals(typeof(ButtonGo)))
+        {
+
+        }
+        if(clazz.Equals(typeof(ButtonPageLeft)))
+        {
+            moveMainMenuToLeft();
+        }
+        if (clazz.Equals(typeof(ButtonPageRight)))
+        {
+            moveMainMenuToRight();
+        }
+    }
 }

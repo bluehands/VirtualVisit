@@ -19,7 +19,7 @@ public class ButtonInfo : ButtonBase
         if(infoIndex == -1)
         {
             uiCamera.hideInfo();
-            uiCamera.shopMainMenu();
+            uiCamera.showMainMenu();
         } else
         {
             uiCamera.hideMainMenu();
