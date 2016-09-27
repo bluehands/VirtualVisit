@@ -48,9 +48,9 @@ public class Visit : MonoBehaviour {
     {
         foreach(var visitNode in m_VisitNodes)
         {
-            visitNode.Unselect();
+            visitNode.Leave();
         }
-        m_VisitNodes[0].Select();
+        m_VisitNodes[0].GoThere();
         CurrentVisitNode = m_VisitNodes[0];
     }
 
@@ -80,10 +80,7 @@ public class Visit : MonoBehaviour {
         {
             if(node.gameObject.activeInHierarchy)
             {
-                foreach (var edge in node.GetEdges())
-                {
-                    edge.gameObject.SetActive(visibility);
-                }
+                node.SetEdgesActive(visibility);
             }
         }
     }
@@ -118,8 +115,8 @@ public class Visit : MonoBehaviour {
 
         Debug.Log(String.Format("MoveTo({0},{1})", fromNode.Id, toNode.Id));
 
-        fromNode.Unselect();
-        toNode.Select();
+        fromNode.Leave();
+        toNode.GoThereFrom(fromNode); 
         CurrentVisitNode = toNode;
     }
 

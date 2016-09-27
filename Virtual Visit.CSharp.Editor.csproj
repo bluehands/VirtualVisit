@@ -114,6 +114,7 @@
     <None Include="Assets\Cardboard\Resources\UI\CardboardReticleShader.shader" />
     <None Include="Assets\Cardboard\Resources\UI\CardboardSphereShader.shader" />
     <None Include="Assets\Cardboard\Resources\UnlitTexture.shader" />
+    <None Include="Assets\Materials\CombineTwoTextures.shader" />
     <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />

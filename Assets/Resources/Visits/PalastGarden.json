@@ -1,0 +1,17 @@
+{
+	"id":"PalastGarden",
+	"title":"Botanischer Garten",
+	"author":"Marcel Weigel",
+	"created":"17.07.2016",
+	"previewNodeIndex":0,	"nodeSettings":[
+			{
+				"id":"P0",
+				"title":"Botanischer Garten",
+				"postion":{	
+					"x":0.0,
+					"y":0.0,
+					"z":30.0
+				},
+				"edgeIds":""
+			}]
+}

@@ -50,15 +50,15 @@ public class Player : MonoBehaviour, ButtonListener {
         m_3DButton = Instantiate(dutton3DPrefab) as Button3D;
         m_3DButton.Initialize(GameObject.Find("Canvas 3D").transform, this);
         m_3DButton.setSelected(m_Visit.CurrentVisitNode.IsStereoView());
+
+        toggleMainMenu();
     }
 
     public void DoAction(Type clazz)
     {
         if (clazz.Equals(typeof(ButtonMenu)))
         {
-            bool isShrinked = m_UIScreen.ToggleShrinkingForce();
-            m_MenuButton.setSelected(!isShrinked);
-            m_Visit.SetVisitEdgeVisibility(isShrinked);
+            toggleMainMenu();
         }
         if (clazz.Equals(typeof(ButtonMap)))
         {
@@ -71,5 +71,12 @@ public class Player : MonoBehaviour, ButtonListener {
             bool isStereo = m_Visit.CurrentVisitNode.ToggleStereoView();
             m_3DButton.setSelected(isStereo);
         }
+    }
+
+    private void toggleMainMenu()
+    {
+        bool isShrinked = m_UIScreen.ToggleShrinkingForce();
+        m_MenuButton.setSelected(!isShrinked);
+        m_Visit.SetVisitEdgeVisibility(isShrinked);
     }
 }

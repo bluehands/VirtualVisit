@@ -14,7 +14,7 @@ public class VisitNodeSettings {
 
     public string[] getEdgeIds()
     {
-        return edgeIds.Split(',');
+        return edgeIds.Equals("") ? new string[0] : edgeIds.Split(',');
     }
 
 }

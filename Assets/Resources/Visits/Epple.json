@@ -7,30 +7,6 @@
 			{
 				"id":"P0",				"title":"Hallo 3",				"postion":{	
 					"x":0.0,					"y":0.0,					"z":0.0
-				},				"edgeIds":"P1,Blickpunkt1"
-			},			{
-				"id":"P1",				"title":"Uni Dach",				"postion":{	
-					"x":30.0,					"y":0.0,					"z":0.0
-				},				"edgeIds":"P2"
-			},
-			{
-				"id":"P2",
-				"title":"Botanischer Garten",
-				"postion":{	
-					"x":0.0,
-					"y":0.0,
-					"z":30.0
-				},
-				"edgeIds":"Blickpunkt1"
-			},
-			{
-				"id":"Blickpunkt1",
-				"title":"Stereo Büro",
-				"postion":{	
-					"x":30.0,
-					"y":0.0,
-					"z":30.0
-				},
-				"edgeIds":"P0,P2"
+				},				"edgeIds":""
 			}]
 }
