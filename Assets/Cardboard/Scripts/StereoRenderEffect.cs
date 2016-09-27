@@ -34,8 +34,8 @@ public class StereoRenderEffect : MonoBehaviour {
 
   void OnRenderImage(RenderTexture source, RenderTexture dest) {
     GL.PushMatrix();
-    int width = dest ? dest.width : Screen.width;
-    int height = dest ? dest.height : Screen.height;
+    int width = dest ? dest.width : UnityEngine.Screen.width;
+    int height = dest ? dest.height : UnityEngine.Screen.height;
     GL.LoadPixelMatrix(0, width, height, 0);
     // Camera rects are in screen coordinates (bottom left is origin), but DrawTexture takes a
     // rect in GUI coordinates (top left is origin).

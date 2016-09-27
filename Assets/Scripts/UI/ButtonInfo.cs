@@ -3,10 +3,10 @@ using UnityEngine.SceneManagement;
 
 public class ButtonInfo : ButtonBase
 {
-    private UICamera uiCamera;
+    private Stage uiCamera;
     private int infoIndex;
 
-    public void Initialize(int infoIndex, UICamera uiCamera, Transform parent)
+    public void Initialize(int infoIndex, Stage uiCamera, Transform parent)
     {
         this.infoIndex = infoIndex;
         this.uiCamera = uiCamera;

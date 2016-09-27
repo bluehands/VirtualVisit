@@ -29,7 +29,7 @@ public class VisitNode : MonoBehaviour {
 
     public bool IsStereo { get; private set; }
 
-    private VisitNode lastFromNode;
+    private VisitNode m_LastFromNode;
 
     private List<VisitEdge> m_Edges;
 
@@ -165,7 +165,7 @@ public class VisitNode : MonoBehaviour {
         setAlpha(1.0f);
 
         m_BlendAlpha = 1;
-        lastFromNode = node;
+        m_LastFromNode = node;
 
         SetEdgesActive(false);
         gameObject.SetActive(true);
@@ -183,22 +183,22 @@ public class VisitNode : MonoBehaviour {
 
     void Update()
     {
-        if(lastFromNode != null)
+        if(m_LastFromNode != null)
         {
             Renderer rendLeft = getLeftSphere().GetComponent<Renderer>();
             Renderer rendRight = getRightSphere().GetComponent<Renderer>();
             if (m_BlendAlpha == 1)
             {
-                rendLeft.material.SetTexture(BLEND_TEXTURE, lastFromNode.SphereTextureLeft);
+                rendLeft.material.SetTexture(BLEND_TEXTURE, m_LastFromNode.SphereTextureLeft);
                 if (IsStereo)
                 {
-                    if (lastFromNode.IsStereo)
+                    if (m_LastFromNode.IsStereo)
                     {
-                        rendRight.material.SetTexture(BLEND_TEXTURE, lastFromNode.SphereTextureRight);
+                        rendRight.material.SetTexture(BLEND_TEXTURE, m_LastFromNode.SphereTextureRight);
                     }
                     else
                     {
-                        rendRight.material.SetTexture(BLEND_TEXTURE, lastFromNode.SphereTextureLeft);
+                        rendRight.material.SetTexture(BLEND_TEXTURE, m_LastFromNode.SphereTextureLeft);
                     }
                 }
             }
@@ -208,7 +208,7 @@ public class VisitNode : MonoBehaviour {
             }
             if(m_BlendAlpha < 0)
             {
-                lastFromNode = null;
+                m_LastFromNode = null;
                 SetEdgesActive(true);
             }
             m_BlendAlpha = m_BlendAlpha - 0.01f;

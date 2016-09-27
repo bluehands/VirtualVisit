@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System;
 
-public class UICamera : MonoBehaviour, ButtonListener {
+public class Stage : MonoBehaviour, ButtonListener {
 
     public ButtonGo buttonGoPrefab;
 

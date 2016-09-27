@@ -81,7 +81,7 @@ public class CardboardPostRender : MonoBehaviour {
 
   void OnPreCull() {
     // The Game window's aspect ratio may not match the fake device parameters.
-    float realAspect = (float)Screen.width / Screen.height;
+    float realAspect = (float)UnityEngine.Screen.width / UnityEngine.Screen.height;
     float fakeAspect = Cardboard.SDK.Profile.screen.width / Cardboard.SDK.Profile.screen.height;
     aspectComparison = fakeAspect / realAspect;
     cam.orthographicSize = 0.5f * Mathf.Max(1, aspectComparison);
@@ -300,10 +300,10 @@ public class CardboardPostRender : MonoBehaviour {
   };
 
   private void ComputeUIMatrix() {
-    centerWidthPx = kCenterLineThicknessDp / 160.0f * Screen.dpi / 2;
-    buttonWidthPx = kButtonWidthDp / 160.0f * Screen.dpi / 2;
-    xScale = buttonWidthPx / Screen.width;
-    yScale = buttonWidthPx / Screen.height;
+        centerWidthPx = kCenterLineThicknessDp / 160.0f * UnityEngine.Screen.dpi / 2;
+        buttonWidthPx = kButtonWidthDp / 160.0f * UnityEngine.Screen.dpi / 2;
+        xScale = buttonWidthPx / UnityEngine.Screen.width;
+        yScale = buttonWidthPx / UnityEngine.Screen.height;
     xfm = Matrix4x4.TRS(new Vector3(0.5f, yScale, 0), Quaternion.identity,
                         new Vector3(xScale, yScale, 1));
   }
@@ -329,15 +329,15 @@ public class CardboardPostRender : MonoBehaviour {
   }
 
   private void DrawAlignmentMarker() {
-    int x = Screen.width / 2;
+    int x = UnityEngine.Screen.width / 2;
     int w = (int)centerWidthPx;
     int h = (int)(2 * kTouchSlopFactor * buttonWidthPx);
     GL.PushMatrix();
-    GL.LoadPixelMatrix(0, Screen.width, 0, Screen.height);
+        GL.LoadPixelMatrix(0, UnityEngine.Screen.width, 0, UnityEngine.Screen.height);
     GL.Begin(GL.QUADS);
     GL.Vertex3(x - w, h, 0);
-    GL.Vertex3(x - w, Screen.height - h, 0);
-    GL.Vertex3(x + w, Screen.height - h, 0);
+        GL.Vertex3(x - w, UnityEngine.Screen.height - h, 0);
+        GL.Vertex3(x + w, UnityEngine.Screen.height - h, 0);
     GL.Vertex3(x + w, h, 0);
     GL.End();
     GL.PopMatrix();

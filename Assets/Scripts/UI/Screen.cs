@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class UIScreen : MonoBehaviour {
+public class Screen : MonoBehaviour {
 
     public Camera uiCamera;
 

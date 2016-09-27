@@ -71,8 +71,8 @@ public abstract class BaseVRDevice {
 
   public virtual RenderTexture CreateStereoScreen() {
     float scale = Cardboard.SDK.StereoScreenScale;
-    int width = Mathf.RoundToInt(Screen.width * scale);
-    int height = Mathf.RoundToInt(Screen.height * scale);
+    int width = Mathf.RoundToInt(UnityEngine.Screen.width * scale);
+    int height = Mathf.RoundToInt(UnityEngine.Screen.height * scale);
     if (this.RequiresNativeDistortionCorrection()) {
       width = (int)recommendedTextureSize[0];
       height = (int)recommendedTextureSize[1];
@@ -220,8 +220,8 @@ public abstract class BaseVRDevice {
     rightEyeUndistortedViewport.x = 1 - rightEyeUndistortedViewport.xMax;
     rightEyeDistortedViewport = rightEyeUndistortedViewport;
 
-    float width = Screen.width * (leftEyeUndistortedViewport.width+rightEyeDistortedViewport.width);
-    float height = Screen.height * Mathf.Max(leftEyeUndistortedViewport.height,
+    float width = UnityEngine.Screen.width * (leftEyeUndistortedViewport.width + rightEyeDistortedViewport.width);
+    float height = UnityEngine.Screen.height * Mathf.Max(leftEyeUndistortedViewport.height,
                                              rightEyeUndistortedViewport.height);
     recommendedTextureSize = new Vector2(width, height);
   }

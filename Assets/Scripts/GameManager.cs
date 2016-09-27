@@ -6,13 +6,13 @@ public class GameManager : MonoBehaviour
 
     public Player playerPrefab;
 
-    public UICamera cameraPrefab;
+    public Stage cameraPrefab;
 
     private Visit m_Visit;
 
     private Player m_Player;
 
-    private UICamera m_Camera;
+    private Stage m_Camera;
 
     private VisitSettingsFactory m_VisitSettingsFactory;
 
@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
         m_Player = Instantiate(playerPrefab) as Player;
         m_Player.Initialize(m_Visit);
 
-        m_Camera = Instantiate(cameraPrefab) as UICamera;
+        m_Camera = Instantiate(cameraPrefab) as Stage;
         m_Camera.Generate(m_VisitSettingsFactory);
 
     }

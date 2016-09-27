@@ -486,8 +486,8 @@ public class Cardboard : MonoBehaviour {
 #if UNITY_IOS
     Application.targetFrameRate = 60;
 #endif
-    // Prevent the screen from dimming / sleeping
-    Screen.sleepTimeout = SleepTimeout.NeverSleep;
+        // Prevent the screen from dimming / sleeping
+        UnityEngine.Screen.sleepTimeout = SleepTimeout.NeverSleep;
     InitDevice();
     StereoScreen = null;
     AddCardboardCamera();

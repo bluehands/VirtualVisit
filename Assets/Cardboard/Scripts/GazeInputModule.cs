@@ -137,7 +137,7 @@ public class GazeInputModule : BaseInputModule {
 
     // Cast a ray into the scene
     pointerData.Reset();
-    pointerData.position = new Vector2(hotspot.x * Screen.width, hotspot.y * Screen.height);
+        pointerData.position = new Vector2(hotspot.x * UnityEngine.Screen.width, hotspot.y * UnityEngine.Screen.height);
     eventSystem.RaycastAll(pointerData, m_RaycastResultCache);
     pointerData.pointerCurrentRaycast = FindFirstRaycast(m_RaycastResultCache);
     m_RaycastResultCache.Clear();

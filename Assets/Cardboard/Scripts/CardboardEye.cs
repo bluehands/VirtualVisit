@@ -118,7 +118,7 @@ public class CardboardEye : MonoBehaviour {
     rect.y = view.y + rect.y * view.height;
     if (Application.isEditor) {
       // The Game window's aspect ratio may not match the fake device parameters.
-      float realAspect = (float)Screen.width / Screen.height;
+      float realAspect = (float)UnityEngine.Screen.width / UnityEngine.Screen.height;
       float fakeAspect = Cardboard.SDK.Profile.screen.width / Cardboard.SDK.Profile.screen.height;
       float aspectComparison = fakeAspect / realAspect;
       if (aspectComparison < 1) {

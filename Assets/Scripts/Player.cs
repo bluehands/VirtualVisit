@@ -11,7 +11,7 @@ public class Player : MonoBehaviour, ButtonListener {
 
     public Button3D dutton3DPrefab;
 
-    public UIScreen uiScreenPrefab;
+    public Screen uiScreenPrefab;
 
     private Cardboard m_Cardboard;
 
@@ -21,7 +21,7 @@ public class Player : MonoBehaviour, ButtonListener {
 
     private Button3D m_3DButton;
 
-    private UIScreen m_UIScreen;
+    private Screen m_UIScreen;
 
     private Visit m_Visit;
 
@@ -35,7 +35,7 @@ public class Player : MonoBehaviour, ButtonListener {
         CardboardHead cardboardHead = m_Cardboard.GetComponentInChildren<CardboardHead>();
         m_Visit.Map.transform.parent = cardboardHead.transform;
 
-        m_UIScreen = Instantiate(uiScreenPrefab) as UIScreen;
+        m_UIScreen = Instantiate(uiScreenPrefab) as Screen;
         m_UIScreen.transform.parent = transform;
 
         m_MenuButton = Instantiate(buttonMenuPrefab) as ButtonMenu;
