@@ -91,6 +91,9 @@
     <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
       <HintPath>Library\UnityAssemblies\SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
+    <Reference Include="Google.ProtocolBuffers">
+      <HintPath>Assets\Plugins\Google.ProtocolBuffers.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Virtual Visit.CSharp.csproj">
@@ -99,22 +102,24 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Cardboard\Editor\CardboardAudioListenerEditor.cs" />
-    <Compile Include="Assets\Cardboard\Editor\CardboardAudioRoomEditor.cs" />
-    <Compile Include="Assets\Cardboard\Editor\CardboardAudioSourceEditor.cs" />
-    <Compile Include="Assets\Cardboard\Editor\CardboardEditor.cs" />
-    <Compile Include="Assets\Cardboard\Editor\CardboardGazeEditor.cs" />
-    <Compile Include="Assets\Cardboard\Editor\CardboardMenu.cs" />
-    <Compile Include="Assets\Cardboard\Editor\CardboardSetup.cs" />
-    <Compile Include="Assets\Cardboard\Editor\StereoControllerEditor.cs" />
+    <Compile Include="Assets\GoogleVR\Editor\GvrAudioListenerEditor.cs" />
+    <Compile Include="Assets\GoogleVR\Editor\GvrAudioRoomEditor.cs" />
+    <Compile Include="Assets\GoogleVR\Editor\GvrAudioSoundfieldEditor.cs" />
+    <Compile Include="Assets\GoogleVR\Editor\GvrAudioSourceEditor.cs" />
+    <Compile Include="Assets\GoogleVR\Editor\GvrCompatibilityChecker.cs" />
+    <Compile Include="Assets\GoogleVR\Editor\GvrGazeEditor.cs" />
+    <Compile Include="Assets\GoogleVR\Legacy\Editor\GvrMenu.cs" />
+    <Compile Include="Assets\GoogleVR\Legacy\Editor\GvrViewerEditor.cs" />
+    <Compile Include="Assets\GoogleVR\Legacy\Editor\StereoControllerEditor.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Cardboard\Distortion\CardboardDistortion.cginc" />
-    <None Include="Assets\Cardboard\Resources\SolidColor.shader" />
-    <None Include="Assets\Cardboard\Resources\UI\CardboardReticleShader.shader" />
-    <None Include="Assets\Cardboard\Resources\UI\CardboardSphereShader.shader" />
-    <None Include="Assets\Cardboard\Resources\UnlitTexture.shader" />
+    <None Include="Assets\GoogleVR\Distortion\GvrDistortion.cginc" />
+    <None Include="Assets\GoogleVR\Legacy\Resources\SolidColor.shader" />
+    <None Include="Assets\GoogleVR\Legacy\Resources\UnlitTexture.shader" />
+    <None Include="Assets\GoogleVR\Resources\UI\GvrReticleShader.shader" />
     <None Include="Assets\Materials\CombineTwoTextures.shader" />
+    <None Include="Assets\Plugins\Android\AndroidManifest-Cardboard.xml" />
+    <None Include="Assets\Plugins\Android\AndroidManifest-Daydream.xml" />
     <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />

@@ -105,7 +105,7 @@ public class VisitNode : MonoBehaviour {
 
     internal bool IsStereoView()
     {
-        return getLeftSphere().gameObject.layer == LAYER_LEFT_EYE;
+        return getLeftSphere().gameObject.layer == LayerMask.NameToLayer("Left Eye");
     }
 
     internal bool ToggleStereoView()
