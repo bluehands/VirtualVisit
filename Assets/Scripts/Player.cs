@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System;
 
-public class Player : MonoBehaviour, ButtonListener {
+public class Player : MonoBehaviour, ButtonListener, VisitNodeChangeListener {
 
     public ButtonMenu buttonMenuPrefab;
 
@@ -46,7 +46,7 @@ public class Player : MonoBehaviour, ButtonListener {
         toggleMainMenu();
     }
 
-    public void DoAction(Type clazz)
+    public void DoButtonAction(Type clazz)
     {
         if (clazz.Equals(typeof(ButtonMenu)))
         {
@@ -67,8 +67,14 @@ public class Player : MonoBehaviour, ButtonListener {
 
     private void toggleMainMenu()
     {
-        bool isShrinked = m_UIScreen.ToggleShrinkingForce();
+        m_UIScreen.ToggleShrinking();
+        bool isShrinked = m_UIScreen.IsShrinked();
         m_MenuButton.setSelected(!isShrinked);
         m_Visit.SetVisitEdgeVisibility(isShrinked);
+    }
+
+    public void IsChangedTo(VisitNode toNode)
+    {
+        m_3DButton.SetInteractable(toNode.IsStereo);
     }
 }

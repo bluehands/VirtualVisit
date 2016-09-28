@@ -1,7 +1,7 @@
 ﻿
 public class ButtonStep : ButtonBase
 {
-    protected override void DoAction()
+    protected override void DoButtonAction()
     {
         VisitEdge edge = GetComponentInParent<VisitEdge>();
         Visit visit = GetComponentInParent<Visit>();

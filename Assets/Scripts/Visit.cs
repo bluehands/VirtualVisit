@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System;
 
-public class Visit : MonoBehaviour {
+public class Visit : MonoBehaviour
+{
 
     public VisitNode nodePrefab;
 
@@ -20,6 +21,8 @@ public class Visit : MonoBehaviour {
 
     public VisitNode CurrentVisitNode { get; private set; }
 
+    private VisitNodeChangeListener m_VisitNodeChangeListener;
+
     public void Generate(string visitId, VisitSettingsFactory visitSettingsFactory)
     {
         m_VisitNodes = new List<VisitNode>();
@@ -31,27 +34,30 @@ public class Visit : MonoBehaviour {
             createNode(m_VisitSettings, visitNodeSetting, visitSettingsFactory);
         }
 
-        foreach(var visitNodeSetting in m_VisitSettings.nodeSettings)
+        foreach (var visitNodeSetting in m_VisitSettings.nodeSettings)
         {
-            foreach(var edgeId in visitNodeSetting.getEdgeIds())
+            foreach (var edgeId in visitNodeSetting.getEdgeIds())
             {
                 createEdge(visitNodeSetting.id, edgeId);
             }
         }
+        CurrentVisitNode = m_VisitNodes[0];
 
         Map = Instantiate(mapPrefab) as Map;
         Map.Generate(m_VisitNodes);
         Map.Initialize();
     }
 
-    public void Initialize()
+    public void Initialize(VisitNodeChangeListener visitNodeChangeListener)
     {
-        foreach(var visitNode in m_VisitNodes)
+        m_VisitNodeChangeListener = visitNodeChangeListener;
+
+        foreach (var visitNode in m_VisitNodes)
         {
             visitNode.Leave();
         }
         m_VisitNodes[0].GoThere();
-        CurrentVisitNode = m_VisitNodes[0];
+        informListener(CurrentVisitNode);
     }
 
     private void createNode(VisitSettings visitSettings, VisitNodeSettings visitNodeSetting, VisitSettingsFactory visitSettingsFactory)
@@ -76,9 +82,9 @@ public class Visit : MonoBehaviour {
 
     internal void SetVisitEdgeVisibility(bool visibility)
     {
-        foreach(var node in m_VisitNodes)
+        foreach (var node in m_VisitNodes)
         {
-            if(node.gameObject.activeInHierarchy)
+            if (node.gameObject.activeInHierarchy)
             {
                 node.SetEdgesActive(visibility);
             }
@@ -100,12 +106,12 @@ public class Visit : MonoBehaviour {
     {
         for (int i = 0; i < m_VisitNodes.Count; i++)
         {
-            if(m_VisitNodes[i].Id.Equals(id))
+            if (m_VisitNodes[i].Id.Equals(id))
             {
                 return m_VisitNodes[i];
             }
         }
-        throw new InvalidOperationException(String.Format("Tour couldn't find node for {0} in visit {1}." , id, m_VisitSettings.id));
+        throw new InvalidOperationException(String.Format("Tour couldn't find node for {0} in visit {1}.", id, m_VisitSettings.id));
     }
 
     public void MoveTo(VisitEdge edge)
@@ -116,8 +122,14 @@ public class Visit : MonoBehaviour {
         Debug.Log(String.Format("MoveTo({0},{1})", fromNode.Id, toNode.Id));
 
         fromNode.Leave();
-        toNode.GoThereFrom(fromNode); 
+        toNode.GoThereFrom(fromNode);
         CurrentVisitNode = toNode;
+
+        informListener(toNode);
     }
 
+    private void informListener(VisitNode toNode)
+    {
+        m_VisitNodeChangeListener.IsChangedTo(toNode);
+    }
 }

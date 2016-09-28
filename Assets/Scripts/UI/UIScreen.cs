@@ -20,10 +20,6 @@ public class UIScreen : MonoBehaviour {
     void Start () {
         initVerts = GetComponent<MeshFilter>().mesh.vertices;
         mainCamera = Camera.main;
-
-        //shrinking = true;
-        //isShrinked = true;
-        //gameObject.SetActive(false);
     }
 	
 	void Update () {
@@ -55,6 +51,7 @@ public class UIScreen : MonoBehaviour {
         {
             if (isShrinked)
             {
+                gameObject.SetActive(true);
                 exspanding = true;
                 isShrinked = false;
             }
@@ -68,22 +65,6 @@ public class UIScreen : MonoBehaviour {
 
     internal bool IsShrinked()
     {
-        return isShrinked;
-    }
-
-    internal bool ToggleShrinkingForce()
-    {
-        if (isShrinked)
-        {
-            gameObject.SetActive(true);
-            exspanding = true;
-            isShrinked = false;
-        }
-        else
-        {
-            shrinking = true;
-            isShrinked = true;
-        }
         return isShrinked;
     }
 

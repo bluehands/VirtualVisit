@@ -7,10 +7,6 @@ public class VisitNode : MonoBehaviour {
     private const int LEFT_EYE = 0;
     private const int RIGHT_EYE = 1;
 
-    private int LAYER_DEFAULT;
-    private int LAYER_LEFT_EYE;
-    private int LAYER_RIGHT_EYE;
-
     private const string MAIN_TEXTURE = "_MainTex";
     private const string BLEND_TEXTURE = "_BlendTex";
     private const string BLEND_ALPHA = "_BlendAlpha";
@@ -43,13 +39,6 @@ public class VisitNode : MonoBehaviour {
         Transparent
     }
 
-    void Start()
-    {
-        LAYER_DEFAULT = LayerMask.NameToLayer("Default");
-        LAYER_LEFT_EYE = LayerMask.NameToLayer("Left Eye");
-        LAYER_RIGHT_EYE = LayerMask.NameToLayer("Right Eye");
-    }
-
     private Transform getLeftSphere()
     {
         return transform.GetChild(LEFT_EYE);
@@ -66,7 +55,7 @@ public class VisitNode : MonoBehaviour {
         SphereTextureLeft = sphereTexture;
         IsStereo = false;
 
-        initSphere(getLeftSphere(), SphereTextureLeft, LAYER_DEFAULT);
+        initSphere(getLeftSphere(), SphereTextureLeft, LayerMask.NameToLayer("Default"));
         getRightSphere().GetComponent<Renderer>().enabled = false;
     }
 
@@ -77,8 +66,8 @@ public class VisitNode : MonoBehaviour {
         SphereTextureRight = sphereRight;
         IsStereo = true;
 
-        initSphere(getLeftSphere(), SphereTextureLeft, LAYER_LEFT_EYE);
-        initSphere(getRightSphere(), SphereTextureRight, LAYER_RIGHT_EYE);
+        initSphere(getLeftSphere(), SphereTextureLeft, LayerMask.NameToLayer("Left Eye"));
+        initSphere(getRightSphere(), SphereTextureRight, LayerMask.NameToLayer("Right Eye"));
 
     }
 
@@ -112,15 +101,15 @@ public class VisitNode : MonoBehaviour {
     {
         if(IsStereo)
         {
-            if (getLeftSphere().gameObject.layer == LAYER_LEFT_EYE)
+            if (getLeftSphere().gameObject.layer == LayerMask.NameToLayer("Left Eye"))
             {
-                getLeftSphere().gameObject.layer = LAYER_DEFAULT;
+                getLeftSphere().gameObject.layer = LayerMask.NameToLayer("Default");
                 getRightSphere().gameObject.SetActive(false);
                 return false;
             }
             else
             {
-                getLeftSphere().gameObject.layer = LAYER_LEFT_EYE;
+                getLeftSphere().gameObject.layer = LayerMask.NameToLayer("Left Eye");
                 getRightSphere().gameObject.SetActive(true);
                 return true;
             }

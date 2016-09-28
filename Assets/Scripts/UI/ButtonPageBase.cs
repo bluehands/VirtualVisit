@@ -5,11 +5,18 @@ using System;
 
 public abstract class ButtonPageBase: MonoBehaviour, ISelectHandler, IPointerEnterHandler, IPointerExitHandler
 {
-    private bool selected;
+    private bool isSelected;
 
     private Type m_Class;
 
     private ButtonListener m_buttonListener;
+
+    private float timeCounter = 0;
+
+    private bool isMoving;
+
+    private int movingCounter;
+    private const int movingSteps = 24;
 
     public void Initialize(Type clazz, Transform parent, ButtonListener buttonListener)
     {
@@ -25,9 +32,25 @@ public abstract class ButtonPageBase: MonoBehaviour, ISelectHandler, IPointerEnt
 
     void Update()
     {
-        if(selected)
+        if(isMoving)
         {
-            InformListener();
+            if(movingCounter > 0)
+            {
+                InformListener();
+                movingCounter--;
+            } else
+            {
+                isMoving = false;
+                isSelected = false;
+                movingCounter = movingSteps;
+            } 
+        } else if(isSelected)
+        {
+            timeCounter += Time.deltaTime;
+            if (timeCounter >= 0.5)
+            {
+                isMoving = true;
+            }  
         }
     }
 
@@ -39,17 +62,17 @@ public abstract class ButtonPageBase: MonoBehaviour, ISelectHandler, IPointerEnt
     {
         if(m_buttonListener != null)
         {
-            m_buttonListener.DoAction(m_Class);
+            m_buttonListener.DoButtonAction(m_Class);
         }
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        selected = true;
+        isSelected = true;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        selected = false;
+        isSelected = false;
     }
 }

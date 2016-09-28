@@ -14,7 +14,7 @@ public class ButtonInfo : ButtonBase
         setSelected(infoIndex == -1);
     }
 
-    protected override void DoAction()
+    protected override void DoButtonAction()
     {
         if(infoIndex == -1)
         {

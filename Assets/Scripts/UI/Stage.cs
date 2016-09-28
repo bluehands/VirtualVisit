@@ -89,7 +89,7 @@ public class Stage : MonoBehaviour, ButtonListener {
     {
         RectTransform panelRectTransform = m_CanvaseMenu.GetComponent<RectTransform>();
         var position = panelRectTransform.localPosition;
-        position.x -= 0.01f;
+        position.x -= 0.1f;
         panelRectTransform.localPosition = position;
     }
 
@@ -97,7 +97,7 @@ public class Stage : MonoBehaviour, ButtonListener {
     {
         RectTransform panelRectTransform = m_CanvaseMenu.GetComponent<RectTransform>();
         var position = panelRectTransform.localPosition;
-        position.x += 0.01f;
+        position.x += 0.1f;
         panelRectTransform.localPosition = position;
     }
 
@@ -233,7 +233,7 @@ public class Stage : MonoBehaviour, ButtonListener {
         m_MainMenuPanels[index] = panel;
     }
 
-    public void DoAction(Type clazz)
+    public void DoButtonAction(Type clazz)
     {
         if(clazz.Equals(typeof(ButtonGo)))
         {

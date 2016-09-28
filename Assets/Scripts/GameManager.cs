@@ -29,10 +29,11 @@ public class GameManager : MonoBehaviour
 
         m_Visit = Instantiate(visitPrefab) as Visit;
         m_Visit.Generate(visitId, m_VisitSettingsFactory);
-        m_Visit.Initialize();
 
         m_Player = Instantiate(playerPrefab) as Player;
         m_Player.Initialize(m_Visit);
+
+        m_Visit.Initialize(m_Player);
 
         m_Camera = Instantiate(cameraPrefab) as Stage;
         m_Camera.Generate(m_VisitSettingsFactory);

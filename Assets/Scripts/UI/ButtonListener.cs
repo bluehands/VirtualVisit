@@ -2,5 +2,5 @@
 
 public interface ButtonListener
 {
-    void DoAction(Type clazz);
+    void DoButtonAction(Type clazz);
 }

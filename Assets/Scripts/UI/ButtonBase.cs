@@ -50,7 +50,7 @@ public abstract class ButtonBase : MonoBehaviour, ISelectHandler, IPointerEnterH
                 {
                     doneAction = true;
                     InformListener();
-                    DoAction();
+                    DoButtonAction();
                 }
             }
         }
@@ -60,18 +60,18 @@ public abstract class ButtonBase : MonoBehaviour, ISelectHandler, IPointerEnterH
     public void OnSelect(BaseEventData eventData)
     {
         InformListener();
-        DoAction();
+        DoButtonAction();
     }
 
     private void InformListener()
     {
         if(m_buttonListener != null)
         {
-            m_buttonListener.DoAction(m_Class);
+            m_buttonListener.DoButtonAction(m_Class);
         }
     }
 
-    protected abstract void DoAction();
+    protected abstract void DoButtonAction();
 
     public void OnPointerEnter(PointerEventData eventData)
     {

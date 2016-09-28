@@ -11,7 +11,7 @@ public class ButtonGo : ButtonBase
         transform.SetParent(parent.transform, false);
     }
 
-    protected override void DoAction()
+    protected override void DoButtonAction()
     {
         ApplicationModel.SelectedVisitId = nextVisitId;
 

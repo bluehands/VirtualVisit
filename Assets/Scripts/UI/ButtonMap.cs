@@ -7,7 +7,7 @@ public class ButtonMap : ButtonBase
         Initialize(typeof(ButtonMap), parent, buttonListener);
     }
 
-    protected override void DoAction()
+    protected override void DoButtonAction()
     {
     }
 }
