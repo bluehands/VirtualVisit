@@ -21,14 +21,14 @@ public class Player : MonoBehaviour, ButtonListener, VisitNodeChangeListener {
 
     private Visit m_Visit;
 
-    public void Initialize(Visit visit)
+    public void Initialize(Visit visit, Stage stage)
     {
         m_Visit = visit;
 
         m_Visit.Map.transform.parent = Camera.main.transform;
 
         m_UIScreen = Instantiate(uiScreenPrefab) as UIScreen;
-        m_UIScreen.transform.parent = transform;
+        m_UIScreen.Initialize(stage, transform);
 
         m_MenuButton = Instantiate(buttonMenuPrefab) as ButtonMenu;
         m_MenuButton.Initialize(GameObject.Find("Canvas Menu").transform, this);

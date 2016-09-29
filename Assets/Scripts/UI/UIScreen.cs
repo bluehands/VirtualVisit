@@ -3,9 +3,10 @@ using UnityEngine.EventSystems;
 
 public class UIScreen : MonoBehaviour {
 
-    public Camera uiCamera;
+    private Stage stage;
 
     private Camera mainCamera;
+    private Camera uiCamera;
 
     private Vector3[] initVerts;
 
@@ -20,9 +21,19 @@ public class UIScreen : MonoBehaviour {
     void Start () {
         initVerts = GetComponent<MeshFilter>().mesh.vertices;
         mainCamera = Camera.main;
+        uiCamera = stage.GetComponent<Camera>();
     }
-	
-	void Update () {
+
+    public void Initialize(Stage stage, Transform parent)
+    {
+        this.stage = stage;
+        transform.parent = parent;
+        initVerts = GetComponent<MeshFilter>().mesh.vertices;
+        mainCamera = Camera.main;
+        uiCamera = stage.GetComponent<Camera>();
+    }
+
+        void Update () {
         if(shrinking)
         {
             shrinking = srinkDisplay();
@@ -37,6 +48,7 @@ public class UIScreen : MonoBehaviour {
             exspanding = exspandDisplay();
             if(exspanding == false)
             {
+                stage.ShowMainMenu();
             }
         }
         if (shrinking == false && exspanding == false && isShrinked == false)
@@ -59,6 +71,7 @@ public class UIScreen : MonoBehaviour {
             {
                 shrinking = true;
                 isShrinked = true;
+                stage.HideMainMenu();
             }
         }
     }

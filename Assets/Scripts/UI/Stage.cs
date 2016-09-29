@@ -114,7 +114,7 @@ public class Stage : MonoBehaviour, ButtonListener {
         Image image = panel.AddComponent<Image>();
         image.color = new Color32(255, 255, 255, 157);
         panel.transform.SetParent(parent, false);
-
+        /*
         GameObject backgroundImage = new GameObject("Background Image");
         RectTransform panelRectTransformImage = backgroundImage.AddComponent<RectTransform>();
         panelRectTransformImage.sizeDelta = new Vector2(300, 200);
@@ -126,7 +126,7 @@ public class Stage : MonoBehaviour, ButtonListener {
         m_VisitSettingsFactory.TryToLoadTextures(visitSetting, visitSetting.getPreviewNodeSetting(), out textureLeft, out textureRight);
 
         rawImage.texture = textureLeft;
-        backgroundImage.transform.SetParent(panel.transform, false);
+        backgroundImage.transform.SetParent(panel.transform, false);*/
 
         ButtonInfo buttonInfo = Instantiate(buttonInfoPrefab) as ButtonInfo;
         buttonInfo.Initialize(-1, this, panel.transform);
@@ -163,7 +163,7 @@ public class Stage : MonoBehaviour, ButtonListener {
     {
         var visitSettings = m_VisitSettingsFactory.GetVisitSettings();
 
-        m_MainMenuPanels = new GameObject[visitSettings.Length];
+        m_MainMenuPanels = new GameObject[visitSettings.Length + 1];
 
         var xStep = 400;
         var currentStep = -600;
@@ -171,7 +171,9 @@ public class Stage : MonoBehaviour, ButtonListener {
         {
             generateMenu(i, new Vector3(currentStep, 0, 0), parent);
             currentStep += xStep;
-        }  
+        }
+
+        generateAbout(visitSettings.Length, new Vector3(currentStep, 0, 0), parent);
     }
 
     private void generatePage(Transform parent)
@@ -229,6 +231,44 @@ public class Stage : MonoBehaviour, ButtonListener {
         text.fontSize = 200;
         text.font = Resources.GetBuiltinResource(typeof(Font), "Arial.ttf") as Font;
         headlineText.transform.SetParent(panel.transform, false);
+
+        m_MainMenuPanels[index] = panel;
+    }
+
+    private void generateAbout(int index, Vector3 position, Transform parent)
+    {
+        GameObject panel = new GameObject("About Panel");
+        panel.AddComponent<CanvasRenderer>();
+        RectTransform panelRectTransform = panel.AddComponent<RectTransform>();
+        panelRectTransform.sizeDelta = new Vector2(400, 300);
+        panelRectTransform.localPosition = position;
+        Image i = panel.AddComponent<Image>();
+        i.color = new Color32(255, 255, 255, 157);
+        panel.transform.SetParent(parent, false);
+
+        GameObject headlineText = new GameObject("Headline Text");
+        RectTransform headlineTextRectTransform = headlineText.AddComponent<RectTransform>();
+        headlineTextRectTransform.sizeDelta = new Vector2(3000, 500);
+        headlineTextRectTransform.localScale = new Vector3(0.1f, 0.1f, 1);
+        headlineTextRectTransform.localPosition = new Vector3(-35, 120, 0);
+        Text text = headlineText.AddComponent<Text>();
+        text.text = "About bluehands";
+        text.fontSize = 400;
+        text.font = Resources.GetBuiltinResource(typeof(Font), "Arial.ttf") as Font;
+        headlineText.transform.SetParent(panel.transform, false);
+
+        GameObject descriptionText = new GameObject("Info Text");
+        RectTransform descriptionTextRectTransform = descriptionText.AddComponent<RectTransform>();
+        descriptionTextRectTransform.sizeDelta = new Vector2(5000, 3000);
+        descriptionTextRectTransform.localScale = new Vector3(0.1f, 0.1f, 1);
+        descriptionTextRectTransform.localPosition = new Vector3(70, -50, 0);
+        Text textDescription = descriptionText.AddComponent<Text>();
+
+        textDescription.text = "//_softwareentwicklung()\n\n\t\t\t\t\"WIR BAUEN\n\t\t\tIHRE SOFTWARE\"\n\nfirma:\tbluehands GmbH &\n\t\t\tCo.mmunication KG\nmail:\t\tinfo@bluehands.de\nweb:\t\tbluehands.de";
+
+        textDescription.fontSize = 200;
+        textDescription.font = Resources.GetBuiltinResource(typeof(Font), "Arial.ttf") as Font;
+        descriptionText.transform.SetParent(panel.transform, false);
 
         m_MainMenuPanels[index] = panel;
     }
