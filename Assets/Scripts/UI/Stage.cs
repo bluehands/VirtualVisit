@@ -178,11 +178,11 @@ public class Stage : MonoBehaviour, ButtonListener {
     {
         ButtonPageLeft buttonPageLeft = Instantiate(buttonPageLeftPrefab) as ButtonPageLeft;
         buttonPageLeft.Initialize(parent.transform, this);
-        buttonPageLeft.gameObject.GetComponent<RectTransform>().localPosition = new Vector3(-800, 0, 0);
+        buttonPageLeft.gameObject.GetComponent<RectTransform>().localPosition = new Vector3(750, 0, -1);
 
         ButtonPageRight buttonPageRight = Instantiate(buttonPageRightPrefab) as ButtonPageRight;
         buttonPageRight.Initialize(parent.transform, this);
-        buttonPageRight.gameObject.GetComponent<RectTransform>().localPosition = new Vector3(800, 0, 0);
+        buttonPageRight.gameObject.GetComponent<RectTransform>().localPosition = new Vector3(-750, 0, -1);
     }
 
     private void generateMenu(int index, Vector3 position, Transform parent)

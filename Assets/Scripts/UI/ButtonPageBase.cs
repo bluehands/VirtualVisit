@@ -41,7 +41,7 @@ public abstract class ButtonPageBase: MonoBehaviour, ISelectHandler, IPointerEnt
             } else
             {
                 isMoving = false;
-                isSelected = false;
+                //isSelected = false;
                 movingCounter = movingSteps;
             } 
         } else if(isSelected)
@@ -50,6 +50,7 @@ public abstract class ButtonPageBase: MonoBehaviour, ISelectHandler, IPointerEnt
             if (timeCounter >= 0.5)
             {
                 isMoving = true;
+                timeCounter = 0;
             }  
         }
     }
