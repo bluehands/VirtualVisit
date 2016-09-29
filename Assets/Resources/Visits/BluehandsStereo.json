@@ -4,7 +4,7 @@
 	"author":"Marcel Weigel",
 	"created":"17.07.2016",
 	"previewNodeIndex":0,	"nodeSettings":[			{
-				"id":"P0",				"title":"Oben",				"postion":{	
+				"id":"P0",				"title":"Oben",				"position":{	
 					"x":30.0,					"y":0.0,					"z":0.0
 				},				"edgeIds":""
 			}]

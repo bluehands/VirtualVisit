@@ -21,7 +21,7 @@ public class Visit : MonoBehaviour
 
     public VisitNode CurrentVisitNode { get; private set; }
 
-    private VisitNodeChangeListener m_VisitNodeChangeListener;
+    private VisitNodeChangeListener[] m_VisitNodeChangeListeners;
 
     public void Generate(string visitId, VisitSettingsFactory visitSettingsFactory)
     {
@@ -50,14 +50,16 @@ public class Visit : MonoBehaviour
 
     public void Initialize(VisitNodeChangeListener visitNodeChangeListener)
     {
-        m_VisitNodeChangeListener = visitNodeChangeListener;
+        m_VisitNodeChangeListeners = new VisitNodeChangeListener[2];
+        m_VisitNodeChangeListeners[0] = Map;
+        m_VisitNodeChangeListeners[1] = visitNodeChangeListener;
 
         foreach (var visitNode in m_VisitNodes)
         {
             visitNode.Leave();
         }
         m_VisitNodes[0].GoThere();
-        informListener(CurrentVisitNode);
+        informListener(null, CurrentVisitNode);
     }
 
     private void createNode(VisitSettings visitSettings, VisitNodeSettings visitNodeSetting, VisitSettingsFactory visitSettingsFactory)
@@ -71,11 +73,11 @@ public class Visit : MonoBehaviour
 
         if (isStereo)
         {
-            node.Initialize(visitNodeSetting.id, visitNodeSetting.title, visitNodeSetting.postion, transform, textureLeft, textureRight);
+            node.Initialize(visitNodeSetting.id, visitNodeSetting.title, visitNodeSetting.position, transform, textureLeft, textureRight);
         }
         else
         {
-            node.Initialize(visitNodeSetting.id, visitNodeSetting.title, visitNodeSetting.postion, transform, textureLeft);
+            node.Initialize(visitNodeSetting.id, visitNodeSetting.title, visitNodeSetting.position, transform, textureLeft);
         }
         m_VisitNodes.Add(node);
     }
@@ -125,11 +127,14 @@ public class Visit : MonoBehaviour
         toNode.GoThereFrom(fromNode);
         CurrentVisitNode = toNode;
 
-        informListener(toNode);
+        informListener(fromNode, toNode);
     }
 
-    private void informListener(VisitNode toNode)
+    private void informListener(VisitNode fromNode, VisitNode toNode)
     {
-        m_VisitNodeChangeListener.IsChangedTo(toNode);
+        foreach(var visitNodeChangeListener in m_VisitNodeChangeListeners)
+        {
+            visitNodeChangeListener.IsChangedFromTo(fromNode, toNode);
+        }
     }
 }

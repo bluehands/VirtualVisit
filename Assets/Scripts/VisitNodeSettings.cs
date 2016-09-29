@@ -8,7 +8,7 @@ public class VisitNodeSettings {
 
     public string title;
 
-    public Vector3 postion;
+    public Vector3 position;
 
     public string edgeIds;
 

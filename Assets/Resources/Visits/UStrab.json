@@ -5,18 +5,18 @@
 	"created":"14.09.2016",
 	"previewNodeIndex":0,	"nodeSettings":[
 			{
-				"id":"P0",				"title":"Markplatz",				"postion":{	
+				"id":"P0",				"title":"Markplatz",				"position":{	
 					"x":0.0,					"y":0.0,					"z":0.0
 				},				"edgeIds":"P1"
 			},			{
-				"id":"P1",				"title":"Eingang",				"postion":{	
+				"id":"P1",				"title":"Eingang",				"position":{	
 					"x":60.0,					"y":-60.0,					"z":-60.0
 				},				"edgeIds":"P0,P2"
 			},
 			{
 				"id":"P2",
 				"title":"Kreuzung",
-				"postion":{	
+				"position":{	
 					"x":-120.0,
 					"y":-60.0,
 					"z":0.0
@@ -26,7 +26,7 @@
 			{
 				"id":"P3",
 				"title":"Durchgang",
-				"postion":{	
+				"position":{	
 					"x":-45.0,
 					"y":-60.0,
 					"z":15.0
@@ -36,7 +36,7 @@
 			{
 				"id":"P4",
 				"title":"Durchburch",
-				"postion":{	
+				"position":{	
 					"x":120.0,
 					"y":-60.0,
 					"z":0.0
@@ -46,7 +46,7 @@
 			{
 				"id":"P5",
 				"title":"Ausgang",
-				"postion":{	
+				"position":{	
 					"x":100.0,
 					"y":-60.0,
 					"z":40.0

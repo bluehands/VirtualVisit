@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System;
 
-public class Map : MonoBehaviour {
+public class Map : MonoBehaviour, VisitNodeChangeListener {
 
     public MapNode nodePrefab;
 
@@ -28,9 +29,8 @@ public class Map : MonoBehaviour {
         foreach (VisitNode visitNode in visitNodes)
         {
             MapNode node = Instantiate(nodePrefab) as MapNode;
-            node.Initialize(visitNode.Position, this.transform);
+            node.Initialize(visitNode.Id, visitNode.Position, visitNode.Title, transform);
             m_Nodes.Add(node);
-            visitNode.MapNode = node;
 
             foreach (VisitEdge visitEdge in visitNode.GetEdges())
             {
@@ -105,6 +105,26 @@ public class Map : MonoBehaviour {
             } else
             {
                 mapNode.Hide();
+            }
+        }
+    }
+
+    public void IsChangedFromTo(VisitNode fromNode, VisitNode toNode)
+    {
+        foreach (var node in m_Nodes)
+        {
+            if(node.Id.Equals(toNode.Id))
+            {
+                node.Select();
+            } else
+            {
+                node.Unselect();
+            }
+            if (fromNode != null)
+            {
+                Vector3 moveTo = (fromNode.Position - toNode.Position) * 0.1f;
+                Debug.Log(moveTo);
+                node.transform.Translate(moveTo);
             }
         }
     }

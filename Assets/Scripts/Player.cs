@@ -73,7 +73,7 @@ public class Player : MonoBehaviour, ButtonListener, VisitNodeChangeListener {
         m_Visit.SetVisitEdgeVisibility(isShrinked);
     }
 
-    public void IsChangedTo(VisitNode toNode)
+    public void IsChangedFromTo(VisitNode fromNode, VisitNode toNode)
     {
         m_3DButton.SetInteractable(toNode.IsStereo);
     }

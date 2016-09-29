@@ -17,8 +17,6 @@ public class VisitNode : MonoBehaviour {
 
     public Vector3 Position { get; private set; }
 
-    public MapNode MapNode { get; set; }
-
     public Texture SphereTextureLeft { get; private set; }
 
     public Texture SphereTextureRight { get; private set; }
@@ -138,7 +136,6 @@ public class VisitNode : MonoBehaviour {
     internal void Leave()
     {
         gameObject.SetActive(false);
-        MapNode.Unselect();
     }
 
     internal void GoThere()
@@ -146,7 +143,6 @@ public class VisitNode : MonoBehaviour {
         setAlpha(0.0f);
 
         gameObject.SetActive(true);
-        MapNode.Select();
     }
 
     internal void GoThereFrom(VisitNode node)
@@ -158,7 +154,6 @@ public class VisitNode : MonoBehaviour {
 
         SetEdgesActive(false);
         gameObject.SetActive(true);
-        MapNode.Select();
     }
 
     private void setAlpha(float alpha)
