@@ -1,29 +1,9 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class ButtonInfo : ButtonBase
 {
-    private Stage uiCamera;
-    private int infoIndex;
-
-    public void Initialize(int infoIndex, Stage uiCamera, Transform parent)
+    public void Initialize(Transform parent, ButtonListener listener)
     {
-        this.infoIndex = infoIndex;
-        this.uiCamera = uiCamera;
-        transform.SetParent(parent.transform, false);
-        setSelected(infoIndex == -1);
-    }
-
-    protected override void DoButtonAction()
-    {
-        if(infoIndex == -1)
-        {
-            uiCamera.HideInfo();
-            uiCamera.ShowMainMenu();
-        } else
-        {
-            uiCamera.HideMainMenu();
-            uiCamera.ShowInfo(infoIndex);
-        }
+        Initialize(typeof(ButtonInfo), parent, listener);
     }
 }

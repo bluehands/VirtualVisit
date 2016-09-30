@@ -11,8 +11,6 @@ public class Visit : MonoBehaviour
 
     public Map mapPrefab;
 
-    public ButtonStep buttonStepPrefab;
-
     private VisitSettings m_VisitSettings;
 
     private List<VisitNode> m_VisitNodes;
@@ -96,12 +94,11 @@ public class Visit : MonoBehaviour
     private void createEdge(string fromId, string toId)
     {
         VisitEdge edge = Instantiate(edgePrefab) as VisitEdge;
+
         VisitNode fromNode = getNode(fromId);
         VisitNode toNode = getNode(toId);
 
-        ButtonStep buttonStep = Instantiate(buttonStepPrefab) as ButtonStep;
-
-        edge.Initialize(fromNode, toNode, buttonStep);
+        edge.Initialize(this, fromNode, toNode);
     }
 
     private VisitNode getNode(string id)

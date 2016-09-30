@@ -1,14 +1,22 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System;
 
-public class VisitEdge : MonoBehaviour {
+public class VisitEdge : MonoBehaviour, ButtonListener {
+
+    public ButtonStep buttonStepPrefab;
 
     public VisitNode FromNode { get; private set; }
 
     public VisitNode ToNode { get; private set; }
 
-    public void Initialize(VisitNode fromNode, VisitNode toNode, ButtonStep btnStep)
+    private ButtonStep m_ButtonStep;
+
+    private Visit m_Visit;
+
+    public void Initialize(Visit visit, VisitNode fromNode, VisitNode toNode)
     {
+        m_Visit = visit;
         var canvasNext = GetComponentInChildren<Canvas>();
         var textNext = canvasNext.GetComponentInChildren<Text>();
 
@@ -24,12 +32,21 @@ public class VisitEdge : MonoBehaviour {
 
         fromNode.AddEdge(this);
 
-        btnStep.transform.SetParent(canvasNext.transform, false);
+        m_ButtonStep = Instantiate(buttonStepPrefab) as ButtonStep;
+        m_ButtonStep.Initialize(canvasNext.transform, this);
     }
 
     private void setRotation(Vector3 fromNodePosition, Vector3 toNodePosition)
     {
         var dir = toNodePosition - fromNodePosition;
         transform.rotation = Quaternion.LookRotation(dir);
+    }
+
+    public void DoButtonAction(Type clazz)
+    {
+        if (clazz.Equals(typeof(ButtonStep)))
+        {
+            m_Visit.MoveTo(this);
+        }
     }
 }

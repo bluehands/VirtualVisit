@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>WSAPlayer:21</UnityBuildTarget>
     <UnityVersion>5.4.1f1</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -114,10 +116,14 @@
     <Compile Include="Assets\GoogleVR\Scripts\UI\IGvrGazeResponder.cs" />
     <Compile Include="Assets\GoogleVR\Scripts\Utilities\GvrFPS.cs" />
     <Compile Include="Assets\GoogleVR\Scripts\Utilities\GvrIntent.cs" />
+    <Compile Include="Assets\Scripts\UI\ButtonInfoBack.cs" />
+    <Compile Include="Assets\Scripts\UI\PanelAbout.cs" />
+    <Compile Include="Assets\Scripts\UI\PanelInfo.cs" />
+    <Compile Include="Assets\Scripts\UI\PanelMenuItem.cs" />
     <Compile Include="Assets\Scripts\ApplicationModel.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
-    <Compile Include="Assets\Scripts\Map.cs" />
-    <Compile Include="Assets\Scripts\MapNode.cs" />
+    <Compile Include="Assets\Scripts\Map\Map.cs" />
+    <Compile Include="Assets\Scripts\Map\MapNode.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\UI\Button3D.cs" />
     <Compile Include="Assets\Scripts\UI\ButtonBase.cs" />
@@ -131,15 +137,16 @@
     <Compile Include="Assets\Scripts\UI\ButtonPageRight.cs" />
     <Compile Include="Assets\Scripts\UI\ButtonStep.cs" />
     <Compile Include="Assets\Scripts\UI\MainCamera.cs" />
+    <Compile Include="Assets\Scripts\UI\PanelPaging.cs" />
     <Compile Include="Assets\Scripts\UI\Stage.cs" />
     <Compile Include="Assets\Scripts\UI\UIScreen.cs" />
     <Compile Include="Assets\Scripts\Visit.cs" />
     <Compile Include="Assets\Scripts\VisitEdge.cs" />
     <Compile Include="Assets\Scripts\VisitNode.cs" />
     <Compile Include="Assets\Scripts\VisitNodeChangeListener.cs" />
-    <Compile Include="Assets\Scripts\VisitNodeSettings.cs" />
-    <Compile Include="Assets\Scripts\VisitSettings.cs" />
-    <Compile Include="Assets\Scripts\VisitSettingsFactory.cs" />
+    <Compile Include="Assets\Scripts\Config\VisitNodeSettings.cs" />
+    <Compile Include="Assets\Scripts\Config\VisitSettings.cs" />
+    <Compile Include="Assets\Scripts\Config\VisitSettingsFactory.cs" />
     <Compile Include="Assets\Scripts\Windows\CameraController.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -152,5 +159,6 @@
     <None Include="Assets\Plugins\Android\AndroidManifest-Daydream.xml" />
     <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

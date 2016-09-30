@@ -25,6 +25,7 @@ public abstract class ButtonBase : MonoBehaviour, ISelectHandler, IPointerEnterH
         m_Class = clazz;
         m_buttonListener = buttonListener;
         transform.SetParent(parent, false);
+        setSelected(false);
     }
 
     void Start()
@@ -50,7 +51,6 @@ public abstract class ButtonBase : MonoBehaviour, ISelectHandler, IPointerEnterH
                 {
                     doneAction = true;
                     InformListener();
-                    DoButtonAction();
                 }
             }
         }
@@ -60,7 +60,6 @@ public abstract class ButtonBase : MonoBehaviour, ISelectHandler, IPointerEnterH
     public void OnSelect(BaseEventData eventData)
     {
         InformListener();
-        DoButtonAction();
     }
 
     private void InformListener()
@@ -70,8 +69,6 @@ public abstract class ButtonBase : MonoBehaviour, ISelectHandler, IPointerEnterH
             m_buttonListener.DoButtonAction(m_Class);
         }
     }
-
-    protected abstract void DoButtonAction();
 
     public void OnPointerEnter(PointerEventData eventData)
     {

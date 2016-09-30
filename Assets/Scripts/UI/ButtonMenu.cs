@@ -6,8 +6,4 @@ public class ButtonMenu : ButtonBase
     {
         Initialize(typeof(ButtonMenu), parent, buttonListener);
     }
-
-    protected override void DoButtonAction()
-    {
-    }
 }

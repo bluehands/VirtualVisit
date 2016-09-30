@@ -11,12 +11,9 @@ public abstract class ButtonPageBase: MonoBehaviour, ISelectHandler, IPointerEnt
 
     private ButtonListener m_buttonListener;
 
-    private float timeCounter = 0;
+    private const float m_WaitingTime = 1.0f;
 
-    private bool isMoving;
-
-    private int movingCounter;
-    private const int movingSteps = 24;
+    private float m_TimeCounter = 0;
 
     public void Initialize(Type clazz, Transform parent, ButtonListener buttonListener)
     {
@@ -32,25 +29,16 @@ public abstract class ButtonPageBase: MonoBehaviour, ISelectHandler, IPointerEnt
 
     void Update()
     {
-        if(isMoving)
+        if(isSelected)
         {
-            if(movingCounter > 0)
+            if(m_TimeCounter == 0)
             {
                 InformListener();
-                movingCounter--;
-            } else
+            }
+            m_TimeCounter += Time.deltaTime;
+            if (m_TimeCounter >= m_WaitingTime)
             {
-                isMoving = false;
-                //isSelected = false;
-                movingCounter = movingSteps;
-            } 
-        } else if(isSelected)
-        {
-            timeCounter += Time.deltaTime;
-            if (timeCounter >= 0.5)
-            {
-                isMoving = true;
-                timeCounter = 0;
+                m_TimeCounter = 0;
             }  
         }
     }

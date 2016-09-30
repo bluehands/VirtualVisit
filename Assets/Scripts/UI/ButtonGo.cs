@@ -1,20 +1,9 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class ButtonGo : ButtonBase
 {
-    private string nextVisitId;
-
-    public void Initialize(string nextVisitId, Transform parent)
+    public void Initialize(Transform parent, ButtonListener listener)
     {
-        this.nextVisitId = nextVisitId;
-        transform.SetParent(parent.transform, false);
-    }
-
-    protected override void DoButtonAction()
-    {
-        ApplicationModel.SelectedVisitId = nextVisitId;
-
-        SceneManager.LoadScene(0);
+        Initialize(typeof(ButtonGo), parent, listener);
     }
 }

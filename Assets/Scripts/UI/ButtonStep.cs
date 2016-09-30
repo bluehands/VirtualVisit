@@ -1,10 +1,9 @@
-﻿
+﻿using UnityEngine;
+
 public class ButtonStep : ButtonBase
 {
-    protected override void DoButtonAction()
+    public void Initialize(Transform parent, ButtonListener buttonListener)
     {
-        VisitEdge edge = GetComponentInParent<VisitEdge>();
-        Visit visit = GetComponentInParent<Visit>();
-        visit.MoveTo(edge);
+        Initialize(typeof(ButtonStep), parent, buttonListener);
     }
 }
