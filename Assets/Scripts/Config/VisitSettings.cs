@@ -12,6 +12,8 @@ public class VisitSettings {
 
     public string created;
 
+    public string decription;
+
     public int previewNodeIndex;
 
     public VisitNodeSettings[] nodeSettings;

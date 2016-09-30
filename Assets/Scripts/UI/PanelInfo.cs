@@ -28,7 +28,7 @@ public class PanelInfo : MonoBehaviour, ButtonListener {
         Text text = transform.FindChild("Headline Text").GetComponent<Text>();
         text.text = "Info " + visitSetting.title;
 
-        string infoText = String.Format("Erstellt \n\t von: {0} \n\t am: {1} \n\tBlickpunkte: {2}", visitSetting.author, visitSetting.created, visitSetting.nodeSettings.Length);
+        string infoText = String.Format("{0}\n\n\t\t\tErstellt \n\t\t\t\t von: {1} \n\t\t\t\t  am: {2} \n\t\t\t\t Blickpunkte: {3}", visitSetting.decription, visitSetting.author, visitSetting.created, visitSetting.nodeSettings.Length);
         Text textInfo = transform.FindChild("Info Text").GetComponent<Text>();
         textInfo.text = infoText;
     }

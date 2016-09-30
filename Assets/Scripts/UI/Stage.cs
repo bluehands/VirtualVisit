@@ -135,7 +135,7 @@ public class Stage : MonoBehaviour {
         m_PanelAbout.Initialize(new Vector3(currentStep, 0, 0), parent);
 
         TotalMenuWidth = currentStep + StepWidth;
-        moveMainMenu(MenuPositionOffset);
+        moveMainMenu(-MenuPositionOffset);
     }
 
     private void generatePage(Transform parent)

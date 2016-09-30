@@ -69,11 +69,11 @@ public class PanelPaging : MonoBehaviour, ButtonListener {
 
     private void checkBoarders()
     {
-        if(m_Stage.CurrentMenuPosition <= -(m_Stage.TotalMenuWidth + m_Stage.MenuPositionOffset - m_Stage.StepWidth))
+        if(m_Stage.CurrentMenuPosition <= -(m_Stage.TotalMenuWidth - m_Stage.MenuPositionOffset - m_Stage.StepWidth))
         {
             m_IsMovingLeft = false;
         }
-        if (m_Stage.CurrentMenuPosition >= m_Stage.MenuPositionOffset)
+        if (m_Stage.CurrentMenuPosition >= -m_Stage.MenuPositionOffset)
         {
             m_IsMovingRight = false;
         }

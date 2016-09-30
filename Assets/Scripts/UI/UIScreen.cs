@@ -33,7 +33,7 @@ public class UIScreen : MonoBehaviour {
         uiCamera = stage.GetComponent<Camera>();
     }
 
-        void Update () {
+    void Update () {
         if(shrinking)
         {
             shrinking = srinkDisplay();
