@@ -2,7 +2,7 @@
 using System;
 
 [Serializable]
-public class VisitSettings {
+public class VisitSetting {
 
     public string id;
 
@@ -16,9 +16,9 @@ public class VisitSettings {
 
     public int previewNodeIndex;
 
-    public VisitNodeSettings[] nodeSettings;
+    public VisitNodeSetting[] nodeSettings;
 
-    public VisitNodeSettings getPreviewNodeSetting()
+    public VisitNodeSetting getPreviewNodeSetting()
     {
         if(nodeSettings.Length == 0)
         {

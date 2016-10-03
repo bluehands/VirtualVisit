@@ -11,7 +11,7 @@ public class PanelInfo : MonoBehaviour, ButtonListener {
 
     private Stage m_Stage;
 
-    public void Initialize(Vector3 position, VisitSettings visitSetting, Stage stage, Transform parent)
+    public void Initialize(Vector3 position, VisitSetting visitSetting, Stage stage, Transform parent)
     {
         m_Stage = stage;
         transform.parent = parent;

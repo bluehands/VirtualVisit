@@ -8,7 +8,34 @@
 			{
 				"id":"P0",				"title":"Terasse",				"position":{	
 					"x":0.0,					"y":0.0,					"z":0.0
-				},				"edgeIds":"P1"
+				},				"edgeIds":"P1",
+				"edgeSettings":[
+					{
+						"toId":"P1",
+						"u":0.545,
+						"v":0.515
+					},
+					{
+						"toId":"P4"
+					}
+				],
+				"markSettings":[
+						{
+							"title":"Turm",
+							"u":0.894,
+							"v":0.451
+						},
+						{
+							"title":"Schirm",
+							"u":0.314,
+							"v":0.340
+						},
+						{
+							"title":"Rad",
+							"u":0.847,
+							"v":0.681
+						}
+					]
 			},			{
 				"id":"P1",				"title":"Fensterfront",				"position":{	
 					"x":0.0,					"y":0.0,					"z":30.0

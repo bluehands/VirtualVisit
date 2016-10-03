@@ -4,9 +4,9 @@ using System;
 
 public class VisitSettingsFactory {
 
-    private VisitSettings[] m_VisitSettings;
+    private VisitSetting[] m_VisitSettings;
 
-    internal VisitSettings GetVisitSetting(string id)
+    internal VisitSetting GetVisitSetting(string id)
     {
         if (m_VisitSettings == null)
         {
@@ -28,7 +28,7 @@ public class VisitSettingsFactory {
         return null;
     }
 
-    internal VisitSettings[] GetVisitSettings()
+    internal VisitSetting[] GetVisitSettings()
     {
         if (m_VisitSettings == null)
         {
@@ -37,7 +37,7 @@ public class VisitSettingsFactory {
         return m_VisitSettings;
     }
 
-    internal bool TryToLoadTextures(VisitSettings visitSettings, VisitNodeSettings visitNodeSettings, out Texture textureLeft, out Texture textureRight)
+    internal bool TryToLoadTextures(VisitSetting visitSettings, VisitNodeSetting visitNodeSettings, out Texture textureLeft, out Texture textureRight)
     {
         bool isStereo;
         textureLeft = Resources.Load(String.Format("Panoramas\\{0}_{1}_{2}", visitSettings.id, visitNodeSettings.id, "l")) as Texture;
@@ -58,7 +58,7 @@ public class VisitSettingsFactory {
     {
         var visitSettingJsons = Resources.LoadAll<TextAsset>("Visits\\");
 
-        m_VisitSettings = new VisitSettings[visitSettingJsons.Length];
+        m_VisitSettings = new VisitSetting[visitSettingJsons.Length];
 
         for(int i=0; i<visitSettingJsons.Length; i++)
         {
@@ -66,8 +66,8 @@ public class VisitSettingsFactory {
         }
     }
 
-    private VisitSettings loadVisitSettings(TextAsset visitSettingJson)
+    private VisitSetting loadVisitSettings(TextAsset visitSettingJson)
     {
-        return JsonUtility.FromJson<VisitSettings>(visitSettingJson.text);
+        return JsonUtility.FromJson<VisitSetting>(visitSettingJson.text);
     }
 }

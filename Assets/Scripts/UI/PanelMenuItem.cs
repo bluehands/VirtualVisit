@@ -17,7 +17,7 @@ public class PanelMenuItem : MonoBehaviour, ButtonListener {
     private Stage m_Stage;
     private int m_Index;
 
-    public void Initialize(Vector3 position, VisitSettings visitSetting, Stage stage, int index,  VisitSettingsFactory visitSettingsFactory, Transform parent)
+    public void Initialize(Vector3 position, VisitSetting visitSetting, Stage stage, int index,  VisitSettingsFactory visitSettingsFactory, Transform parent)
     {
         m_NextVisitId = visitSetting.id;
         m_Stage = stage;

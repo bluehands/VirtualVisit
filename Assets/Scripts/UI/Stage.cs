@@ -86,7 +86,7 @@ public class Stage : MonoBehaviour {
 
         for (int i = 0; i < visitSettings.Length; i++)
         {
-            VisitSettings visitSetting = m_VisitSettingsFactory.GetVisitSettings()[i];
+            VisitSetting visitSetting = m_VisitSettingsFactory.GetVisitSettings()[i];
             PanelMenuItem panelMenuItem = m_PanelMenuItems[i];
 
             PanelInfo panelInfo = Instantiate(panelInfoPrefab) as PanelInfo;
@@ -123,7 +123,7 @@ public class Stage : MonoBehaviour {
         var currentStep = 0f;
         for (int i=0; i< visitSettings.Length; i++)
         {
-            VisitSettings visitSetting = m_VisitSettingsFactory.GetVisitSettings()[i];
+            VisitSetting visitSetting = m_VisitSettingsFactory.GetVisitSettings()[i];
             Vector3 position = new Vector3(currentStep, 0, 0);
             PanelMenuItem panelMenuItem = Instantiate(panelMenuItemPrefab) as PanelMenuItem;
             panelMenuItem.Initialize(position, visitSetting, this, i, m_VisitSettingsFactory, parent);

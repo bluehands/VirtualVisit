@@ -23,6 +23,10 @@ public class VisitNode : MonoBehaviour {
 
     public bool IsStereo { get; private set; }
 
+    public VisitEdge edgePrefab;
+
+    public VisitMark markPrefab;
+
     private VisitNode m_LastFromNode;
 
     private List<VisitEdge> m_Edges;
@@ -67,6 +71,30 @@ public class VisitNode : MonoBehaviour {
         initSphere(getLeftSphere(), SphereTextureLeft, LayerMask.NameToLayer("Left Eye"));
         initSphere(getRightSphere(), SphereTextureRight, LayerMask.NameToLayer("Right Eye"));
 
+    }
+
+    internal void createEdge(VisitNode toNode, VisitEdgeListener visitEdgeListener)
+    {
+        VisitEdge edge = Instantiate(edgePrefab) as VisitEdge;
+
+        edge.Initialize(this, toNode, visitEdgeListener);
+
+        m_Edges.Add(edge);
+    }
+
+    internal void createEdge(VisitNode toNode, VisitEdgeListener visitEdgeListener, float u, float v)
+    {
+        VisitEdge edge = Instantiate(edgePrefab) as VisitEdge;
+
+        edge.Initialize(this, toNode, visitEdgeListener, u, v);
+
+        m_Edges.Add(edge);
+    }
+
+    internal void createMark(string title, float u, float v)
+    {
+        VisitMark mark = Instantiate(markPrefab) as VisitMark;
+        mark.Initialize(title, u , v, transform);
     }
 
     private void initSphere(Transform sphere, Texture texture, int layerMask)

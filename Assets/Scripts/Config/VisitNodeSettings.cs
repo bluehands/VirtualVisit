@@ -2,7 +2,7 @@
 using System;
 
 [Serializable]
-public class VisitNodeSettings {
+public class VisitNodeSetting {
 
     public string id;
 
@@ -11,6 +11,10 @@ public class VisitNodeSettings {
     public Vector3 position;
 
     public string edgeIds;
+
+    public VisitEdgeSetting[] edgeSettings;
+
+    public VisitMarkSetting[] markSettings;
 
     public string[] getEdgeIds()
     {

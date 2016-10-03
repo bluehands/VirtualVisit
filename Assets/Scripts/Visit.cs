@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System;
 
-public class Visit : MonoBehaviour
+public class Visit : MonoBehaviour, VisitEdgeListener
 {
 
     public VisitNode nodePrefab;
@@ -11,7 +11,7 @@ public class Visit : MonoBehaviour
 
     public Map mapPrefab;
 
-    private VisitSettings m_VisitSettings;
+    private VisitSetting m_VisitSettings;
 
     private List<VisitNode> m_VisitNodes;
 
@@ -23,22 +23,41 @@ public class Visit : MonoBehaviour
 
     public void Generate(string visitId, VisitSettingsFactory visitSettingsFactory)
     {
-        m_VisitNodes = new List<VisitNode>();
-
         m_VisitSettings = visitSettingsFactory.GetVisitSetting(visitId);
 
+        m_VisitNodes = new List<VisitNode>();
         foreach (var visitNodeSetting in m_VisitSettings.nodeSettings)
         {
-            createNode(m_VisitSettings, visitNodeSetting, visitSettingsFactory);
+            var node = createNode(m_VisitSettings, visitNodeSetting, visitSettingsFactory);
+            m_VisitNodes.Add(node);
         }
 
         foreach (var visitNodeSetting in m_VisitSettings.nodeSettings)
         {
+            VisitNode fromNode = getNode(visitNodeSetting.id);
+
             foreach (var edgeId in visitNodeSetting.getEdgeIds())
             {
-                createEdge(visitNodeSetting.id, edgeId);
+                VisitNode toNode = getNode(edgeId);
+                fromNode.createEdge(toNode, this);
+            }
+            if (visitNodeSetting.edgeSettings != null)
+            {
+                foreach (var edgeSetting in visitNodeSetting.edgeSettings)
+                {
+                    VisitNode toNode = getNode(edgeSetting.toId);
+                    fromNode.createEdge(toNode, this, edgeSetting.u, edgeSetting.v);
+                }
+            }
+            if (visitNodeSetting.markSettings != null)
+            {
+                foreach (var visitMarkSetting in visitNodeSetting.markSettings)
+                {
+                    fromNode.createMark(visitMarkSetting.title, visitMarkSetting.u, visitMarkSetting.v);
+                }
             }
         }
+
         CurrentVisitNode = m_VisitNodes[0];
 
         Map = Instantiate(mapPrefab) as Map;
@@ -60,7 +79,7 @@ public class Visit : MonoBehaviour
         informListener(null, CurrentVisitNode);
     }
 
-    private void createNode(VisitSettings visitSettings, VisitNodeSettings visitNodeSetting, VisitSettingsFactory visitSettingsFactory)
+    private VisitNode createNode(VisitSetting visitSettings, VisitNodeSetting visitNodeSetting, VisitSettingsFactory visitSettingsFactory)
     {
         VisitNode node = Instantiate(nodePrefab) as VisitNode;
 
@@ -77,7 +96,7 @@ public class Visit : MonoBehaviour
         {
             node.Initialize(visitNodeSetting.id, visitNodeSetting.title, visitNodeSetting.position, transform, textureLeft);
         }
-        m_VisitNodes.Add(node);
+        return node; 
     }
 
     internal void SetVisitEdgeVisibility(bool visibility)
@@ -89,16 +108,6 @@ public class Visit : MonoBehaviour
                 node.SetEdgesActive(visibility);
             }
         }
-    }
-
-    private void createEdge(string fromId, string toId)
-    {
-        VisitEdge edge = Instantiate(edgePrefab) as VisitEdge;
-
-        VisitNode fromNode = getNode(fromId);
-        VisitNode toNode = getNode(toId);
-
-        edge.Initialize(this, fromNode, toNode);
     }
 
     private VisitNode getNode(string id)
