@@ -5,70 +5,175 @@
 	"created":"25.06.2016",
 	"decription":"Das Bluehands Büro.",
 	"previewNodeIndex":0,	"nodeSettings":[
-			{
-				"id":"P0",				"title":"Terasse",				"position":{	
-					"x":0.0,					"y":0.0,					"z":0.0
-				},				"edgeIds":"P1",
-				"edgeSettings":[
-					{
-						"toId":"P1",
-						"u":0.545,
-						"v":0.515
-					},
-					{
-						"toId":"P4"
-					}
-				],
-				"markSettings":[
-						{
-							"title":"Turm",
-							"u":0.894,
-							"v":0.451
-						},
-						{
-							"title":"Schirm",
-							"u":0.314,
-							"v":0.340
-						},
-						{
-							"title":"Rad",
-							"u":0.847,
-							"v":0.681
-						}
-					]
-			},			{
-				"id":"P1",				"title":"Fensterfront",				"position":{	
-					"x":0.0,					"y":0.0,					"z":30.0
-				},				"edgeIds":"P0,P2"
+		{
+			"id":"P0",			"title":"Terasse",			"position":{	
+				"x":0.0,				"y":0.0,				"z":0.0
 			},
-			{
-				"id":"P2",
-				"title":"Flur",
-				"position":{	
-					"x":15.0,
-					"y":0.0,
-					"z":60.0
+			"edgeSettings":[
+				{
+					"toId":"P1",
+					"u":0.545,
+					"v":0.515
+				}
+			],
+			"markSettings":[
+				{
+					"title":"Turm",
+					"description":"Hauptsitz der Volkswohungen, die in Karlsruhe einige Wohungen für Sozialenwohunraum vermieten.",
+					"u":0.892,
+					"v":0.445
 				},
-				"edgeIds":"P1,P3"
+				{
+					"title":"Schirm",
+					"description":"Schütz im Sommer gegen den starken Sonneneinfall.",
+					"u":0.314,
+					"v":0.340
+				},
+				{
+					"title":"Rad",
+					"description":"Mountainbike von Oli, mit dem er zur arbeit kommt.",
+					"u":0.847,
+					"v":0.681
+				}
+			]
+		},		{
+			"id":"P1",			"title":"Fensterfront",			"position":{	
+				"x":0.0,				"y":0.0,				"z":30.0
 			},
-			{
-				"id":"P3",
-				"title":"Treppe unten",
-				"position":{	
-					"x":0.0,
-					"y":0.0,
-					"z":90.0
+			"edgeSettings":[
+				{
+					"toId":"P0",
+					"u":0.955,
+					"v":0.550
 				},
-				"edgeIds":"P2,P4"
+				{
+					"toId":"P2",
+					"u":0.530,
+					"v":0.550
+				}
+			],
+			"markSettings":[
+				{
+					"title":"Ali",
+					"description":"Arbeitsplatz von Ali.",
+					"u":0.27,
+					"v":0.52
+				},
+				{
+					"title":"Alex",
+					"description":"Arbeitsplatz von Alex.",
+					"u":0.74,
+					"v":0.51
+				}
+			]
+		},
+		{
+			"id":"P2",
+			"title":"Flur",
+			"position":{	
+				"x":15.0,
+				"y":0.0,
+				"z":60.0
 			},
-			{
-				"id":"P4",
-				"title":"Oben",
-				"position":{	
-					"x":-30.0,
-					"y":30.0,
-					"z":60.0
+			"edgeSettings":[
+				{
+					"toId":"P1",
+					"u":0.080,
+					"v":0.550
 				},
-				"edgeIds":"P3"
-			}]
+				{
+					"toId":"P3",
+					"u":0.460,
+					"v":0.550
+				}
+			],
+			"markSettings":[
+				{
+					"title":"Holger",
+					"description":"Arbeitsplatz von Holger.",
+					"u":0.38,
+					"v":0.62
+				},
+				{
+					"title":"Marcel",
+					"description":"Arbeitsplatz von Marcel.",
+					"u":0.54,
+					"v":0.54
+				},
+				{
+					"title":"Cyborg",
+					"description":"Eine Argumentet Realtity Brille mit Headset und Handcontroller",
+					"u":0.16,
+					"v":0.54
+				}
+			]
+			
+		},
+		{
+			"id":"P3",
+			"title":"Treppe unten",
+			"position":{	
+				"x":0.0,
+				"y":0.0,
+				"z":90.0
+			},
+			"edgeSettings":[
+				{
+					"toId":"P2",
+					"u":0.980,
+					"v":0.550
+				},
+				{
+					"toId":"P4",
+					"u":0.060,
+					"v":0.370
+				}
+			],
+			"markSettings":[
+				{
+					"title":"Mathias",
+					"description":"Arbeitsplatz von Mathias.",
+					"u":0.87,
+					"v":0.62
+				}
+			]
+			
+		},
+		{
+			"id":"P4",
+			"title":"Oben",
+			"position":{	
+				"x":-30.0,
+				"y":30.0,
+				"z":60.0
+			},
+			"edgeSettings":[
+				{
+					"toId":"P3",
+					"u":0.658,
+					"v":0.610
+				}
+			],
+			"markSettings":[
+				{
+					"title":"Aydin",
+					"description":"Arbeitsplatz von Aydin.",
+					"u":0.56,
+					"v":0.57
+				},
+				{
+					"title":"Marcel",
+					"description":"Arbeitsplatz von Marcel.",
+					"u":0.77,
+					"v":0.58
+				},
+				{
+					"title":"Lars",
+					"description":"Arbeitsplatz von Lars.",
+					"u":0.75,
+					"v":0.52
+				}
+			]
+		}
+	]
 }
