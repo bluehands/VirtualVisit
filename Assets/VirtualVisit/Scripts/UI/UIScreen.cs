@@ -18,6 +18,8 @@ public class UIScreen : MonoBehaviour {
     private GameObject lastPointedTarget;
     private GameObject currentPointedTarget;
 
+    public bool enableMenuExspanding;
+
     void Start () {
         initVerts = GetComponent<MeshFilter>().mesh.vertices;
         mainCamera = Camera.main;
@@ -48,7 +50,10 @@ public class UIScreen : MonoBehaviour {
             exspanding = exspandDisplay();
             if(exspanding == false)
             {
-                stage.ShowMainMenu();
+                if(enableMenuExspanding)
+                {
+                    stage.ShowMainMenu();
+                }
             }
         }
         if (shrinking == false && exspanding == false && isShrinked == false)
@@ -71,7 +76,10 @@ public class UIScreen : MonoBehaviour {
             {
                 shrinking = true;
                 isShrinked = true;
-                stage.HideMainMenu();
+                if (enableMenuExspanding)
+                {
+                    stage.HideMainMenu();
+                }
             }
         }
     }

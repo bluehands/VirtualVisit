@@ -218,12 +218,13 @@ public class VisitNode : MonoBehaviour {
             {
                 setAlpha(m_BlendAlpha);
             }
-            if(m_BlendAlpha < 0)
+            if(m_BlendAlpha <= 0)
             {
+                setAlpha(0);
                 m_LastFromNode = null;
                 SetEdgesActive(true);
             }
-            m_BlendAlpha = m_BlendAlpha - 0.02f;
+            m_BlendAlpha = m_BlendAlpha - 0.1f;
         }
         
     }
