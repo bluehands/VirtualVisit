@@ -16,6 +16,19 @@
 					"toId":"P1",
 					"u":0.555,
 					"v":0.580
+				}],
+				"markSettings":[
+				{
+					"title":"Turm",
+					"description":"Hauptsitz der Volkswohungen, die in Karlsruhe einige Wohungen für Sozialenwohunraum vermieten.",
+					"u":0.90,
+					"v":0.47
+				},
+				{
+					"title":"Rad",
+					"description":"Mountainbike von Oli, mit dem er zur arbeit kommt.",
+					"u":0.81,
+					"v":0.62
 				}]
 			},
 			{
@@ -41,6 +54,19 @@
 					"toId":"P6",
 					"u":0.435,
 					"v":0.69
+				}],
+				"markSettings":[
+				{
+					"title":"Alex",
+					"description":"Alex hat ein wichtiges Einstellungskriterium, mindestens ein Mittagsgericht für alle kochen zu können, deutlich übererfüllt – Kochen gehört zu seinen Leidenschaften und was er kocht schmeckt richtig lecker. Da bluehands mit Alex‘ Kochkunst allein wohl nicht überleben würde, ist es nicht verkehrt, dass er als Diplominformatiker auch mit Zutaten wie C# oder Java und dem Gespür für solide Softwarearchitektur Exzellentes zuzubereiten versteht.",
+					"u":0.85,
+					"v":0.51
+				},
+				{
+					"title":"Ali",
+					"description":"Alte Zöpfe abschneiden hat bei bluehands scheinbar Tradition: Ali ist nicht der erste, der hier seine lange Haarpracht gegen einen Kurzhaarschnitt eingetauscht hat. Viel beeindruckender als diese Stilfrage ist jedoch die Beharrlichkeit mit der er noch so große Berge abarbeitet und sogar japanisch lernt.",
+					"u":0.215,
+					"v":0.51
 				}]
 			},
 			{
