@@ -1,57 +1,0 @@
-{
-	"id":"UStrab",
-	"title":"U-Strab Station am Marktplatz",
-	"author":"Marcel Weigel",
-	"created":"14.09.2016",
-	"decription":"Tauche ein in den Untergrund von Karlsruhe.",
-	"previewNodeIndex":0,	"nodeSettings":[
-			{
-				"id":"P0",				"title":"Markplatz",				"position":{	
-					"x":0.0,					"y":0.0,					"z":0.0
-				},				"edgeIds":"P1"
-			},			{
-				"id":"P1",				"title":"Eingang",				"position":{	
-					"x":-60.0,					"y":-60.0,					"z":60.0
-				},				"edgeIds":"P0,P2"
-			},
-			{
-				"id":"P2",
-				"title":"Kreuzung",
-				"position":{	
-					"x":120.0,
-					"y":-60.0,
-					"z":0.0
-				},
-				"edgeIds":"P1,P3"
-			},
-			{
-				"id":"P3",
-				"title":"Durchgang",
-				"position":{	
-					"x":45.0,
-					"y":-60.0,
-					"z":-15.0
-				},
-				"edgeIds":"P2,P4"
-			},
-			{
-				"id":"P4",
-				"title":"Durchburch",
-				"position":{	
-					"x":-120.0,
-					"y":-60.0,
-					"z":0.0
-				},
-				"edgeIds":"P3,P5"
-			},
-			{
-				"id":"P5",
-				"title":"Ausgang",
-				"position":{	
-					"x":-100.0,
-					"y":-60.0,
-					"z":-40.0
-				},
-				"edgeIds":"P4,P0"
-			}]
-}

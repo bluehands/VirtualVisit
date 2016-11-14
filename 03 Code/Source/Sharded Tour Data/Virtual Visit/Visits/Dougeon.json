@@ -1,0 +1,47 @@
+{
+	"id":"Dungeon",
+	"title":"Dungeon",
+	"author":"Marcel Weigel",
+	"created":"14.07.2016",
+	"decription":"Dunkle Hölen und geheime Gängeg gibt es im Dungeon zu entdecken.",
+	"previewNodeIndex":0,	"nodeSettings":[
+			{
+				"id":"P0",				"title":"Fahrstuhl oben",				"position":{	
+					"x":0.0,					"y":0.0,					"z":0.0
+				},				"edgeIds":"P1"
+			},			{
+				"id":"P1",				"title":"Fahrstuhl unten",				"position":{	
+					"x":0.0,					"y":-30.0,					"z":0.0
+				},				"edgeIds":"P0,P2"
+			},
+			{
+				"id":"P2",
+				"title":"Raum links",
+				"position":{	
+					"x":0.0,
+					"y":-30.0,
+					"z":60.0
+				},
+				"edgeIds":"P1,P3"
+			},
+			{
+				"id":"P3",
+				"title":"Raum rechts",
+				"position":{	
+					"x":30.0,
+					"y":-30.0,
+					"z":60.0
+				},
+				"edgeIds":"P2,P4"
+			},
+			{
+				"id":"P4",
+				"title":"Rittersaal",
+				"position":{	
+					"x":30.0,
+					"y":-30.0,
+					"z":30.0
+				},
+				"edgeIds":"P3"
+			}]
+}

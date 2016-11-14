@@ -1,0 +1,17 @@
+{
+	"id":"PalastLight",
+	"title":"Schlosslichtspiele",
+	"author":"Marcel Weigel",
+	"created":"22.09.2016",
+	"decription":"Ein Lichterspektabel for dem Schloss in Karlsruhe.",
+	"previewNodeIndex":0,	"nodeSettings":[
+			{
+				"id":"P0",				"title":"Lichtermeer",				"position":{	
+					"x":0.0,					"y":0.0,					"z":0.0
+				},				"edgeIds":"P1"
+			},			{
+				"id":"P1",				"title":"Schlossvorplatz",				"position":{	
+					"x":0.0,					"y":0.0,					"z":30.0
+				},				"edgeIds":"P0"
+			}]
+}

@@ -1,0 +1,12 @@
+{
+	"id":"KIT",
+	"title":"KIT",
+	"author":"Marcel Weigel",
+	"created":"17.07.2016",
+	"decription":"Auf dem Dächern des KITs umherstreifen und unetdcke Ausblicke geniesen",
+	"previewNodeIndex":0,	"nodeSettings":[			{
+				"id":"P0",				"title":"Uni Dach",				"position":{	
+					"x":30.0,					"y":0.0,					"z":0.0
+				},				"edgeIds":""
+			}]
+}
