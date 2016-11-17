@@ -2,13 +2,13 @@
 
 class iOSDevice : BaseDevice
 {
-    public iOSDevice() : base(1 / 16f, 0.01f)
+    public iOSDevice() : base(1 / 16f, 1f)
     {
     }
 
     public override Vector3 getGyro()
     {
-        return m_Gyroscope.rotationRateUnbiased;
+        return base.getGyro();
     }
 
     public override Quaternion getOrientation()

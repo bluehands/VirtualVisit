@@ -50,6 +50,13 @@ public class MadgwickAHRS
         Quaternion = new float[] { 1f, 0f, 0f, 0f };
     }
 
+    public MadgwickAHRS(float samplePeriod, float beta, float[] initQuaterion)
+    {
+        SamplePeriod = samplePeriod;
+        Beta = beta;
+        Quaternion = initQuaterion;
+    }
+
     /// <summary>
     /// Algorithm AHRS update method. Requires only gyroscope and accelerometer data.
     /// </summary>

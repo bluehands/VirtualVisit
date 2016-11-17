@@ -22,7 +22,10 @@ abstract class BaseDevice : MobileDevice
         m_SensorFusion = new SensorFusion(samplePeriod, beta);
     }
 
-    public abstract Vector3 getGyro();
+    public virtual Vector3 getGyro()
+    {
+        return m_Gyroscope.rotationRateUnbiased;
+    }
 
     public Vector3 getAcc()
     {

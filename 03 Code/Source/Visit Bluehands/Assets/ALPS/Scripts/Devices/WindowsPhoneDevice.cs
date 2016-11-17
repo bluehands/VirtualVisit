@@ -2,13 +2,13 @@
 
 class WindowsPhoneDevice : BaseDevice
 {
-    public WindowsPhoneDevice() : base(1 / 60f, 0.01f)
+    public WindowsPhoneDevice() : base(1 / 60f, 1f)
     {
     }
 
     public override Vector3 getGyro()
     {
-        return m_Gyroscope.rotationRateUnbiased * Mathf.Deg2Rad;
+        return base.getGyro() * Mathf.Deg2Rad;
     }
 
     public override Quaternion getOrientation()
