@@ -31,6 +31,8 @@ public class VisitNode : MonoBehaviour {
 
     private List<VisitEdge> m_Edges;
 
+    private List<VisitMark> m_Marks;
+
     private float m_BlendAlpha = 1;
 
     public enum BlendMode
@@ -94,7 +96,10 @@ public class VisitNode : MonoBehaviour {
     internal void createMark(string title, string description, float u, float v)
     {
         VisitMark mark = Instantiate(markPrefab) as VisitMark;
+
         mark.Initialize(title, description, u, v, transform);
+
+        m_Marks.Add(mark);
     }
 
     private void initSphere(Transform sphere, Texture texture, int layerMask)
@@ -116,6 +121,7 @@ public class VisitNode : MonoBehaviour {
         name = String.Format("VisitNode({0})", id);
 
         m_Edges = new List<VisitEdge>();
+        m_Marks = new List<VisitMark>();
     }
 
     internal bool IsStereoView()
@@ -153,11 +159,19 @@ public class VisitNode : MonoBehaviour {
         return m_Edges;
     }
 
-    public void SetEdgesActive(bool ative)
+    public void SetEdgesActive(bool active)
     {
         foreach (var edge in m_Edges)
         {
-            edge.gameObject.SetActive(ative);
+            edge.gameObject.SetActive(active);
+        }
+    }
+
+    public void SetMarksActive(bool active)
+    {
+        foreach (var mark in m_Marks)
+        {
+            mark.gameObject.SetActive(active);
         }
     }
 

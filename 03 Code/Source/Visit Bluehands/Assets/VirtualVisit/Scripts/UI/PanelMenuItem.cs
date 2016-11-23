@@ -17,11 +17,15 @@ public class PanelMenuItem : MonoBehaviour, ButtonListener {
     private Stage m_Stage;
     private int m_Index;
 
-    public void Initialize(Vector3 position, VisitSetting visitSetting, Stage stage, int index,  VisitSettingsFactory visitSettingsFactory, Transform parent)
+    private SwitchTourListener m_SwitchTourListener;
+
+    public void Initialize(Vector3 position, VisitSetting visitSetting, Stage stage, int index,  VisitSettingsFactory visitSettingsFactory, Transform parent, SwitchTourListener switchTourListener)
     {
         m_NextVisitId = visitSetting.id;
         m_Stage = stage;
         m_Index = index;
+
+        m_SwitchTourListener = switchTourListener;
 
         transform.SetParent(parent, false);
         transform.name = "Menu Panel " + visitSetting.id;
@@ -63,9 +67,7 @@ public class PanelMenuItem : MonoBehaviour, ButtonListener {
     {
         if (clazz.Equals(typeof(ButtonGo)))
         {
-            ApplicationModel.SelectedVisitId = m_NextVisitId;
-
-            SceneManager.LoadScene(0);
+            m_SwitchTourListener.SwitchTour(m_NextVisitId);
         }
         if (clazz.Equals(typeof(ButtonInfo)))
         {

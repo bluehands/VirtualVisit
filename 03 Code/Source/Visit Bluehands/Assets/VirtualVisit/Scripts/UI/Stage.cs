@@ -32,7 +32,7 @@ public class Stage : MonoBehaviour {
 
     private Transform m_CanvaseMenu;
 
-    public void Generate(VisitSettingsFactory visitSettingsFactory)
+    public void Generate(VisitSettingsFactory visitSettingsFactory, SwitchTourListener switchTourListener)
     {
         m_VisitSettingsFactory = visitSettingsFactory;
         
@@ -40,7 +40,7 @@ public class Stage : MonoBehaviour {
         var canvasePage = transform.FindChild("Page Canvas");
 
         generatePage(canvasePage.transform);
-        generateMainMenu(m_CanvaseMenu.transform);
+        generateMainMenu(m_CanvaseMenu.transform, switchTourListener);
         generateInfoMenus(m_CanvaseMenu.transform);
         ShowMainMenu();
         HideInfo();
@@ -114,7 +114,7 @@ public class Stage : MonoBehaviour {
         CurrentMenuPosition += moveDicretion;
     }
 
-    private void generateMainMenu(Transform parent)
+    private void generateMainMenu(Transform parent, SwitchTourListener switchTourListener)
     {
         var visitSettings = m_VisitSettingsFactory.GetVisitSettings();
 
@@ -126,7 +126,7 @@ public class Stage : MonoBehaviour {
             VisitSetting visitSetting = m_VisitSettingsFactory.GetVisitSettings()[i];
             Vector3 position = new Vector3(currentStep, 0, 0);
             PanelMenuItem panelMenuItem = Instantiate(panelMenuItemPrefab) as PanelMenuItem;
-            panelMenuItem.Initialize(position, visitSetting, this, i, m_VisitSettingsFactory, parent);
+            panelMenuItem.Initialize(position, visitSetting, this, i, m_VisitSettingsFactory, parent, switchTourListener);
             m_PanelMenuItems[i] = panelMenuItem;
             currentStep += StepWidth;
         }

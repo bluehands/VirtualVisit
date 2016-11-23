@@ -51,6 +51,10 @@ public class VisitSettingsFactory {
             textureLeft = Resources.Load(String.Format("Panoramas\\{0}_{1}", visitSettings.id, visitNodeSettings.id)) as Texture;
             isStereo = false;
         }
+        if(textureLeft == null)
+        {
+            Debug.LogWarning(String.Format("Couln't load Panoramas\\{0}_{1} (l/r)", visitSettings.id, visitNodeSettings.id));
+        }
         return isStereo;
     }
 

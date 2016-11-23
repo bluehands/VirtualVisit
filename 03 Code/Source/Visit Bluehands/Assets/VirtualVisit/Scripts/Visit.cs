@@ -106,6 +106,7 @@ public class Visit : MonoBehaviour, VisitEdgeListener
             if (node.gameObject.activeInHierarchy)
             {
                 node.SetEdgesActive(visibility);
+                node.SetMarksActive(visibility);
             }
         }
     }

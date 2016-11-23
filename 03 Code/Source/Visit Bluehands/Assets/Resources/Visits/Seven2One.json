@@ -1,0 +1,265 @@
+{
+	"id":"Seven2One",
+	"title":"Seven2OneOffic",
+	"author":"Marcel Weigel",
+	"created":"20.11.2016",
+	"previewNodeIndex":0,	"nodeSettings":[
+			{				"id":"Eingang",
+				"title":"Empfang",
+				"position":{	
+					"x":0.0,
+					"y":0.0,
+					"z":0.0
+				},
+				"edgeSettings":[
+				{
+					"toId":"SBBuero",
+					"u":0.51,
+					"v":0.65
+				},
+				{
+					"toId":"Flur",
+					"u":0.71,
+					"v":0.60
+				}],
+				"markSettings":[
+				{
+					"title":"Patrick & Marc",
+					"description":"links: Patrick Hartung\nrechts: Marc Donat",
+					"u":0.64,
+					"v":0.51
+				},
+				{
+					"title":"Petra",
+					"description":"Name: Petra Werling\nTätigkeit: Organisation\nRolle: Rechungs- und Personalwesen",
+					"u":0.905,
+					"v":0.52
+				},
+				{
+					"title":"Sabrina",
+					"description":"Name: Sabrina Posselt\nTätigkeit: Organisation\nRolle: Office Managerin",
+					"u":0.985,
+					"v":0.525
+				}]
+			},
+			{
+				"id":"SBBuero",
+				"title":"Business Solutions",
+				"position":{	
+					"x":-30.0,
+					"y":0.0,
+					"z":30.0
+				},
+				"edgeSettings":[
+				{
+					"toId":"Eingang",
+					"u":0.66,
+					"v":0.60
+				}],
+				"markSettings":[
+				{
+					"title":"Michael",
+					"description":"Name: Michael Häfele\nTätigkeit: Buisness Solutions\nRolle: Projektleiter",
+					"u":0.56,
+					"v":0.56
+				},
+				{
+					"title":"Nadine",
+					"description":"Name: Nadine Ludwig\nTätigkeit: Buisness Solutions\nRolle: Senior Consultant",
+					"u":0.515,
+					"v":0.53
+				},
+				{
+					"title":"Gruppe an Menschen",
+					"description":"hinten: Sebastian Siegmundt\nlinks: Danny Frech\nrechts: David Bannek",
+					"u":0.205,
+					"v":0.53
+				}]
+			},
+			{
+				"id":"Flur",
+				"title":"Floor",
+				"position":{	
+					"x":30.0,
+					"y":0.0,
+					"z":15.0
+				},
+				"edgeSettings":[
+				{
+					"toId":"Eingang",
+					"u":0.16,
+					"v":0.55
+				},
+				{
+					"toId":"ITBuero",
+					"u":0.62,
+					"v":0.61
+				},
+				{
+					"toId":"TreadingRoom",
+					"u":0.67,
+					"v":0.55
+				}],
+				"markSettings":[
+				{
+					"title":"Christoph",
+					"description":"Name: Christoph Schlenzig\nTätigkeit: Management\nRolle: Gescheftsführung",
+					"u":0.78,
+					"v":0.46
+				},
+				{
+					"title":"Christine",
+					"description":"Name: Christine Herdt\nTätigkeit: Marketing\nRolle: Leiterin Marketing",
+					"u":0.36,
+					"v":0.54
+				},
+				{
+					"title":"Stephan",
+					"description":"Name: Stephan Sobiesinsky\nTätigkeit: Marketing\nRolle: Medienproduzent",
+					"u":0.43,
+					"v":0.54
+				}]
+			},
+			{
+				"id":"ITBuero",
+				"title":"IT",
+				"position":{	
+					"x":60.0,
+					"y":0.0,
+					"z":30.0
+				},
+				"edgeSettings":[
+				{
+					"toId":"Flur",
+					"u":0.14,
+					"v":0.57
+				}],
+				"markSettings":[
+				{
+					"title":"Mirko",
+					"description":"Name: Mirko Breuer\nTätigkeit: IT\nRolle: Leiter IT",
+					"u":0.60,
+					"v":0.58
+				},
+				{
+					"title":"Patrick",
+					"description":"Name: Patrick Eiser\nTätigkeit: IT\nRolle: Auszubildender IT",
+					"u":0.18,
+					"v":0.58
+				},
+				{
+					"title":"Jens",
+					"description":"Name: Jens Römann\nTätigkeit: IT\nRolle: IT-Administrator",
+					"u":0.34,
+					"v":0.54
+				}]
+			},
+			{
+				"id":"TreadingRoom",
+				"title":"Trading Floor",
+				"position":{	
+					"x":90.0,
+					"y":0.0,
+					"z":0.0
+				},
+				"edgeSettings":[
+				{
+					"toId":"Flur",
+					"u":0.26,
+					"v":0.55
+				},
+				{
+					"toId":"SEBuero",
+					"u":0.34,
+					"v":0.57
+				},
+				{
+					"toId":"SEBuero",
+					"u":0.61,
+					"v":0.58
+				}],
+				"markSettings":[
+				{
+					"title":"Freundliche Menschen",
+					"description":"links: Sven Stando\nrechts: Matthias Wessinger",
+					"u":0.14,
+					"v":0.52
+				},
+				{
+					"title":"Noch mehr freundliche Menschen",
+					"description":"links: Alexander\nrechts: Holger\nhinten: Marco",
+					"u":0.83,
+					"v":0.52
+				},
+				{
+					"title":"Pinnwand",
+					"description":"mit vielen bunten Zettern,",
+					"u":0.83,
+					"v":0.52
+				}]
+			},
+			{
+				"id":"SEBuero",
+				"title":"Software Engeneering",
+				"position":{	
+					"x":90.0,
+					"y":0.0,
+					"z":30.0
+				},
+				"edgeSettings":[
+				{
+					"toId":"TreadingRoom",
+					"u":0.15,
+					"v":0.55
+				}],
+				"markSettings":[
+				{
+					"title":"Til",
+					"description":"Name: Til Ruprecht\nTätigkeit: Softwareentwicklung\nRolle: Product Owner",
+					"u":0.82,
+					"v":0.53
+				},
+				{
+					"title":"Holger",
+					"description":"Name: Holger Ladig\nTätigkeit: Softwareentwicklung\nRolle: Softwareentwickler",
+					"u":0.86,
+					"v":0.53
+				},
+				{
+					"title":"Sönke",
+					"description":"Name: Sönke Lütjohann\nTätigkeit: Softwareentwicklung\nRolle: Softwareentwickler",
+					"u":0.90,
+					"v":0.53
+				},
+				{
+					"title":"Fiona",
+					"description":"Name: Fiona Baumhögger\nTätigkeit: Softwareentwicklung\nRolle: Product Owner",
+					"u":0.99,
+					"v":0.55
+				},
+				{
+					"title":"Mensch hinterm Bildschirm",
+					"description":"Rolle: Hiwi\nTätigkeit: Softwareentwicklung",
+					"u":0.24,
+					"v":0.54
+				},
+				{
+					"title":"Matthias",
+					"description":"Name: Matthias Schallenmüller\nTätigkeit: Softwareentwicklung\nRolle: Softwareentwickler",
+					"u":0.2,
+					"v":0.54
+				},
+				{
+					"title":"Mensch ganz hinten",
+					"description":"Rolle: Hiwi\nTätigkeit: Softwareentwicklung",
+					"u":0.76,
+					"v":0.53
+				},
+				{
+					"title":"Marco",
+					"description":"Name: Jan Marco Heinz\nTätigkeit: Softwareentwicklung\nRolle: Leiter",
+					"u":0.30,
+					"v":0.51
+				}]
+			}]
+}
