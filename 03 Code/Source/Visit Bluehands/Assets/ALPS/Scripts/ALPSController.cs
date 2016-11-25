@@ -51,8 +51,6 @@ public class ALPSController : MonoBehaviour {
 	private Rect rectLeft,rectRight;
 	private float DPI;
 
-    private PointerEventData ped = new PointerEventData(null);
-
     public MobileDevice Device;
 
     //=====================================================================================================
