@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour, SwitchTourListener
 
     public Stage stagePrefab;
 
+    public string startVisit;
+
     private Visit m_Visit;
 
     private Player m_Player;
@@ -29,6 +31,10 @@ public class GameManager : MonoBehaviour, SwitchTourListener
         m_VisitSettingsFactory = new VisitSettingsFactory();
 
         string visitId = ApplicationModel.SelectedVisitId;
+        if(visitId.Equals(""))
+        {
+            visitId = startVisit;
+        }
 
         welcomeTextController.SetTourTitle(m_VisitSettingsFactory.GetVisitSetting(visitId).title);
 

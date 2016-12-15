@@ -1,10 +1,12 @@
 {
 	"id":"Bluehands",
-	"title":"BluehandsOffice",
+	"title":"bluehands",
 	"author":"Marcel Weigel",
 	"created":"17.07.2016",
-	"previewNodeIndex":0,	"nodeSettings":[
-			{				"id":"P0",
+	"previewNodeIndex":0,
+	"nodeSettings":[
+			{
+				"id":"P0",
 				"title":"Terasse",
 				"position":{	
 					"x":0.0,
@@ -38,21 +40,9 @@
 				},
 				{
 					"title":"Solaranlage",
-					"description":"Tätigkeit: Produziert Strom",
+					"description":"Wir erzeugen 80% des Stromsbedarfes unserer Rechner und Server.",
 					"u":0.55,
 					"v":0.39
-				},
-				{
-					"title":"Hochhaus",
-					"description":"Landratsamt Karlsruhe",
-					"u":0.98,
-					"v":0.46
-				},
-				{
-					"title":"Kirchturm",
-					"description":"Sankt Stephans Kirche, wird verdeckt von einem Schornstein.",
-					"u":0.24,
-					"v":0.48
 				}]
 			},
 			{
@@ -81,38 +71,38 @@
 				}],
 				"markSettings":[
 				{
-					"title":"Ali",
-					"description":"Name: Ali Moinzadeh\nTätigkeit: Softwareentwicklung\nRolle: Mitarbeiter",
+					"title":"Ali Moinzadeh",
+					"description":"Gib ihm eine Schaufel und er trägt einen ganzen Berg ab.",
 					"u":0.215,
 					"v":0.51
 				},
 				{
-					"title":"Liwen",
-					"description":"Name: Liwen Guo\nTätigkeit: Softwareentwicklung\nRolle: Hiwi",
+					"title":"Liwen Guo",
+					"description":"Kann alles!",
 					"u":0.16,
 					"v":0.54
 				},
 				{
-					"title":"Laura",
-					"description":"Name: Laura Ganzer\nTätigkeit: Softwareentwicklung\nRolle: BA Studentin",
+					"title":"Laura Ganzer",
+					"description":"Studentin an der Dualen Hochschule.",
 					"u":0.97,
 					"v":0.58
 				},
 				{
-					"title":"Alex",
-					"description":"Name: Alexander Wiedermann\nTätigkeit: Softwareentwicklung\nRolle: Mitarbeiter",
+					"title":"Alexander Wiedermann",
+					"description":"[Refector Hero]",
 					"u":0.85,
 					"v":0.51
 				},
 				{
-					"title":"Cyborg",
-					"description":"Auftrag: die Weltherrschaft an sich zureißen.",
+					"title":"Joe",
+					"description":"Google Glass V.0 vom Jahre 2005.",
 					"u":0.40,
 					"v":0.50
 				},
 				{
 					"title":"Benjamini",
-					"description":"Type: Planze\nGröße: 4m\nBesonderheit: Grünt das ganze Jahr.",
+					"description":"Grünt das ganze Jahr.",
 					"u":0.70,
 					"v":0.50
 				}]
@@ -148,28 +138,22 @@
 				}],
 				"markSettings":[
 				{
-					"title":"Holger",
-					"description":"Name: Holger Bönisch\nTätigkeit: Geschäftsführung, Softwareentwicklung\nRolle: Chef",
+					"title":"Holger Bönisch",
+					"description":"Der Fels in der Brandung!",
 					"u":0.26,
 					"v":0.57
 				},
 				{
-					"title":"Barbarossa",
-					"description":"Name: Marcel Danz\nTätigkeit: Softwareentwicklung\nRolle: Hiwi",
+					"title":"Marcel Danz",
+					"description":"Barbarossa kann kraftvoll Coden.",
 					"u":0.52,
 					"v":0.61
 				},
 				{
-					"title":"Mathias",
-					"description":"Name: Mathias Reichardt\nTätigkeit: Softwareentwicklung\nRolle: Mitarbeiter",
+					"title":"Mathias Reichardt",
+					"description":"Versteht den REST!",
 					"u":0.49,
 					"v":0.55
-				},
-				{
-					"title":"Cyborg",
-					"description":"Auftrag: die Weltherrschaft an sich zureißen.",
-					"u":0.13,
-					"v":0.50
 				}]
 			},
 			{
@@ -188,20 +172,20 @@
 				}],
 				"markSettings":[
 				{
-					"title":"Damien",
-					"description":"Name: Damien Barnes\nTätigkeit: Softwareentwicklung\nRolle: Mitarbeiter",
+					"title":"Damien Barnes",
+					"description":"Kann polyglotte Systeme.",
 					"u":0.89,
 					"v":0.55
 				},
 				{
-					"title":"Oli",
-					"description":"Name: Oliver Hartmann\nTätigkeit: Softwareentwicklung\nRolle: Mitarbeiter",
+					"title":"Oliver Hartmann",
+					"description":"[Dr. Mobile]",
 					"u":0.56,
 					"v":0.53
 				},
 				{
-					"title":"Michael",
-					"description":"Name: Michael Zeleny\nTätigkeit: Softwareentwicklung\nRolle: Mitarbeiter",
+					"title":"Michael Zeleny",
+					"description":"[GWT-Wizard]",
 					"u":0.44,
 					"v":0.62
 				}]
@@ -227,14 +211,14 @@
 				}],
 				"markSettings":[
 				{
-					"title":"Aydin",
-					"description":"Name: Aydin Mir Mohammadi\nTätigkeit: Geschäftsführung, Softwareentwicklung\nRolle: Chef",
+					"title":"Aydin Mir Mohammadi",
+					"description":"Der Architektur Philosoph.",
 					"u":0.42,
 					"v":0.59
 				},
 				{
-					"title":"Virtual Marcel",
-					"description":"Name: Marcel Weigel\nTätigkeit: Softwareentwicklung\nRolle: Mitarbeiter",
+					"title":"Marcel Weigel",
+					"description":"Der Baumeister.",
 					"u":0.74,
 					"v":0.55
 				}]
@@ -255,8 +239,8 @@
 				}],
 				"markSettings":[
 				{
-					"title":"Lars",
-					"description":"Name: Lars Kaufmann\nTätigkeit: Geschäftsführung\nRolle: Chef",
+					"title":"Lars Kaufmann",
+					"description":"Nomen Et Omen.",
 					"u":0.76,
 					"v":0.59
 				}]
@@ -277,14 +261,8 @@
 				}],
 				"markSettings":[
 				{
-					"title":"Nils",
-					"description":"Name: Nils Stadje\nTätigkeit: Kochen\nRolle: Koch",
-					"u":0.10,
-					"v":0.50
-				},
-				{
-					"title":"Essen",
-					"description":"Besonderheit: lecker\nEssen, Essen, jam jam jam",
+					"title":"Nils Stadje",
+					"description":"Gräbt leckere Rezepte aus: „Jäger des verlorenen Rezeptes“",
 					"u":0.10,
 					"v":0.50
 				}]

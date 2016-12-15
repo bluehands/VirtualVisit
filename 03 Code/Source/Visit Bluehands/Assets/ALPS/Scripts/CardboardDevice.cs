@@ -1,55 +1,21 @@
-﻿/************************************************************************
-	ALPSDevice provides a specific configuration for each supported device
+﻿
+public enum CardboardType{
+	DEFAULT,
+	ALTERGAZE,
+	CARDBOARD,
+	FIREFLY
+};
 
-    Copyright (C) 2014  ALPS VR.
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-************************************************************************/
-
-using UnityEngine;
-using System.Collections;
-
-	//====================================================================================================
-	// Attributes
-	//====================================================================================================
-
-	public enum CardboardType{
-		DEFAULT,
-		ALTERGAZE,
-		CARDBOARD,
-		FIREFLY
-	};
-
-	public enum ScreenOption{
-		FixedSize, 
-		FullScreen
-	};
+public enum ScreenOption{
+	FixedSize, 
+	FullScreen
+};
 
 public class CardboardDevice {
 
-	//====================================================================================================
-	// Functions
-	//====================================================================================================
-
-	/// <summary>
-	/// Returns device configuration corresponding to a device name.
-	/// </summary>
-	/// <param name="_device">Device name.</param>
-	public static ALPSConfig GetConfig(CardboardType _device){
+	public static ALPSConfig GetConfig(CardboardType device){
 		ALPSConfig config;
-		switch (_device) {
+		switch (device) {
 			case CardboardType.ALTERGAZE:
 			config = new ALPSConfig(CardboardType.ALTERGAZE,true,true,false,62f,62f,85f,-1f,0.4f,0.2f,0,0);
 				break;
@@ -66,5 +32,4 @@ public class CardboardDevice {
 		}
 		return config;
 	}
-
 }

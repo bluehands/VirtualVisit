@@ -144,10 +144,10 @@ public class ALPSController : MonoBehaviour {
 	/// </summary>
 	public void OnPostRender(){
 		RenderTexture.active = destTex;
-		GL.Clear (false,true,Color.black);
-		RenderEye (true,srcTex);
-		RenderEye (false,srcTex);
-		srcTex.DiscardContents ();
+		GL.Clear(false, true, Color.black);
+		RenderEye(true, srcTex);
+		RenderEye(false, srcTex);
+		srcTex.DiscardContents();
 	}
 
 	/// <summary>
@@ -160,18 +160,18 @@ public class ALPSController : MonoBehaviour {
 		mat.SetVector("_SHIFT",new Vector2(_leftEye?0:0.5f,0));
 		float convergeOffset = ((deviceConfig.Width * 0.5f) - deviceConfig.IPD) / deviceConfig.Width;
 		mat.SetVector("_CONVERGE",new Vector2((_leftEye?1f:-1f)*convergeOffset,0));
-		mat.SetFloat ("_AberrationOffset",deviceConfig.enableChromaticCorrection?deviceConfig.chromaticCorrection:0f);
+		mat.SetFloat("_AberrationOffset",deviceConfig.enableChromaticCorrection?deviceConfig.chromaticCorrection:0f);
 		float ratio = (deviceConfig.IPD*0.5f) / deviceConfig.Width;
-		mat.SetVector ("_Center",new Vector2(0.5f+(_leftEye?-ratio:ratio),0.5f));
+		mat.SetVector("_Center",new Vector2(0.5f+(_leftEye?-ratio:ratio),0.5f));
 
-		GL.Viewport (_leftEye ? rectLeft : rectRight);
+		GL.Viewport(_leftEye ? rectLeft : rectRight);
 
-		GL.PushMatrix ();
-		GL.LoadOrtho ();
-		mat.SetPass (0);
-		if(_leftEye)cameraLeft.GetComponent<ALPSCamera>().Draw ();
-		else cameraRight.GetComponent<ALPSCamera>().Draw ();
-		GL.PopMatrix ();
+		GL.PushMatrix();
+		GL.LoadOrtho();
+		mat.SetPass(0);
+		if(_leftEye)cameraLeft.GetComponent<ALPSCamera>().Draw();
+		else cameraRight.GetComponent<ALPSCamera>().Draw();
+		GL.PopMatrix();
 	}
 
 	/// <summary>
@@ -206,7 +206,7 @@ public class ALPSController : MonoBehaviour {
 			cameraRight.GetComponent<ALPSCamera>().UpdateMesh();
 		}
 	}
-
+    /*
 	/// <summary>
 	/// Indicates whether viewport should be fullscreen or fixed in size
 	/// </summary>
@@ -280,5 +280,5 @@ public class ALPSController : MonoBehaviour {
 	public Camera[] GetCameras(){
 		Camera[] cams = {cameraLeft.GetComponent<Camera>(), cameraRight.GetComponent<Camera>()};
 		return cams;
-	}
+	}*/
 }

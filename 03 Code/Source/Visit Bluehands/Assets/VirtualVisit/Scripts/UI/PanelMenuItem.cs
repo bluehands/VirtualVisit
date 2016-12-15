@@ -9,6 +9,8 @@ public class PanelMenuItem : MonoBehaviour, ButtonListener {
 
     public ButtonInfo buttonInfoPrefab;
 
+    public Boolean isInfoEnable;
+
     private ButtonGo m_ButtonGo;
 
     private ButtonInfo m_ButtonInfo;
@@ -38,9 +40,12 @@ public class PanelMenuItem : MonoBehaviour, ButtonListener {
         m_ButtonGo.Initialize(transform, this);
         m_ButtonGo.GetComponent<RectTransform>().localPosition = new Vector3(130, -80, 0);
 
-        m_ButtonInfo = Instantiate(buttonInfoPrefab) as ButtonInfo;
-        m_ButtonInfo.Initialize(transform, this);
-        m_ButtonInfo.GetComponent<RectTransform>().localPosition = new Vector3(-130, -80, 0);
+        if(isInfoEnable)
+        {
+            m_ButtonInfo = Instantiate(buttonInfoPrefab) as ButtonInfo;
+            m_ButtonInfo.Initialize(transform, this);
+            m_ButtonInfo.GetComponent<RectTransform>().localPosition = new Vector3(-130, -80, 0);
+        }
 
         RawImage rawImage = transform.FindChild("Background Image").GetComponent<RawImage>();
 

@@ -1,10 +1,12 @@
 {
 	"id":"Seven2One",
-	"title":"Seven2OneOffice",
+	"title":"seven2one",
 	"author":"Marcel Weigel",
 	"created":"20.11.2016",
-	"previewNodeIndex":0,	"nodeSettings":[
-			{				"id":"Eingang",
+	"previewNodeIndex":0,
+	"nodeSettings":[
+			{
+				"id":"Eingang",
 				"title":"Empfang",
 				"position":{	
 					"x":0.0,
@@ -24,20 +26,17 @@
 				}],
 				"markSettings":[
 				{
-					"title":"Patrick & Marc",
-					"description":"links: Patrick Hartung\nrechts: Marc Donat",
+					"title":"Patrick Hartung, Marc Donat",
 					"u":0.64,
 					"v":0.51
 				},
 				{
-					"title":"Petra",
-					"description":"Name: Petra Werling\nTätigkeit: Organisation\nRolle: Rechungs- und Personalwesen",
+					"title":"Petra Werlin",
 					"u":0.905,
 					"v":0.52
 				},
 				{
-					"title":"Sabrina",
-					"description":"Name: Sabrina Posselt\nTätigkeit: Organisation\nRolle: Office Managerin",
+					"title":"Sabrina Posselt",
 					"u":0.985,
 					"v":0.525
 				}]
@@ -58,20 +57,17 @@
 				}],
 				"markSettings":[
 				{
-					"title":"Michael",
-					"description":"Name: Michael Häfele\nTätigkeit: Buisness Solutions\nRolle: Projektleiter",
+					"title":"Michael Häfele",
 					"u":0.56,
 					"v":0.56
 				},
 				{
-					"title":"Nadine",
-					"description":"Name: Nadine Ludwig\nTätigkeit: Buisness Solutions\nRolle: Senior Consultant",
+					"title":"Nadine Ludwig",
 					"u":0.515,
 					"v":0.53
 				},
 				{
-					"title":"Gruppe an Menschen",
-					"description":"hinten: Sebastian Siegmundt\nlinks: Danny Frech\nrechts: David Bannek",
+					"title":"Sebastian Siegmundt, Danny Frech, David Bannek",
 					"u":0.205,
 					"v":0.53
 				}]
@@ -102,20 +98,17 @@
 				}],
 				"markSettings":[
 				{
-					"title":"Christoph",
-					"description":"Name: Christoph Schlenzig\nTätigkeit: Management\nRolle: Gescheftsführung",
+					"title":"Christoph Schlenzig",
 					"u":0.78,
 					"v":0.46
 				},
 				{
-					"title":"Christine",
-					"description":"Name: Christine Herdt\nTätigkeit: Marketing\nRolle: Leiterin Marketing",
+					"title":"Christine Herdt",
 					"u":0.36,
 					"v":0.54
 				},
 				{
-					"title":"Stephan",
-					"description":"Name: Stephan Sobiesinsky\nTätigkeit: Marketing\nRolle: Medienproduzent",
+					"title":"Stephan Sobiesinsky",
 					"u":0.43,
 					"v":0.54
 				}]
@@ -136,20 +129,17 @@
 				}],
 				"markSettings":[
 				{
-					"title":"Mirko",
-					"description":"Name: Mirko Breuer\nTätigkeit: IT\nRolle: Leiter IT",
+					"title":"Mirko Breuer",
 					"u":0.60,
 					"v":0.58
 				},
 				{
-					"title":"Patrick",
-					"description":"Name: Patrick Eiser\nTätigkeit: IT\nRolle: Auszubildender IT",
+					"title":"Patrick Eiser",
 					"u":0.18,
 					"v":0.58
 				},
 				{
-					"title":"Jens",
-					"description":"Name: Jens Römann\nTätigkeit: IT\nRolle: IT-Administrator",
+					"title":"Jens Römann",
 					"u":0.34,
 					"v":0.54
 				}]
@@ -180,21 +170,8 @@
 				}],
 				"markSettings":[
 				{
-					"title":"Freundliche Menschen",
-					"description":"links: Sven Stando\nrechts: Matthias Wessinger",
+					"title":"Sven Stando, Matthias Wessinger",
 					"u":0.14,
-					"v":0.52
-				},
-				{
-					"title":"Noch mehr freundliche Menschen",
-					"description":"links: Alexander\nrechts: Holger\nhinten: Marco",
-					"u":0.83,
-					"v":0.52
-				},
-				{
-					"title":"Pinnwand",
-					"description":"mit vielen bunten Zettern,",
-					"u":0.83,
 					"v":0.52
 				}]
 			},
@@ -214,50 +191,32 @@
 				}],
 				"markSettings":[
 				{
-					"title":"Til",
-					"description":"Name: Til Ruprecht\nTätigkeit: Softwareentwicklung\nRolle: Product Owner",
+					"title":"Til Ruprecht",
 					"u":0.82,
 					"v":0.53
 				},
 				{
-					"title":"Holger",
-					"description":"Name: Holger Ladig\nTätigkeit: Softwareentwicklung\nRolle: Softwareentwickler",
+					"title":"Holger Ladig",
 					"u":0.86,
 					"v":0.53
 				},
 				{
-					"title":"Sönke",
-					"description":"Name: Sönke Lütjohann\nTätigkeit: Softwareentwicklung\nRolle: Softwareentwickler",
+					"title":"Sönke Lütjohann",
 					"u":0.90,
 					"v":0.53
 				},
 				{
-					"title":"Fiona",
-					"description":"Name: Fiona Baumhögger\nTätigkeit: Softwareentwicklung\nRolle: Product Owner",
+					"title":"Fiona Baumhögger",
 					"u":0.99,
 					"v":0.55
 				},
 				{
-					"title":"Mensch hinterm Bildschirm",
-					"description":"Rolle: Hiwi\nTätigkeit: Softwareentwicklung",
-					"u":0.24,
-					"v":0.54
-				},
-				{
-					"title":"Matthias",
-					"description":"Name: Matthias Schallenmüller\nTätigkeit: Softwareentwicklung\nRolle: Softwareentwickler",
+					"title":"Matthias Schallenmüller",
 					"u":0.2,
 					"v":0.54
 				},
 				{
-					"title":"Mensch ganz hinten",
-					"description":"Rolle: Hiwi\nTätigkeit: Softwareentwicklung",
-					"u":0.76,
-					"v":0.53
-				},
-				{
-					"title":"Marco",
-					"description":"Name: Jan Marco Heinz\nTätigkeit: Softwareentwicklung\nRolle: Leiter",
+					"title":"Jan Marco Heinz",
 					"u":0.30,
 					"v":0.51
 				}]
