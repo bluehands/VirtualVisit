@@ -30,7 +30,7 @@ using UnityEngine;
 /// This class is expected to be inherited by pointers responding to the user's
 /// looking at objects in the scene by the movement of their head. For example,
 /// see the GvrReticle class.
-public interface IGvrGazePointer {
+public interface IALPSGazePointer {
   /// This is called when the 'BaseInputModule' system should be enabled.
   void OnGazeEnabled();
   /// This is called when the 'BaseInputModule' system should be disabled.
@@ -72,7 +72,7 @@ public interface IGvrGazePointer {
   void OnGazeTriggerEnd(Camera camera);
 
   /// Return the radius of the gaze pointer. This is used when searching for
-  /// valid gaze targets. If a radius is 0, the GvrGaze will use a ray
+  /// valid gaze targets. If a radius is 0, the ALPSGaze will use a ray
   /// to find a valid gaze target. Otherwise it will use a SphereCast.
   /// The *innerRadius* is used for finding new targets while the *outerRadius*
   /// is used to see if you are still nearby the object currently looked at

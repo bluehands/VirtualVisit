@@ -18,7 +18,7 @@ using UnityEngine;
 /// The circle dilates if the object is clickable.
 [AddComponentMenu("GoogleVR/UI/ALPSReticle")]
 [RequireComponent(typeof(Renderer))]
-public class ALPSReticle : MonoBehaviour, IGvrGazePointer {
+public class ALPSReticle : MonoBehaviour, IALPSGazePointer {
   /// Number of segments making the reticle circle.
   public int reticleSegments = 20;
 

@@ -18,18 +18,18 @@ using System.Linq;
 /// Class that can perform gaze-based selection, as a simple alternative to the
 /// more complicated path of using _GazeInputModule_ and the rest of **uGUI**.
 [RequireComponent(typeof(Camera))]
-public class GvrGaze : MonoBehaviour {
-  /// The active Gaze Pointer for this camera. Must have IGvrGazePointer.
-  /// The IGvrGazePointer responds to events from this class.
+public class ALPSGaze : MonoBehaviour {
+  /// The active Gaze Pointer for this camera. Must have IALPSGazePointer.
+  /// The IALPSGazePointer responds to events from this class.
   public GameObject PointerObject {
     get {
       return pointerObject;
     }
     set {
       if (value != null) {
-        // Retrieve the IGvrGazePointer component.
+        // Retrieve the IALPSGazePointer component.
         var ptr = value.GetComponents<MonoBehaviour>()
-            .Select(c => c as IGvrGazePointer)
+            .Select(c => c as IALPSGazePointer)
             .Where(c => c != null)
             .FirstOrDefault();
 
@@ -54,7 +54,7 @@ public class GvrGaze : MonoBehaviour {
             pointer.OnGazeTriggerStart(cam);
           }
         } else {
-          Debug.LogError("Object must have component which implements IGvrGazePointer.");
+          Debug.LogError("Object must have component which implements IALPSGazePointer.");
         }
       } else {
         if (pointer != null) {
@@ -72,7 +72,7 @@ public class GvrGaze : MonoBehaviour {
   }
   [SerializeField][HideInInspector]
   private GameObject pointerObject;
-  private IGvrGazePointer pointer;
+  private IALPSGazePointer pointer;
 
   // Convenient accessor to the camera component used throughout this script.
   public Camera cam { get; private set; }
@@ -81,7 +81,7 @@ public class GvrGaze : MonoBehaviour {
   public LayerMask mask = -1;
 
   // Current target detected the user is "gazing" at.
-  private IGvrGazeResponder currentTarget;
+  private IALPSGazeResponder currentTarget;
   private GameObject currentGazeObject;
 
   private Vector3 lastIntersectPosition;
@@ -137,7 +137,7 @@ public class GvrGaze : MonoBehaviour {
 
     // Find what object the user is looking at.
     Vector3 intersectPosition;
-    IGvrGazeResponder target = null;
+    IALPSGazeResponder target = null;
     GameObject targetObject = FindGazeTarget(innerRadius, out target, out intersectPosition);
 
     // Found a target?
@@ -197,7 +197,7 @@ public class GvrGaze : MonoBehaviour {
     }
   }
 
-  private GameObject FindGazeTarget(float radius, out IGvrGazeResponder responder,
+  private GameObject FindGazeTarget(float radius, out IALPSGazeResponder responder,
       out Vector3 intersectPosition) {
     RaycastHit hit;
     GameObject targetObject = null;
@@ -216,10 +216,10 @@ public class GvrGaze : MonoBehaviour {
 
     // Found anything?
     if (hitResult) {
-      // Set object and IGvrGazeResponder if any.
+      // Set object and IALPSGazeResponder if any.
       targetObject = hit.collider.gameObject;
-      responder = targetObject.GetComponent(typeof(IGvrGazeResponder))
-          as IGvrGazeResponder;
+      responder = targetObject.GetComponent(typeof(IALPSGazeResponder))
+          as IALPSGazeResponder;
       intersectPosition = transform.position + transform.forward * hit.distance;
     } else {
       // Nothing? Reset variables.

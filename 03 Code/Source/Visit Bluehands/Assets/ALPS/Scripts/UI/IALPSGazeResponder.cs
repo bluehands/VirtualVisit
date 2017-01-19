@@ -16,10 +16,10 @@ using UnityEngine;
 using System.Collections;
 
 /// This script provides an interface for gaze based responders used with
-/// the GvrGaze script.
-public interface IGvrGazeResponder {
+/// the ALPSGaze script.
+public interface IALPSGazeResponder {
   /// Called when the user is looking on a GameObject with this script,
-  /// as long as it is set to an appropriate layer (see GvrGaze).
+  /// as long as it is set to an appropriate layer (see ALPSGaze).
   void OnGazeEnter();
 
   /// Called when the user stops looking on the GameObject, after OnGazeEnter
