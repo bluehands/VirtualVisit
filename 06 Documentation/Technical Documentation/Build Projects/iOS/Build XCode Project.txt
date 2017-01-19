@@ -1,0 +1,2 @@
+Unity 5.5.0f3
+Füge Apple Team ID in Unity Build Settings hinzu.

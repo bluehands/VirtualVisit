@@ -1,0 +1,4 @@
+Unity 5.5.0f3
+The apk must be signed with the same certificates as the previous version
+
+http://stackoverflow.com/questions/4843212/the-apk-must-be-signed-with-the-same-certificates-as-the-previous-version

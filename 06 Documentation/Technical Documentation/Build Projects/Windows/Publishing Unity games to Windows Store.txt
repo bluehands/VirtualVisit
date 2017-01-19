@@ -1,0 +1,15 @@
+Unity 5.5.0f3
+Unity for Windows: II – Publishing Unity games to Windows Store | digitalerr0r:
+
+https://digitalerr0r.wordpress.com/2013/08/27/unity-for-windows-ii-publishing-to-windows-8/
+
+Eigene Erfahrung:
+unter Package.appxmanifest
+Identity/Publisher: CN=37DF46D1-C5A5-430F-A51D-24C333AA09F0
+
+Properties/Packaging eintragen 
+Package name: bluehands.VisitbluehandsFriends
+Package display name: Visit bluehands & Friends
+Version:
+Publisher display name: bluehands
+Package family name: bluehands.VisitbluehandsFriends_9bfywv3rne8q6
