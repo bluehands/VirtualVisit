@@ -65,7 +65,7 @@ public class ALPSReticle : MonoBehaviour, IGvrGazePointer {
   }
 
   void OnDisable() {
-    if (ALPSGazeInputModule.gazePointer == this) {
+    if ((Object)ALPSGazeInputModule.gazePointer == this) {
       ALPSGazeInputModule.gazePointer = null;
     }
   }
