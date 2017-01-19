@@ -53,7 +53,7 @@ public class ALPSGazeInputModule : BaseInputModule {
   public bool vrModeOnly = false;
 
   /// The IGvrGazePointer which will be responding to gaze events.
-  public static IGvrGazePointer gazePointer;
+  public static IALPSGazePointer gazePointer;
 
   private PointerEventData pointerData;
   private Vector2 lastHeadPose;
