@@ -86,7 +86,7 @@ public class ALPSController : MonoBehaviour {
 
 		for (var i=0; i<2; i++) {
 			bool left = (i==0);
-			GameObject OneCamera = new GameObject(left?"CameraLeft":"CameraRight");
+			GameObject OneCamera = new GameObject(left? "MainCamera Left" : "MainCamera Right");
 			OneCamera.AddComponent<Camera>();
 			OneCamera.AddComponent<ALPSCamera>();
 			(OneCamera.GetComponent("ALPSCamera") as ALPSCamera).leftEye = left;
@@ -95,9 +95,6 @@ public class ALPSController : MonoBehaviour {
             if (left) cameraRight = OneCamera;
 			else cameraLeft = OneCamera;
         }
-
-        cameraLeft.GetComponent<Camera>().cullingMask &= -1 ^ (1 << LayerMask.NameToLayer("Left Eye"));
-        cameraRight.GetComponent<Camera>().cullingMask &= -1 ^ (1 << LayerMask.NameToLayer("Right Eye"));
 
         ALPSCamera[] ALPSCameras = FindObjectsOfType(typeof(ALPSCamera)) as ALPSCamera[];
 		foreach (ALPSCamera cam in ALPSCameras) {
@@ -206,79 +203,4 @@ public class ALPSController : MonoBehaviour {
 			cameraRight.GetComponent<ALPSCamera>().UpdateMesh();
 		}
 	}
-    /*
-	/// <summary>
-	/// Indicates whether viewport should be fullscreen or fixed in size
-	/// </summary>
-	/// <param name="_fixed">True if fixed in size, false if fullscreen.</param>
-	public void SetFixedSize(bool _fixed){
-		if (_fixed != deviceConfig.fixedSize) {
-			ClearDirty();
-		}
-		deviceConfig.fixedSize = _fixed;
-	}
-
-	/// <summary>
-	/// Sets a new device configuration.
-	/// </summary>
-	// <param name="_device">Name of the device.</param>
-	public void SetDevice(CardboardType _device){
-		deviceConfig = CardboardDevice.GetConfig (_device);
-		ALPSCamera.deviceConfig = deviceConfig;
-		ALPSBarrelMesh.deviceConfig = deviceConfig;
-		ClearDirty ();
-	}
-
-	/// <summary>
-	/// Copy camera settings to left and right cameras. Will overwrite culling masks.
-	/// </summary>
-	/// <param name="_cam">The camera from which you want to copy the settings.</param>
-	public void SetCameraSettings(Camera _cam){
-		cameraLeft.GetComponent<Camera>().CopyFrom (_cam);
-		cameraRight.GetComponent<Camera>().CopyFrom (_cam);
-		cameraLeft.GetComponent<Camera>().rect = new Rect (0,0,0.5f,1);
-		cameraRight.GetComponent<Camera>().rect = new Rect (0.5f,0,0.5f,1);
-	}
-	
-	/// <summary>
-	/// Adds left and right layers to the existing culling masks for left and right cameras.
-	/// </summary>
-	/// <param name="_leftLayer">Name of the layer rendered by the left camera.</param>
-	/// <param name="_rightLayer">Name of the layer rendered by the right camera.</param>
-	public int SetStereoLayers(string _leftLayer, string _rightLayer){
-		int leftLayer = LayerMask.NameToLayer (_leftLayer);
-		int rightLayer = LayerMask.NameToLayer (_rightLayer);
-		if (leftLayer < 0 && rightLayer < 0) return -1;
-		
-		cameraLeft.GetComponent<Camera>().cullingMask |= 1 << LayerMask.NameToLayer(_leftLayer);
-		cameraLeft.GetComponent<Camera>().cullingMask &=  ~(1 << LayerMask.NameToLayer(_rightLayer));
-		
-		cameraRight.GetComponent<Camera>().cullingMask |= 1 << LayerMask.NameToLayer(_rightLayer);
-		cameraRight.GetComponent<Camera>().cullingMask &=  ~(1 << LayerMask.NameToLayer(_leftLayer));
-		
-		return 0;
-	}
-	
-	/// <summary>
-	/// Returns point of view position. This can be useful for setting up a Raycast.
-	/// </summary>
-	public Vector3 PointOfView(){
-		//returns current position plus NeckToEye vector
-		return new Vector3(transform.position.x,transform.position.y + ALPSConfig.neckPivotToEye.y*0.001f,transform.position.z + ALPSConfig.neckPivotToEye.x*0.001f);
-	}
-	
-	/// <summary>
-	/// Returns forward direction vector. This can be useful for setting up a Raycast.
-	/// </summary>
-	public Vector3 ForwardDirection(){
-		return cameraLeft.GetComponent<Camera>().transform.forward;
-	}
-	
-	/// <summary>
-	/// Returns left and right cameras.
-	/// </summary>
-	public Camera[] GetCameras(){
-		Camera[] cams = {cameraLeft.GetComponent<Camera>(), cameraRight.GetComponent<Camera>()};
-		return cams;
-	}*/
 }
