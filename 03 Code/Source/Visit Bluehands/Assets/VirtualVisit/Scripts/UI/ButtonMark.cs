@@ -8,9 +8,7 @@ public class ButtonMark : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     private string m_Decription;
 
     private Text m_MarkInfoTextLeft;
-    private Text m_MarkInfoTextRight;
     private Text m_MarkInfoTextShadowLeft;
-    private Text m_MarkInfoTextShadowRight;
 
     private string m_InfoText;
     private int m_WritingPointer;
@@ -28,19 +26,11 @@ public class ButtonMark : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
         m_InfoText = m_Title + "\n\n" + m_Decription;
 
-        m_MarkInfoTextLeft = GameObject.Find("MarkInfo Left").GetComponent<Text>();
-        m_MarkInfoTextRight = GameObject.Find("MarkInfo Right").GetComponent<Text>();
-
-        m_MarkInfoTextShadowLeft = GameObject.Find("MarkInfo Left Shadow").GetComponent<Text>();
-        m_MarkInfoTextShadowRight = GameObject.Find("MarkInfo Right Shadow").GetComponent<Text>();
+        m_MarkInfoTextLeft = GameObject.Find("MarkInfo").GetComponent<Text>();
+        m_MarkInfoTextShadowLeft = GameObject.Find("MarkInfo Shadow").GetComponent<Text>();
 
         transform.Translate(new Vector3(2.5f, 2.5f, 0));
         transform.localScale = new Vector3(0.01f, 0.01f, 1);
-
-        //transform.FindChild("Title Text").GetComponent<Text>().text = title;
-        //transform.FindChild("Context Text").GetComponent<Text>().text = description;
-        //transform.FindChild("Context Text Shadow").GetComponent<Text>().text = description;
-
         
     }
 
@@ -90,9 +80,13 @@ public class ButtonMark : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     private void setText(string text)
     {
-        m_MarkInfoTextLeft.text = text;
-        m_MarkInfoTextRight.text = text;
-        m_MarkInfoTextShadowLeft.text = text;
-        m_MarkInfoTextShadowRight.text = text;
+        if(m_MarkInfoTextLeft != null)
+        {
+            m_MarkInfoTextLeft.text = text;
+        }
+        if (m_MarkInfoTextShadowLeft != null)
+        {
+            m_MarkInfoTextShadowLeft.text = text;
+        }
     }
 }
