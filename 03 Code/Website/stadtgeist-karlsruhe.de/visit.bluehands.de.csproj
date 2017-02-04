@@ -171,65 +171,30 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Content Include="assets\css\bootstrap.css" />
+    <Content Include="assets\css\bootstrap.min.css" />
     <Content Include="assets\css\landing-page.css" />
     <Content Include="assets\css\pe-icon-7-stroke.css" />
     <Content Include="assets\fonts\fontawesome-webfont.svg" />
     <Content Include="assets\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="assets\fonts\Pe-icon-7-stroke.svg" />
-    <Content Include="assets\img\blue.jpg" />
-    <Content Include="assets\img\faces\face-1.jpg" />
-    <Content Include="assets\img\faces\face-2.jpg" />
-    <Content Include="assets\img\faces\face-3.jpg" />
-    <Content Include="assets\img\faces\face-4.jpg" />
-    <Content Include="assets\img\favicon.ico" />
     <Content Include="assets\img\logos\adobe.png" />
     <Content Include="assets\img\logos\airbnb.png" />
     <Content Include="assets\img\logos\ebay.png" />
     <Content Include="assets\img\logos\evernote.png" />
     <Content Include="assets\img\logos\zappos.png" />
     <Content Include="assets\img\logos\zendesk.png" />
-    <Content Include="assets\img\new_logo.png" />
-    <Content Include="assets\img\phone_app.jpg" />
     <Content Include="assets\img\showcases\showcase-1\bg.jpg" />
     <Content Include="assets\img\showcases\showcase-1\bg2.jpg" />
-    <Content Include="assets\img\showcases\showcase-1\examples\home_1.jpg" />
-    <Content Include="assets\img\showcases\showcase-1\examples\home_2.jpg" />
-    <Content Include="assets\img\showcases\showcase-1\examples\home_3.jpg" />
-    <Content Include="assets\img\showcases\showcase-1\iphone.png" />
-    <Content Include="assets\img\showcases\showcase-1\iphones.png" />
     <Content Include="assets\img\showcases\showcase-1\visitbluhandsapp.png" />
-    <Content Include="assets\img\showcases\showcase-2\bg2.jpg" />
-    <Content Include="assets\img\showcases\showcase-2\examples\home_4.jpg" />
-    <Content Include="assets\img\showcases\showcase-2\examples\home_6.jpg" />
-    <Content Include="assets\img\showcases\showcase-2\mac1.png" />
-    <Content Include="assets\img\showcases\showcase-2\mac2.png" />
-    <Content Include="assets\img\template\bg3.jpg" />
-    <Content Include="assets\img\template\examples\home_11.jpg" />
-    <Content Include="assets\img\template\examples\home_22.jpg" />
-    <Content Include="assets\img\template\examples\home_33.jpg" />
-    <Content Include="assets\img\template\examples\home_44.jpg" />
-    <Content Include="assets\img\template\iphone3.png" />
-    <Content Include="assets\img\template\mac.png" />
-    <Content Include="assets\img\web_app.jpg" />
     <Content Include="assets\js\awesome-landing-page.js" />
-    <Content Include="assets\js\bootstrap.js" />
-    <Content Include="assets\js\jquery-1.10.2.js" />
+    <Content Include="assets\js\bootstrap.min.js" />
+    <Content Include="assets\js\jquery-3.1.1.slim.min.js" />
     <Content Include="assets\js\jquery-ui-1.10.4.custom.min.js" />
-    <Content Include="assets\js\min\animations-ck.js" />
-    <Content Include="assets\js\min\main-ck.js" />
     <Content Include="favicon.ico" />
     <Content Include="GetApp.aspx" />
     <Content Include="Global.asax" />
-    <Content Include="google3db0950f13e75aee.html" />
-    <Content Include="googledbcebbf52b76d1e8.html" />
-    <Content Include="phone_app.html" />
-    <Content Include="support_en.html" />
-    <Content Include="support.html" />
-    <Content Include="privacy_en.html" />
-    <Content Include="privacy.html" />
     <Content Include="legal.html" />
-    <Content Include="xindex.html" />
+    <Content Include="index.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -248,9 +213,6 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ApplicationInsights.config" />
-    <Content Include="downloads\Presse.zip" />
-    <Content Include="downloads\PresseBilder.zip" />
     <Content Include="assets\fonts\fontawesome-webfont.eot" />
     <Content Include="assets\fonts\fontawesome-webfont.ttf" />
     <Content Include="assets\fonts\fontawesome-webfont.woff" />
@@ -261,20 +223,9 @@
     <Content Include="assets\fonts\Pe-icon-7-stroke.eot" />
     <Content Include="assets\fonts\Pe-icon-7-stroke.ttf" />
     <Content Include="assets\fonts\Pe-icon-7-stroke.woff" />
-    <Content Include="assets\img\faces\.DS_Store" />
-    <Content Include="assets\img\logos\.DS_Store" />
-    <Content Include="assets\img\showcases\.DS_Store" />
-    <Content Include="assets\img\showcases\showcase-1\examples\.DS_Store" />
-    <Content Include="assets\img\showcases\showcase-2\.DS_Store" />
-    <Content Include="assets\img\showcases\showcase-2\examples\.DS_Store" />
-    <Content Include="assets\img\template\.DS_Store" />
-    <None Include="Properties\PublishProfiles\stadtgeistkarlsruhe %284%29.pubxml" />
-    <None Include="Properties\PublishProfiles\stadtgeistkarlsruhe - FTP.pubxml" />
-    <None Include="Properties\PublishProfiles\stadtgeistkarlsruhe - Web Deploy %282%29.pubxml" />
-    <None Include="Properties\PublishProfiles\stadtgeistkarlsruhe - Web Deploy.pubxml" />
-    <None Include="Properties\PublishProfiles\stadtgeistkarlsruhe-staging %282%29.pubxml" />
-    <None Include="Properties\PublishProfiles\stadtgeistkarlsruhe-staging.pubxml" />
-    <None Include="Properties\PublishProfiles\stadtgeistkarlsruhe.pubxml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\PublishProfiles\VisitBluehandsAndFriends - Web Deploy.pubxml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
