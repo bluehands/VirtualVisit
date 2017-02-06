@@ -1,7 +1,4 @@
 
-html, body {
-    height: 100%;
-}
 /*           Font Smoothing      */
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, p, .navbar, .brand, .btn-simple, a, .td-name, td {
     -moz-osx-font-smoothing: grayscale;
@@ -604,8 +601,6 @@ a {
 .footer {
     background-color: white;
     line-height: 20px;
-    xposition: absolute;
-    xbottom: 0;
 }
 
     .footer nav > ul {
@@ -650,7 +645,7 @@ a {
 
     .footer .copyright {
         color: #777777;
-        padding: 10px 15px;
+        padding: 25px 15px;
         margin: 15px 3px;
         line-height: 20px;
         text-align: center;
@@ -1823,7 +1818,6 @@ a {
 
     .landing-page .wrapper {
         text-align: center;
-        min-height: 100%;
     }
 
     .landing-page .navbar-top {
