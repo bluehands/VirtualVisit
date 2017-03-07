@@ -29,13 +29,22 @@ public class FollowingDisplayItem : MonoBehaviour, ButtonListener
         Text text = transform.FindChild("Canvas Item").FindChild("Text").GetComponent<Text>();
         text.text = visitTitle;
 
-        RawImage rawImage = transform.FindChild("Canvas Item").FindChild("Background Image").GetComponent<RawImage>();
+        
 
         Texture preview = null;
         TexturesFactory.TryToLoadPreviewTexture(visitId, out preview);
         if(preview != null)
         {
+            var rawImage = transform.FindChild("Canvas Item").FindChild("Background Image").GetComponent<RawImage>();
             rawImage.texture = preview;
+        }
+
+        Texture logo = null;
+        TexturesFactory.TryToLoadLogoTexture(visitId, out logo);
+        if (logo != null)
+        {
+            var rawImage = transform.FindChild("Canvas Item").FindChild("Logo Image").GetComponent<RawImage>();
+            rawImage.texture = logo;
         }
     }
 

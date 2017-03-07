@@ -8,9 +8,13 @@ public class FollowingDisplay : FollowingBase, FollowingMenuListener, ButtonList
 
     public FollowingDisplayBackItem followingDisplayBackItemPrefab;
 
+    public FollowingDisplayAbout followingDisplayAboutPrefab;
+
     private List<FollowingDisplayItem> m_FollowingDisplayItems;
 
     private FollowingDisplayBackItem m_FollowingDisplayBackItem;
+
+    private FollowingDisplayAbout m_FollowingDisplayAbout;
 
     private List<FollowingDisplayListener> m_FollowingDisplayListeners;
 
@@ -24,6 +28,9 @@ public class FollowingDisplay : FollowingBase, FollowingMenuListener, ButtonList
 
         m_FollowingDisplayBackItem = Instantiate(followingDisplayBackItemPrefab) as FollowingDisplayBackItem;
         m_FollowingDisplayBackItem.Initialize(transform, 0, 20, this);
+
+        m_FollowingDisplayAbout = Instantiate(followingDisplayAboutPrefab) as FollowingDisplayAbout;
+        m_FollowingDisplayAbout.Initialize(transform, -48, 22);
 
         var pitchAngle = 10;
         var yawAngle = 40;

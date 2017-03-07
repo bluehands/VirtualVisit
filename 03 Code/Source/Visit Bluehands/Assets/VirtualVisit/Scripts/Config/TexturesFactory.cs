@@ -30,5 +30,11 @@ public class TexturesFactory
         preview = Resources.Load(String.Format("Panoramas\\{0}_Preview", visitId)) as Texture;
         return preview != null;
     }
+
+    internal static bool TryToLoadLogoTexture(string visitId, out Texture logo)
+    {
+        logo = Resources.Load(String.Format("Panoramas\\{0}_Logo", visitId)) as Texture;
+        return logo != null;
+    }
 }
 
