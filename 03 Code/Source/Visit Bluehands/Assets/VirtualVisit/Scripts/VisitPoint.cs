@@ -4,6 +4,16 @@ using System;
 
 public class VisitPoint : MonoBehaviour {
 
+    enum PointState
+    {
+        None,
+        Visible,
+        ChangePoint,
+        FadedOut,
+        FadingIn,
+        FadingOut
+    }
+
     private const int LEFT_EYE = 0;
     private const int RIGHT_EYE = 1;
 
@@ -21,19 +31,25 @@ public class VisitPoint : MonoBehaviour {
 
     public Texture SphereTextureRight { get; private set; }
 
+    public Texture FadeOutTexture;
+
     public bool IsStereo { get; private set; }
 
     public VisitPath pathPrefab;
 
     public VisitMark markPrefab;
 
-    private VisitPoint m_LastFromPoint;
+    //private VisitPoint m_LastFromPoint;
+    private Texture m_FadeOutTextureLeft;
+    private Texture m_FadeOutTextureRight;
 
     private List<VisitPath> m_Paths;
 
     private List<VisitMark> m_Marks;
 
     private float m_BlendAlpha = 1;
+
+    private PointState m_PointState = PointState.None;
 
     public enum BlendMode
     {
@@ -192,10 +208,12 @@ public class VisitPoint : MonoBehaviour {
         setAlpha(1.0f);
 
         m_BlendAlpha = 1;
-        m_LastFromPoint = point;
+        m_FadeOutTextureLeft = point.SphereTextureLeft;
+        m_FadeOutTextureRight = IsStereo && point.IsStereo ? point.SphereTextureRight : point.SphereTextureLeft;
 
         SetEdgesActive(false);
         gameObject.SetActive(true);
+        m_PointState = PointState.ChangePoint;
     }
 
     private void setAlpha(float alpha)
@@ -207,26 +225,34 @@ public class VisitPoint : MonoBehaviour {
         rendRight.material.SetFloat(BLEND_ALPHA, alpha);
     }
 
+    public void FadeOut()
+    {
+        m_BlendAlpha = 1;
+
+        m_PointState = PointState.FadingOut;
+    }
+
+    public void FadeIn()
+    {
+        Renderer rendLeft = getLeftSphere().GetComponent<Renderer>();
+        Renderer rendRight = getRightSphere().GetComponent<Renderer>();
+
+        rendLeft.material.SetTexture(BLEND_TEXTURE, FadeOutTexture);
+        rendRight.material.SetTexture(BLEND_TEXTURE, FadeOutTexture);
+
+        setAlpha(0);
+    }
+
     void Update()
     {
-        if (m_LastFromPoint != null)
+        Renderer rendLeft = getLeftSphere().GetComponent<Renderer>();
+        Renderer rendRight = getRightSphere().GetComponent<Renderer>();
+        if (m_PointState == PointState.ChangePoint)
         {
-            Renderer rendLeft = getLeftSphere().GetComponent<Renderer>();
-            Renderer rendRight = getRightSphere().GetComponent<Renderer>();
             if (m_BlendAlpha == 1)
             {
-                rendLeft.material.SetTexture(BLEND_TEXTURE, m_LastFromPoint.SphereTextureLeft);
-                if (IsStereo)
-                {
-                    if (m_LastFromPoint.IsStereo)
-                    {
-                        rendRight.material.SetTexture(BLEND_TEXTURE, m_LastFromPoint.SphereTextureRight);
-                    }
-                    else
-                    {
-                        rendRight.material.SetTexture(BLEND_TEXTURE, m_LastFromPoint.SphereTextureLeft);
-                    }
-                }
+                rendLeft.material.SetTexture(BLEND_TEXTURE, m_FadeOutTextureLeft);
+                rendRight.material.SetTexture(BLEND_TEXTURE, m_FadeOutTextureRight);
             }
             if (m_BlendAlpha >= 0)
             {
@@ -235,12 +261,47 @@ public class VisitPoint : MonoBehaviour {
             if (m_BlendAlpha <= 0)
             {
                 setAlpha(0);
-                m_LastFromPoint = null;
+                m_FadeOutTextureLeft = null;
+                m_FadeOutTextureRight = null;
                 SetEdgesActive(true);
+                m_PointState = PointState.Visible;
+            }
+            m_BlendAlpha = m_BlendAlpha - 0.1f;
+        } else if(m_PointState == PointState.FadingOut)
+        {
+            if (m_BlendAlpha == 1)
+            {
+                rendLeft.material.SetTexture(BLEND_TEXTURE, FadeOutTexture);
+                rendRight.material.SetTexture(BLEND_TEXTURE, FadeOutTexture);
+            }
+            if (m_BlendAlpha >= 0)
+            {
+                setAlpha(0.5f - (m_BlendAlpha/2));
+            }
+            if (m_BlendAlpha <= 0)
+            {
+                setAlpha(0.5f);
+                m_PointState = PointState.FadedOut;
+            }
+            m_BlendAlpha = m_BlendAlpha - 0.1f;
+        } else if (m_PointState == PointState.FadingIn)
+        {
+            if (m_BlendAlpha == 1)
+            {
+                rendLeft.material.SetTexture(BLEND_TEXTURE, FadeOutTexture);
+                rendRight.material.SetTexture(BLEND_TEXTURE, FadeOutTexture);
+            }
+            if (m_BlendAlpha >= 0)
+            {
+                setAlpha(m_BlendAlpha);
+            }
+            if (m_BlendAlpha <= 0)
+            {
+                setAlpha(0);
+                m_PointState = PointState.Visible;
             }
             m_BlendAlpha = m_BlendAlpha - 0.1f;
         }
-
     }
 
 }

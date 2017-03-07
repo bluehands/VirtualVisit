@@ -3,8 +3,6 @@
 public abstract class FollowingBase : MonoBehaviour {
 
     void Start () {
-        QualitySettings.antiAliasing = 2;
-
         transform.rotation = getCamera().transform.rotation;
     }
 

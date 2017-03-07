@@ -10,6 +10,8 @@ public class VisitController : MonoBehaviour, VisitPathListener, FollowingDispla
 
     private List<VisitPoint> m_VisitPoints;
 
+    private VisitPoint m_CurrerntVisitPoint;
+
     public void Initialize(VisitSetting visitSettings)
     {
         m_VisitSettings = visitSettings;
@@ -51,6 +53,7 @@ public class VisitController : MonoBehaviour, VisitPathListener, FollowingDispla
         {
             visitPoint.Leave();
         }
+        m_CurrerntVisitPoint = m_VisitPoints[0];
         m_VisitPoints[0].GoThere();
     }
 
@@ -95,10 +98,12 @@ public class VisitController : MonoBehaviour, VisitPathListener, FollowingDispla
 
         fromPoint.Leave();
         toPoint.GoThereFrom(fromPoint);
+        m_CurrerntVisitPoint = toPoint;
     }
 
     public void openDisplay()
     {
+        m_CurrerntVisitPoint.FadeOut();
         foreach (var visitPoint in m_VisitPoints)
         {
             visitPoint.SetEdgesActive(false);
@@ -108,6 +113,7 @@ public class VisitController : MonoBehaviour, VisitPathListener, FollowingDispla
 
     public void closeDisplay()
     {
+        m_CurrerntVisitPoint.FadeIn();
         foreach (var visitPoint in m_VisitPoints)
         {
             visitPoint.SetEdgesActive(true);

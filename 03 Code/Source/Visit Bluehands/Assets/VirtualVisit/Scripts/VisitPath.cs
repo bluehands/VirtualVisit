@@ -39,7 +39,7 @@ public class VisitPath : MonoBehaviour, ButtonListener {
     {
         m_visitPathListener = visitPathListener;
         var canvasNext = GetComponentInChildren<Canvas>();
-        var textNext = canvasNext.GetComponentInChildren<Text>();
+        var texts = canvasNext.GetComponentsInChildren<Text>();
 
         FromPoint = formPoint;
         ToPoint = toPoint;
@@ -47,8 +47,11 @@ public class VisitPath : MonoBehaviour, ButtonListener {
         name = string.Format("VisitPath({0},{1})", formPoint.Id, toPoint.Id);
         transform.parent = formPoint.transform;
 
-        textNext.text = toPoint.Title;
-
+        foreach(var text in texts)
+        {
+            text.text = toPoint.Title;
+        }
+        
         m_ButtonStep = Instantiate(buttonStepPrefab) as ButtonStep;
         m_ButtonStep.Initialize(canvasNext.transform, this);
     }

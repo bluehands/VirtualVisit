@@ -4,9 +4,9 @@ using System;
 
 public class FollowingMenu : FollowingBase, ButtonListener, FollowingDisplayListener {
 
-    public ButtonMenu buttonMenuPrefab;
+    public ButtonFriends friendsMenuPrefab;
 
-    private ButtonMenu m_MenuButton;
+    private ButtonFriends m_FriendsButton;
 
     private FollowingMenuListener m_FollowingMenuListener;
 
@@ -16,8 +16,8 @@ public class FollowingMenu : FollowingBase, ButtonListener, FollowingDisplayList
     {
         m_FollowingMenuListener = followingMenuListener;
 
-        m_MenuButton = Instantiate(buttonMenuPrefab) as ButtonMenu;
-        m_MenuButton.Initialize(GameObject.Find("Canvas Menu").transform, this);
+        m_FriendsButton = Instantiate(friendsMenuPrefab) as ButtonFriends;
+        m_FriendsButton.Initialize(GameObject.Find("Canvas Menu").transform, this);
     }
 
     void Update()
@@ -35,7 +35,7 @@ public class FollowingMenu : FollowingBase, ButtonListener, FollowingDisplayList
 
     public void DoButtonAction(Type clazz)
     {
-        if (clazz.Equals(typeof(ButtonMenu)))
+        if (clazz.Equals(typeof(ButtonFriends)))
         {
             m_FollowingMenuListener.openMenu();
         }

@@ -20,6 +20,8 @@ public class AppController : MonoBehaviour, SwitchTourListener {
     private VisitSettingsFactory m_VisitSettingsFactory;
 
     void Start () {
+        QualitySettings.antiAliasing = 2;
+
         beginApp();
     }
 
