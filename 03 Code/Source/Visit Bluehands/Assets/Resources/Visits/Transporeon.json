@@ -1,0 +1,99 @@
+{
+	"id":"Transporeon",
+	"title":"Transporeon",
+	"author":"Marcel Weigel",
+	"created":"3.3.2017",
+	"previewNodeIndex":0,
+	"nodeSettings":[
+		{
+		  "id": "P1",
+		  "title": "Empfang",
+		  "position": {
+			"x": 60.0,
+			"y": 0.0,
+			"z": -60.0
+		  },
+		  "edgeSettings":[
+				{
+					"toId":"P2",
+					"u":0.55,
+					"v":0.64
+				}]
+		},
+		{
+		  "id": "P2",
+		  "title": "Halle",
+		  "position": {
+			"x": 30.0,
+			"y": 0.0,
+			"z": -30.0
+		  },
+		  "edgeSettings":[
+				{
+					"toId":"P1",
+					"u":0.87,
+					"v":0.57
+				},
+				{
+					"toId":"P3",
+					"u":0.14,
+					"v":0.55
+				},
+				{
+					"toId":"P4",
+					"u":0.60,
+					"v":0.37
+				}]
+		},
+		{
+		  "id": "P3",
+		  "title": "Cafeteria",
+		  "position": {
+			"x": 0.0,
+			"y": 0.0,
+			"z": -60.0
+		  },
+		  "edgeSettings":[
+				{
+					"toId":"P2",
+					"u":0.61,
+					"v":0.55
+				}]
+		},
+		{
+		  "id": "P4",
+		  "title": "Empore",
+		  "position": {
+			"x": 60.0,
+			"y": 30.0,
+			"z": 0.0
+		  },
+		  "edgeSettings":[
+				{
+					"toId":"P2",
+					"u":0.24,
+					"v":0.66
+				},
+				{
+					"toId":"P5",
+					"u":0.74,
+					"v":0.63
+				}]
+		},
+		{
+		  "id": "P5",
+		  "title": "Customer Services",
+		  "position": {
+			"x": 60.0,
+			"y": 30.0,
+			"z": -60.0
+		  },
+		  "edgeSettings":[
+				{
+					"toId":"P4",
+					"u":0.51,
+					"v":0.62
+				}]
+		}
+	]
+}

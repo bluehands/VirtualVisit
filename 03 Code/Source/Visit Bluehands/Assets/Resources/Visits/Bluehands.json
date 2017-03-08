@@ -21,20 +21,8 @@
 				}],
 				"markSettings":[
 				{
-					"title":"Turm",
-					"description":"Hauptsitz der Volkswohungen, die in Karlsruhe einige Wohungen für Sozialenwohunraum vermieten.",
-					"u":0.892,
-					"v":0.445
-				},
-				{
-					"title":"Schirm",
-					"description":"Schütz im Sommer gegen den starken Sonneneinfall.",
-					"u":0.314,
-					"v":0.340
-				},
-				{
 					"title":"Rad",
-					"description":"Mountainbike von Oli, mit dem er zur arbeit kommt.",
+					"description":"Mountainbike von Oli, mit dem er zur Arbeit kommt.",
 					"u":0.847,
 					"v":0.681
 				},
@@ -72,7 +60,7 @@
 				"markSettings":[
 				{
 					"title":"Ali Moinzadeh",
-					"description":"Gib ihm eine Schaufel und er trägt einen ganzen Berg ab.",
+					"description":"Das bluehands Urgestein.",
 					"u":0.215,
 					"v":0.51
 				},
@@ -98,12 +86,6 @@
 					"title":"Joe",
 					"description":"Google Glass V.0 vom Jahre 2005.",
 					"u":0.40,
-					"v":0.50
-				},
-				{
-					"title":"Benjamini",
-					"description":"Grünt das ganze Jahr.",
-					"u":0.70,
 					"v":0.50
 				}]
 			},
@@ -240,7 +222,7 @@
 				"markSettings":[
 				{
 					"title":"Lars Kaufmann",
-					"description":"Nomen Et Omen.",
+					"description":"Nomen est omen.",
 					"u":0.76,
 					"v":0.59
 				}]
