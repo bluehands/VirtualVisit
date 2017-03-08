@@ -96,6 +96,7 @@ public class Visit : MonoBehaviour, VisitEdgeListener
         {
             node.Initialize(visitNodeSetting.id, visitNodeSetting.title, visitNodeSetting.position, transform, textureLeft);
         }
+
         return node; 
     }
 
