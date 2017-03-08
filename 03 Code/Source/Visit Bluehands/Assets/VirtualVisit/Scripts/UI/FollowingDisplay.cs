@@ -37,7 +37,7 @@ public class FollowingDisplay : FollowingBase, FollowingMenuListener, ButtonList
         var offsetPitch = -5;
         var offsetYaw = -5;
         var fullYawAngle = (visitSettings.Length / 2) * yawAngle;
-        var startYawAngle = -(fullYawAngle / 2);
+        var startYawAngle = -(fullYawAngle / 2) + (yawAngle/2);
         
 
         for (int i=0; i< visitSettings.Length; i++)
@@ -45,7 +45,7 @@ public class FollowingDisplay : FollowingBase, FollowingMenuListener, ButtonList
             var yaw = 0f;
             var pitch = 0f;
 
-            if(i%2 == 0)
+            if(i%2 != 0)
             {
                 yaw = startYawAngle;
                 pitch = pitchAngle;
