@@ -10,3 +10,5 @@
 03 Code/Website/visit.bluehands.de/bin/
 03 Code/Website/visit.bluehands.de/obj/Debug/
 03 Code/Website/visit.bluehands.de/obj/
+*.suo
+/.vs

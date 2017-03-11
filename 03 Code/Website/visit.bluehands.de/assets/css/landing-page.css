@@ -93,6 +93,7 @@ a {
     padding: 8px 16px;
     border-color: #888888;
     color: #888888;
+    cursor: pointer;
 }
 
     .btn:hover, .btn:focus, .btn:active, .btn.active, .open > .btn.dropdown-toggle {
@@ -856,6 +857,11 @@ a {
         margin-top: 10px;
     }
 
+.landing-page .footnote {
+    font-size: 10px;
+    margin-top:30px;
+    color: white;
+}
 .landing-page .social-line {
     border-bottom: 1px solid #dddddd;
 }
