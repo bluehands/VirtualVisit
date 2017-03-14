@@ -1,123 +1,80 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
-using System;
+﻿using System;
+using UnityEngine;
 
-public class VisitController : MonoBehaviour, VisitPathListener, FollowingDisplayListener
+namespace Assets.VirtualVisit.Scripts
 {
-    public VisitPoint pointPrefab;
-
-    private VisitSetting m_VisitSettings;
-
-    private List<VisitPoint> m_VisitPoints;
-
-    private VisitPoint m_CurrerntVisitPoint;
-
-    public void Initialize(VisitSetting visitSettings)
+    public class VisitController : MonoBehaviour, VisitPathListener, FollowingDisplayListener
     {
-        m_VisitSettings = visitSettings;
+        public VisitPoint PointPrefab;
 
-        m_VisitPoints = new List<VisitPoint>();
-        foreach (var visitNodeSetting in m_VisitSettings.nodeSettings)
+        private VisitSetting _visitSettings;
+
+        private VisitPointDictionary _visitPointDictionary;
+
+        private VisitPoint _currerntVisitPoint;
+
+        public void Initialize(VisitSetting visitSettings)
         {
-            var node = createNode(m_VisitSettings, visitNodeSetting);
-            m_VisitPoints.Add(node);
-        }
+            _visitSettings = visitSettings;
 
-        foreach (var visitNodeSetting in m_VisitSettings.nodeSettings)
-        {
-            var fromPoint = getPoint(visitNodeSetting.id);
+            _visitPointDictionary = new VisitPointDictionary(visitSettings.id);
 
-            foreach (var edgeId in visitNodeSetting.getEdgeIds())
+            foreach (var visitNodeSetting in _visitSettings.nodeSettings)
             {
-                var toPoint = getPoint(edgeId);
-                fromPoint.createEdge(toPoint, this);
+                var point = CreatePoint(_visitSettings, visitNodeSetting);
+                _visitPointDictionary.Insert(point);
             }
-            if (visitNodeSetting.edgeSettings != null)
+
+            foreach (var visitNodeSetting in _visitSettings.nodeSettings)
             {
-                foreach (var edgeSetting in visitNodeSetting.edgeSettings)
-                {
-                    var toPoint = getPoint(edgeSetting.toId);
-                    fromPoint.createEdge(toPoint, this, edgeSetting.u, edgeSetting.v);
-                }
+                var point = _visitPointDictionary.LockUp(visitNodeSetting.id);
+                point.Generate(visitNodeSetting, _visitPointDictionary, this);
             }
-            if (visitNodeSetting.markSettings != null)
+
+            _currerntVisitPoint = _visitPointDictionary.GetFirst();
+            if (_currerntVisitPoint != null)
             {
-                foreach (var visitMarkSetting in visitNodeSetting.markSettings)
-                {
-                    fromPoint.createMark(visitMarkSetting.title, visitMarkSetting.description, visitMarkSetting.u, visitMarkSetting.v);
-                }
+                _currerntVisitPoint.GoThere();
             }
         }
 
-        foreach (var visitPoint in m_VisitPoints)
+        private VisitPoint CreatePoint(VisitSetting visitSettings, VisitNodeSetting visitNodeSetting)
         {
-            visitPoint.Leave();
+            var node = Instantiate(PointPrefab);
+            node.Initialize(visitSettings, visitNodeSetting, transform);
+            return node;
         }
-        m_CurrerntVisitPoint = m_VisitPoints[0];
-        m_VisitPoints[0].GoThere();
-    }
 
-    private VisitPoint createNode(VisitSetting visitSettings, VisitNodeSetting visitNodeSetting)
-    {
-        var node = Instantiate(pointPrefab) as VisitPoint;
-
-        Texture textureLeft = null;
-        Texture textureRight = null;
-
-        bool isStereo = TexturesFactory.TryToLoadPointTextures(visitSettings.id, visitNodeSetting.id, out textureLeft, out textureRight);
-
-        if (isStereo)
+        public void Go(VisitPath path)
         {
-            node.Initialize(visitNodeSetting.id, visitNodeSetting.title, visitNodeSetting.position, transform, textureLeft, textureRight);
+            var fromPoint = path.FromPoint;
+            var toPoint = path.ToPoint;
+
+            Debug.Log(String.Format("MoveTo({0},{1})", fromPoint.Id, toPoint.Id));
+
+            fromPoint.Leave();
+            toPoint.GoThereFrom(fromPoint);
+            _currerntVisitPoint = toPoint;
         }
-        else
-        {
-            node.Initialize(visitNodeSetting.id, visitNodeSetting.title, visitNodeSetting.position, transform, textureLeft);
-        }
-        return node;
-    }
 
-    private VisitPoint getPoint(string id)
-    {
-        for (int i = 0; i < m_VisitPoints.Count; i++)
+        public void openDisplay()
         {
-            if (m_VisitPoints[i].Id.Equals(id))
+            _currerntVisitPoint.FadeOut();
+            foreach (var visitPoint in _visitPointDictionary.GetAll())
             {
-                return m_VisitPoints[i];
+                visitPoint.SetEdgesActive(false);
+                visitPoint.SetMarksActive(false);
             }
         }
-        throw new InvalidOperationException(String.Format("Tour couldn't find node for {0} in visit {1}.", id, m_VisitSettings.id));
-    }
 
-    public void Go(VisitPath path)
-    {
-        var fromPoint = path.FromPoint;
-        var toPoint = path.ToPoint;
-
-        Debug.Log(String.Format("MoveTo({0},{1})", fromPoint.Id, toPoint.Id));
-
-        fromPoint.Leave();
-        toPoint.GoThereFrom(fromPoint);
-        m_CurrerntVisitPoint = toPoint;
-    }
-
-    public void openDisplay()
-    {
-        m_CurrerntVisitPoint.FadeOut();
-        foreach (var visitPoint in m_VisitPoints)
+        public void closeDisplay()
         {
-            visitPoint.SetEdgesActive(false);
-            visitPoint.SetMarksActive(false);
-        }
-    }
-
-    public void closeDisplay()
-    {
-        m_CurrerntVisitPoint.FadeIn();
-        foreach (var visitPoint in m_VisitPoints)
-        {
-            visitPoint.SetEdgesActive(true);
-            visitPoint.SetMarksActive(true);
+            _currerntVisitPoint.FadeIn();
+            foreach (var visitPoint in _visitPointDictionary.GetAll())
+            {
+                visitPoint.SetEdgesActive(true);
+                visitPoint.SetMarksActive(true);
+            }
         }
     }
 }

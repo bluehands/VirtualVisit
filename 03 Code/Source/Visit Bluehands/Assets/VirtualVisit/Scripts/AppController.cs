@@ -16,7 +16,7 @@ namespace Assets.VirtualVisit.Scripts
         private VisitSettingsFactory _visitSettingsFactory;
 
         internal void Start() {
-            QualitySettings.antiAliasing = 2;
+            //QualitySettings.antiAliasing = 2;
 
             BeginApp();
         }
@@ -27,34 +27,46 @@ namespace Assets.VirtualVisit.Scripts
             {
                 Screen.fullScreen = !Screen.fullScreen;
             }
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                Application.Quit();
+            }
         }
 
         private void BeginApp()
         {
             _visitSettingsFactory = new VisitSettingsFactory();
 
+            var visitSettings = _visitSettingsFactory.GetVisitSettings();
+
             string visitId = ApplicationModel.SelectedVisitId;
             if (visitId.Equals(""))
             {
-                visitId = StartVisit;
+                _followingDisplay = Instantiate(FollowingDisplayPrefab);
+                _followingDisplay.Initialize(visitSettings, this);
+
+                _followingMenu = Instantiate(FollowingMenuPrefab);
+                _followingMenu.Initialize(_followingDisplay);
+                _followingMenu.openDisplay();
             }
+            else
+            {
+                var visitSetting = _visitSettingsFactory.GetVisitSetting(visitId);
 
-            var visitSetting = _visitSettingsFactory.GetVisitSetting(visitId);
-            var visitSettings = _visitSettingsFactory.GetVisitSettings();
+                _visitController = Instantiate(VisitControllerPrefab);
+                _visitController.Initialize(visitSetting);
 
-            _visitController = Instantiate(VisitControllerPrefab);
-            _visitController.Initialize(visitSetting);
+                _followingDisplay = Instantiate(FollowingDisplayPrefab);
+                _followingDisplay.Initialize(visitSettings, this);
 
-            _followingDisplay = Instantiate(FollowingDisplayPrefab);
-            _followingDisplay.Initialize(visitSettings, this);
+                _followingMenu = Instantiate(FollowingMenuPrefab);
+                _followingMenu.Initialize(_followingDisplay);
 
-            _followingMenu = Instantiate(FollowingMenuPrefab);
-            _followingMenu.Initialize(_followingDisplay);
+                _followingDisplay.addListener(_visitController);
+                _followingDisplay.addListener(_followingMenu);
 
-            _followingDisplay.addListener(_visitController);
-            _followingDisplay.addListener(_followingMenu);
-
-            _followingDisplay.close();
+                _followingDisplay.close();
+            }
         }
 
         public void SwitchTour(string nextVisitId)

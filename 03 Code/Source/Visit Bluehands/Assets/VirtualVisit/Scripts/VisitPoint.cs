@@ -1,307 +1,375 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
-using System;
+﻿using System.Collections.Generic;
+using System.Threading;
+using UnityEngine;
 
-public class VisitPoint : MonoBehaviour {
+namespace Assets.VirtualVisit.Scripts
+{
+    public class VisitPoint : MonoBehaviour {
 
-    enum PointState
-    {
-        None,
-        Visible,
-        ChangePoint,
-        FadedOut,
-        FadingIn,
-        FadingOut
-    }
-
-    private const int LEFT_EYE = 0;
-    private const int RIGHT_EYE = 1;
-
-    private const string MAIN_TEXTURE = "_MainTex";
-    private const string BLEND_TEXTURE = "_BlendTex";
-    private const string BLEND_ALPHA = "_BlendAlpha";
-
-    public string Id { get; private set; }
-
-    public string Title { get; private set; }
-
-    public Vector3 Position { get; private set; }
-
-    public Texture SphereTextureLeft { get; private set; }
-
-    public Texture SphereTextureRight { get; private set; }
-
-    public Texture FadeOutTexture;
-
-    public bool IsStereo { get; private set; }
-
-    public VisitPath pathPrefab;
-
-    public VisitMark markPrefab;
-
-    //private VisitPoint m_LastFromPoint;
-    private Texture m_FadeOutTextureLeft;
-    private Texture m_FadeOutTextureRight;
-
-    private List<VisitPath> m_Paths;
-
-    private List<VisitMark> m_Marks;
-
-    private float m_BlendAlpha = 1;
-
-    private PointState m_PointState = PointState.None;
-
-    public enum BlendMode
-    {
-        Opaque,
-        Cutout,
-        Fade,
-        Transparent
-    }
-
-    private Transform getLeftSphere()
-    {
-        return transform.GetChild(LEFT_EYE);
-    }
-
-    private Transform getRightSphere()
-    {
-        return transform.GetChild(RIGHT_EYE);
-    }
-
-    public void Initialize(string id, string title, Vector3 position, Transform parent, Texture sphereTexture)
-    {
-        init(id, title, position, parent);
-        SphereTextureLeft = sphereTexture;
-        IsStereo = false;
-
-        initSphere(getLeftSphere(), SphereTextureLeft, LayerMask.NameToLayer("Default"));
-        getRightSphere().GetComponent<Renderer>().enabled = false;
-    }
-
-    public void Initialize(string id, string title, Vector3 position, Transform parent, Texture sphereLeft, Texture sphereRight)
-    {
-        init(id, title, position, parent);
-        SphereTextureLeft = sphereLeft;
-        SphereTextureRight = sphereRight;
-        IsStereo = true;
-
-        initSphere(getLeftSphere(), SphereTextureLeft, LayerMask.NameToLayer("Left Eye"));
-        initSphere(getRightSphere(), SphereTextureRight, LayerMask.NameToLayer("Right Eye"));
-
-    }
-
-    internal void createEdge(VisitPoint toPoint, VisitPathListener visitPathListener)
-    {
-        var path = Instantiate(pathPrefab) as VisitPath;
-
-        path.Initialize(this, toPoint, visitPathListener);
-
-        m_Paths.Add(path);
-    }
-
-    internal void createEdge(VisitPoint toPoint, VisitPathListener visitPathListener, float u, float v)
-    {
-        var path = Instantiate(pathPrefab) as VisitPath;
-
-        path.Initialize(this, toPoint, visitPathListener, u, v);
-
-        m_Paths.Add(path);
-    }
-
-    internal void createMark(string title, string description, float u, float v)
-    {
-        VisitMark mark = Instantiate(markPrefab) as VisitMark;
-
-        mark.Initialize(title, description, u, v, transform);
-
-        m_Marks.Add(mark);
-    }
-
-    private void initSphere(Transform sphere, Texture texture, int layerMask)
-    {
-        Renderer renderer = sphere.GetComponent<Renderer>();
-        renderer.enabled = true;
-        renderer.material.SetTextureScale(MAIN_TEXTURE, new Vector2(-1, 1));
-        renderer.material.mainTexture = texture;
-        sphere.gameObject.layer = layerMask;
-    }
-
-    private void init(string id, string title, Vector3 position, Transform parent)
-    {
-        Id = id;
-        Title = title;
-        Position = position;
-
-        transform.parent = parent;
-        name = String.Format("VisitPoint({0})", id);
-
-        m_Paths = new List<VisitPath>();
-        m_Marks = new List<VisitMark>();
-    }
-
-    internal bool IsStereoView()
-    {
-        return getLeftSphere().gameObject.layer == LayerMask.NameToLayer("Left Eye");
-    }
-
-    internal bool ToggleStereoView()
-    {
-        if (IsStereo)
+        enum PointState
         {
-            if (getLeftSphere().gameObject.layer == LayerMask.NameToLayer("Left Eye"))
+            None,
+            Visible,
+            ChangePoint,
+            FadedOut,
+            FadingIn,
+            FadingOut
+        }
+
+        // ReSharper disable once InconsistentNaming
+        private const int LEFT_EYE = 0;
+        // ReSharper disable once InconsistentNaming
+        private const int RIGHT_EYE = 1;
+
+        // ReSharper disable once InconsistentNaming
+        private const string MAIN_TEXTURE = "_MainTex";
+        // ReSharper disable once InconsistentNaming
+        private const string BLEND_TEXTURE = "_BlendTex";
+        // ReSharper disable once InconsistentNaming
+        private const string BLEND_ALPHA = "_BlendAlpha";
+
+        public string VisitId { get; private set; }
+
+        public string Id { get; private set; }
+
+        public string Title { get; private set; }
+
+        public Vector3 Position { get; private set; }
+
+        public Texture SphereTextureLeft { get; private set; }
+
+        public Texture SphereTextureRight { get; private set; }
+
+        public Texture FadeOutTexture;
+
+        public bool IsStereo { get; private set; }
+
+        public VisitPath PathPrefab;
+
+        public VisitMark MarkPrefab;
+
+        private Texture _fadeOutTextureLeft;
+        private Texture _fadeOutTextureRight;
+
+        private List<VisitPath> _paths;
+
+        private List<VisitMark> _marks;
+
+        private float _blendAlpha = 1;
+
+        private PointState _pointState = PointState.None;
+
+        private bool _isLoaded;
+
+        public enum BlendMode
+        {
+            Opaque,
+            Cutout,
+            Fade,
+            Transparent
+        }
+
+        private Transform GetLeftSphere()
+        {
+            return transform.GetChild(LEFT_EYE);
+        }
+
+        private Transform GetRightSphere()
+        {
+            return transform.GetChild(RIGHT_EYE);
+        }
+
+        public void Initialize(VisitSetting visitSettings, VisitNodeSetting nodeSetting, Transform parent)
+        {
+            VisitId = visitSettings.id;
+            Id = nodeSetting.id;
+            Title = nodeSetting.title;
+            Position = nodeSetting.position;
+
+            transform.parent = parent;
+            name = string.Format("VisitPoint({0})", Id);
+
+            _paths = new List<VisitPath>();
+            _marks = new List<VisitMark>();
+        }
+
+        public void Generate(VisitNodeSetting visitNodeSetting, VisitPointDictionary visitPointDictionary, VisitPathListener visitPathListener)
+        {
+            GeneratePaths(visitNodeSetting, visitPointDictionary, visitPathListener);
+
+            GenerateMarks(visitNodeSetting, visitPointDictionary);
+
+            Leave();
+        }
+
+
+        private void GeneratePaths(VisitNodeSetting visitNodeSetting, VisitPointDictionary visitPointDictionary, VisitPathListener visitPathListener)
+        {
+            var fromPoint = visitPointDictionary.LockUp(Id);
+
+            foreach (var edgeId in visitNodeSetting.getEdgeIds())
             {
-                getLeftSphere().gameObject.layer = LayerMask.NameToLayer("Default");
-                getRightSphere().gameObject.SetActive(false);
-                return false;
+                var toPoint = visitPointDictionary.LockUp(edgeId);
+                fromPoint.CreateEdge(toPoint, visitPathListener);
+            }
+            if (visitNodeSetting.edgeSettings != null)
+            {
+                foreach (var edgeSetting in visitNodeSetting.edgeSettings)
+                {
+                    var toPoint = visitPointDictionary.LockUp(edgeSetting.toId);
+                    fromPoint.CreateEdge(toPoint, visitPathListener, edgeSetting.u, edgeSetting.v);
+                }
+            }
+        }
+
+        private void GenerateMarks(VisitNodeSetting visitNodeSetting, VisitPointDictionary visitPointDictionary)
+        {
+            var fromPoint = visitPointDictionary.LockUp(Id);
+
+            if (visitNodeSetting.markSettings != null)
+            {
+                foreach (var visitMarkSetting in visitNodeSetting.markSettings)
+                {
+                    fromPoint.CreateMark(visitMarkSetting.title, visitMarkSetting.description, visitMarkSetting.u, visitMarkSetting.v);
+                }
+            }
+        }
+
+        private void CheckIfTexturesLoaded()
+        {
+            if (!_isLoaded)
+            {
+                LoadTextures();
+            }
+        }
+
+        private void LoadTextures()
+        {
+            Texture textureLeft;
+            Texture textureRight;
+
+            IsStereo = TexturesFactory.TryToLoadPointTextures(VisitId, Id, out textureLeft, out textureRight);
+
+            SphereTextureLeft = textureLeft;
+            SphereTextureRight = textureRight;
+
+            InitSphere(GetLeftSphere(), SphereTextureLeft, LayerMask.NameToLayer("Left Eye"));
+        
+            if (IsStereo)
+            {
+                InitSphere(GetRightSphere(), SphereTextureRight, LayerMask.NameToLayer("Right Eye"));
             }
             else
             {
-                getLeftSphere().gameObject.layer = LayerMask.NameToLayer("Left Eye");
-                getRightSphere().gameObject.SetActive(true);
-                return true;
+                GetRightSphere().GetComponent<Renderer>().enabled = false;
+            }
+
+            _isLoaded = true;
+        }
+
+        private void CreateEdge(VisitPoint toPoint, VisitPathListener visitPathListener)
+        {
+            var path = Instantiate(PathPrefab);
+
+            path.Initialize(this, toPoint, visitPathListener);
+
+            _paths.Add(path);
+        }
+
+        private void CreateEdge(VisitPoint toPoint, VisitPathListener visitPathListener, float u, float v)
+        {
+            var path = Instantiate(PathPrefab);
+
+            path.Initialize(this, toPoint, visitPathListener, u, v);
+
+            _paths.Add(path);
+        }
+
+        private void CreateMark(string title, string description, float u, float v)
+        {
+            VisitMark mark = Instantiate(MarkPrefab);
+
+            mark.Initialize(title, description, u, v, transform);
+
+            _marks.Add(mark);
+        }
+
+        private void InitSphere(Transform sphere, Texture texture, int layerMask)
+        {
+            Renderer ren = sphere.GetComponent<Renderer>();
+            ren.enabled = true;
+            ren.material.SetTextureScale(MAIN_TEXTURE, new Vector2(-1, 1));
+            ren.material.mainTexture = texture;
+            sphere.gameObject.layer = layerMask;
+        }
+
+        internal bool IsStereoView()
+        {
+            return GetLeftSphere().gameObject.layer == LayerMask.NameToLayer("Left Eye");
+        }
+
+        internal bool ToggleStereoView()
+        {
+            if (IsStereo)
+            {
+                if (GetLeftSphere().gameObject.layer == LayerMask.NameToLayer("Left Eye"))
+                {
+                    GetLeftSphere().gameObject.layer = LayerMask.NameToLayer("Default");
+                    GetRightSphere().gameObject.SetActive(false);
+                    return false;
+                }
+                else
+                {
+                    GetLeftSphere().gameObject.layer = LayerMask.NameToLayer("Left Eye");
+                    GetRightSphere().gameObject.SetActive(true);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public void AddPath(VisitPath path)
+        {
+            _paths.Add(path);
+        }
+
+        public List<VisitPath> GetPaths()
+        {
+            return _paths;
+        }
+
+        public void SetEdgesActive(bool active)
+        {
+            foreach (var edge in _paths)
+            {
+                edge.gameObject.SetActive(active);
             }
         }
-        return false;
-    }
 
-    public void AddPath(VisitPath path)
-    {
-        m_Paths.Add(path);
-    }
-
-    public List<VisitPath> GetPaths()
-    {
-        return m_Paths;
-    }
-
-    public void SetEdgesActive(bool active)
-    {
-        foreach (var edge in m_Paths)
+        public void SetMarksActive(bool active)
         {
-            edge.gameObject.SetActive(active);
+            foreach (var mark in _marks)
+            {
+                mark.gameObject.SetActive(active);
+            }
         }
-    }
 
-    public void SetMarksActive(bool active)
-    {
-        foreach (var mark in m_Marks)
+        internal void Leave()
         {
-            mark.gameObject.SetActive(active);
+            gameObject.SetActive(false);
         }
-    }
 
-    internal void Leave()
-    {
-        gameObject.SetActive(false);
-    }
-
-    internal void GoThere()
-    {
-        setAlpha(0.0f);
-
-        gameObject.SetActive(true);
-    }
-
-    internal void GoThereFrom(VisitPoint point)
-    {
-        setAlpha(1.0f);
-
-        m_BlendAlpha = 1;
-        m_FadeOutTextureLeft = point.SphereTextureLeft;
-        m_FadeOutTextureRight = IsStereo && point.IsStereo ? point.SphereTextureRight : point.SphereTextureLeft;
-
-        SetEdgesActive(false);
-        gameObject.SetActive(true);
-        m_PointState = PointState.ChangePoint;
-    }
-
-    private void setAlpha(float alpha)
-    {
-        Renderer rendLeft = getLeftSphere().GetComponent<Renderer>();
-        Renderer rendRight = getRightSphere().GetComponent<Renderer>();
-
-        rendLeft.material.SetFloat(BLEND_ALPHA, alpha);
-        rendRight.material.SetFloat(BLEND_ALPHA, alpha);
-    }
-
-    public void FadeOut()
-    {
-        m_BlendAlpha = 1;
-
-        m_PointState = PointState.FadingOut;
-    }
-
-    public void FadeIn()
-    {
-        Renderer rendLeft = getLeftSphere().GetComponent<Renderer>();
-        Renderer rendRight = getRightSphere().GetComponent<Renderer>();
-
-        rendLeft.material.SetTexture(BLEND_TEXTURE, FadeOutTexture);
-        rendRight.material.SetTexture(BLEND_TEXTURE, FadeOutTexture);
-
-        setAlpha(0);
-    }
-
-    void Update()
-    {
-        Renderer rendLeft = getLeftSphere().GetComponent<Renderer>();
-        Renderer rendRight = getRightSphere().GetComponent<Renderer>();
-        if (m_PointState == PointState.ChangePoint)
+        internal void GoThere()
         {
-            if (m_BlendAlpha == 1)
-            {
-                rendLeft.material.SetTexture(BLEND_TEXTURE, m_FadeOutTextureLeft);
-                rendRight.material.SetTexture(BLEND_TEXTURE, m_FadeOutTextureRight);
-            }
-            if (m_BlendAlpha >= 0)
-            {
-                setAlpha(m_BlendAlpha);
-            }
-            if (m_BlendAlpha <= 0)
-            {
-                setAlpha(0);
-                m_FadeOutTextureLeft = null;
-                m_FadeOutTextureRight = null;
-                SetEdgesActive(true);
-                m_PointState = PointState.Visible;
-            }
-            m_BlendAlpha = m_BlendAlpha - 0.1f;
-        } else if(m_PointState == PointState.FadingOut)
-        {
-            if (m_BlendAlpha == 1)
-            {
-                rendLeft.material.SetTexture(BLEND_TEXTURE, FadeOutTexture);
-                rendRight.material.SetTexture(BLEND_TEXTURE, FadeOutTexture);
-            }
-            if (m_BlendAlpha >= 0)
-            {
-                setAlpha(0.5f - (m_BlendAlpha/2));
-            }
-            if (m_BlendAlpha <= 0)
-            {
-                setAlpha(0.5f);
-                m_PointState = PointState.FadedOut;
-            }
-            m_BlendAlpha = m_BlendAlpha - 0.1f;
-        } else if (m_PointState == PointState.FadingIn)
-        {
-            if (m_BlendAlpha == 1)
-            {
-                rendLeft.material.SetTexture(BLEND_TEXTURE, FadeOutTexture);
-                rendRight.material.SetTexture(BLEND_TEXTURE, FadeOutTexture);
-            }
-            if (m_BlendAlpha >= 0)
-            {
-                setAlpha(m_BlendAlpha);
-            }
-            if (m_BlendAlpha <= 0)
-            {
-                setAlpha(0);
-                m_PointState = PointState.Visible;
-            }
-            m_BlendAlpha = m_BlendAlpha - 0.1f;
+            CheckIfTexturesLoaded();
+
+            SetAlpha(0.0f);
+
+            gameObject.SetActive(true);
         }
-    }
 
+        internal void GoThereFrom(VisitPoint point)
+        {
+            CheckIfTexturesLoaded();
+
+            SetAlpha(1.0f);
+
+            _blendAlpha = 1;
+            _fadeOutTextureLeft = point.SphereTextureLeft;
+            _fadeOutTextureRight = IsStereo && point.IsStereo ? point.SphereTextureRight : point.SphereTextureLeft;
+
+            SetEdgesActive(false);
+            gameObject.SetActive(true);
+            _pointState = PointState.ChangePoint;
+        }
+
+        private void SetAlpha(float alpha)
+        {
+            Renderer rendLeft = GetLeftSphere().GetComponent<Renderer>();
+            Renderer rendRight = GetRightSphere().GetComponent<Renderer>();
+
+            rendLeft.material.SetFloat(BLEND_ALPHA, alpha);
+            rendRight.material.SetFloat(BLEND_ALPHA, alpha);
+        }
+
+        public void FadeOut()
+        {
+            _blendAlpha = 1;
+
+            _pointState = PointState.FadingOut;
+        }
+
+        public void FadeIn()
+        {
+            Renderer rendLeft = GetLeftSphere().GetComponent<Renderer>();
+            Renderer rendRight = GetRightSphere().GetComponent<Renderer>();
+
+            rendLeft.material.SetTexture(BLEND_TEXTURE, FadeOutTexture);
+            rendRight.material.SetTexture(BLEND_TEXTURE, FadeOutTexture);
+
+            SetAlpha(0);
+        }
+
+        public void Update()
+        {
+            Renderer rendLeft = GetLeftSphere().GetComponent<Renderer>();
+            Renderer rendRight = GetRightSphere().GetComponent<Renderer>();
+            if (_pointState == PointState.ChangePoint)
+            {
+                if (_blendAlpha == 1)
+                {
+                    rendLeft.material.SetTexture(BLEND_TEXTURE, _fadeOutTextureLeft);
+                    rendRight.material.SetTexture(BLEND_TEXTURE, _fadeOutTextureRight);
+                }
+                if (_blendAlpha >= 0)
+                {
+                    SetAlpha(_blendAlpha);
+                }
+                if (_blendAlpha <= 0)
+                {
+                    SetAlpha(0);
+                    _fadeOutTextureLeft = null;
+                    _fadeOutTextureRight = null;
+                    SetEdgesActive(true);
+                    _pointState = PointState.Visible;
+                }
+                _blendAlpha = _blendAlpha - 0.1f;
+            } else if(_pointState == PointState.FadingOut)
+            {
+                if (_blendAlpha == 1)
+                {
+                    rendLeft.material.SetTexture(BLEND_TEXTURE, FadeOutTexture);
+                    rendRight.material.SetTexture(BLEND_TEXTURE, FadeOutTexture);
+                }
+                if (_blendAlpha >= 0)
+                {
+                    SetAlpha(0.5f - (_blendAlpha/2));
+                }
+                if (_blendAlpha <= 0)
+                {
+                    SetAlpha(0.5f);
+                    _pointState = PointState.FadedOut;
+                }
+                _blendAlpha = _blendAlpha - 0.1f;
+            } else if (_pointState == PointState.FadingIn)
+            {
+                if (_blendAlpha == 1)
+                {
+                    rendLeft.material.SetTexture(BLEND_TEXTURE, FadeOutTexture);
+                    rendRight.material.SetTexture(BLEND_TEXTURE, FadeOutTexture);
+                }
+                if (_blendAlpha >= 0)
+                {
+                    SetAlpha(_blendAlpha);
+                }
+                if (_blendAlpha <= 0)
+                {
+                    SetAlpha(0);
+                    _pointState = PointState.Visible;
+                }
+                _blendAlpha = _blendAlpha - 0.1f;
+            }
+        }
+
+    }
 }

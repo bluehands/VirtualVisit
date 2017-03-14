@@ -1,5 +1,9 @@
 ﻿
-public interface VisitPathListener
+namespace Assets.VirtualVisit.Scripts
 {
-    void Go(VisitPath path);
+    // ReSharper disable once InconsistentNaming
+    public interface VisitPathListener
+    {
+        void Go(VisitPath path);
+    }
 }

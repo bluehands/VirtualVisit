@@ -15,13 +15,6 @@ public class VisitMark : MonoBehaviour {
         m_ButtonMark.Initialize(title, description, transform.FindChild("Canvas Mark").transform);
     }
 
-    void Start () {
-	
-	}
-
-	void Update () {
-	}
-
     private void rotateToMarke(float u, float v)
     {
         float xRot = 180 * v - 90;
