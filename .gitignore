@@ -1,0 +1,14 @@
+################################################################################
+# Diese .gitignore-Datei wurde von Microsoft(R) Visual Studio automatisch erstellt.
+################################################################################
+
+/03 Code/Website/.vs
+/03 Code/Website/packages
+/03 Code/Website/stadtgeist-karlsruhe.de/bin
+/03 Code/Website/stadtgeist-karlsruhe.de/obj
+/03 Code/Website/stadtgeist-karlsruhe.de/visit.bluehands.de.csproj.user
+03 Code/Website/visit.bluehands.de/bin/
+03 Code/Website/visit.bluehands.de/obj/Debug/
+03 Code/Website/visit.bluehands.de/obj/
+*.suo
+/.vs
