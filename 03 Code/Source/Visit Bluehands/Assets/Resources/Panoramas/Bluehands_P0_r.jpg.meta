@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 9ad8edc4b6771e74ea61c10e928122eb
-timeCreated: 1479726669
+timeCreated: 1489779496
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}
@@ -72,6 +72,14 @@ TextureImporter:
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 1
+    allowsAlphaSplitting: 0
+    overridden: 1
+  - buildTarget: Windows Store Apps
+    maxTextureSize: 4096
+    textureFormat: 12
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 1
   spriteSheet:

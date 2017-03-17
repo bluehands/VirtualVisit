@@ -1,39 +1,50 @@
 ﻿using UnityEngine;
-using System;
-
 
 public class TexturesFactory
 {
     internal static bool TryToLoadPointTextures(string visitId, string pointId, out Texture textureLeft, out Texture textureRight)
     {
         bool isStereo;
-        textureLeft = Resources.Load(String.Format("Panoramas\\{0}_{1}_{2}", visitId, pointId, "l")) as Texture;
-        textureRight = Resources.Load(String.Format("Panoramas\\{0}_{1}_{2}", visitId, pointId, "r")) as Texture;
+        var leftPath = string.Format("Panoramas\\{0}_{1}_{2}", visitId, pointId, "l");
+        var rightPath = string.Format("Panoramas\\{0}_{1}_{2}", visitId, pointId, "r");
+        var leftOnlyPath = string.Format("Panoramas\\{0}_{1}", visitId, pointId);
+
+        Debug.Log(string.Format("Try to load texture {0}.", leftPath));
+        Debug.Log(string.Format("Try to load texture {0}.", rightPath));
+        textureLeft = Resources.Load(leftPath) as Texture;
+        textureRight = Resources.Load(rightPath) as Texture;
         if (textureLeft != null && textureRight != null)
         {
             isStereo = true;
         }
         else
         {
-            textureLeft = Resources.Load(String.Format("Panoramas\\{0}_{1}", visitId, pointId)) as Texture;
+            Debug.Log(string.Format("Try to load texture {0}.", leftOnlyPath));
+            textureLeft = Resources.Load(leftOnlyPath) as Texture;
             isStereo = false;
         }
         if (textureLeft == null)
         {
-            Debug.LogWarning(String.Format("Couln't load Panoramas\\{0}_{1} (l/r)", visitId, pointId));
+            Debug.LogWarning(string.Format("Couln't load panoramas for visit {0} and point {1}.", visitId, pointId));
         }
         return isStereo;
     }
 
     internal static bool TryToLoadPreviewTexture(string visitId, out Texture preview)
     {
-        preview = Resources.Load(String.Format("Panoramas\\{0}_Preview", visitId)) as Texture;
+        var path = string.Format("Panoramas\\{0}_Preview", visitId);
+
+        Debug.Log(path);
+        preview = Resources.Load(path) as Texture;
         return preview != null;
     }
 
     internal static bool TryToLoadLogoTexture(string visitId, out Texture logo)
     {
-        logo = Resources.Load(String.Format("Panoramas\\{0}_Logo", visitId)) as Texture;
+        var path = string.Format("Panoramas\\{0}_Logo", visitId);
+
+        Debug.Log(path);
+        logo = Resources.Load(path) as Texture;
         return logo != null;
     }
 }

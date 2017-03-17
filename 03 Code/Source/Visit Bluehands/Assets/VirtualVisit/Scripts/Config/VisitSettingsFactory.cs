@@ -60,9 +60,25 @@ public class VisitSettingsFactory {
 
     private void loadSettings()
     {
+        Debug.Log("Try to load visit settings!");
         var visitSettingJsons = Resources.LoadAll<TextAsset>("Visits\\");
 
         m_VisitSettings = new VisitSetting[visitSettingJsons.Length];
+
+        if (visitSettingJsons.Length == 0)
+        {
+            Debug.Log("Couln't load any visit settings!");
+            var visitSetting = Resources.Load("Visits\\bluehands") as TextAsset;
+            if (visitSetting != null)
+            {
+                m_VisitSettings = new VisitSetting[1];
+                m_VisitSettings[0] = loadVisitSettings(visitSetting);
+            }
+            else
+            {
+                Debug.Log("Couln't load one visit setting!");
+            }
+        }
 
         for(int i=0; i<visitSettingJsons.Length; i++)
         {
