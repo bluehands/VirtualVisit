@@ -7,7 +7,7 @@
 	"nodeSettings":[
 			{
 				"id":"P0",
-				"title":"Terasse",
+				"title":"Terrasse",
 				"position":{	
 					"x":0.0,
 					"y":0.0,
@@ -28,14 +28,14 @@
 				},
 				{
 					"title":"Solaranlage",
-					"description":"Wir erzeugen 80% des Stromsbedarfes unserer Rechner und Server.",
+					"description":"Wir erzeugen 80% des Strombedarfes unserer Rechner und Server.",
 					"u":0.55,
 					"v":0.39
 				}]
 			},
 			{
 				"id":"P1",
-				"title":"BelleVue",
+				"title":"Bellevue",
 				"position":{	
 					"x":10.0,
 					"y":0.0,
@@ -77,14 +77,14 @@
 					"v":0.58
 				},
 				{
-					"title":"Alexander Wiedermann",
-					"description":"[Refector Hero]",
+					"title":"Alexander Wiedemann",
+					"description":"[Refactor Hero]",
 					"u":0.85,
 					"v":0.51
 				},
 				{
 					"title":"Joe",
-					"description":"Google Glass V.0 vom Jahre 2005.",
+					"description":"Google Glass v.0 aus dem Jahre 2005.",
 					"u":0.40,
 					"v":0.50
 				}]
@@ -127,7 +127,7 @@
 				},
 				{
 					"title":"Marcel Danz",
-					"description":"Barbarossa kann kraftvoll Coden.",
+					"description":"Barbarossa kann kraftvoll coden.",
 					"u":0.52,
 					"v":0.61
 				},
