@@ -17,6 +17,6 @@ public class FollowingDisplayBackItem : MonoBehaviour {
         m_ButtonInfoBack.transform.localScale = new Vector3(0.1f, 0.1f, 1f);
 
         Text text = transform.FindChild("Canvas Item").FindChild("Text").GetComponent<Text>();
-        text.text = "Schließen";
+        text.text = "Back";
     }
 }
