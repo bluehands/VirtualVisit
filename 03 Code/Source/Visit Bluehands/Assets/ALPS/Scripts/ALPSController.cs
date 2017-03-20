@@ -68,7 +68,7 @@ public class ALPSController : MonoBehaviour {
         Device = new EditorDevice();
 #elif UNITY_ANDROID
 		Device = new AndroidDevice();
-#elif UNITY_WP_8_1
+#elif UNITY_WP_8_1 || UNITY_WSA
         Device = new WindowsPhoneDevice();
 #elif UNITY_IOS
         Device = new iOSDevice();
