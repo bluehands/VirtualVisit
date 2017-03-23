@@ -30,7 +30,6 @@ public class FollowingDisplayItem : MonoBehaviour, ButtonListener
         text.text = visitTitle;
 
         
-
         Texture preview = null;
         TexturesFactory.TryToLoadPreviewTexture(visitId, out preview);
         if(preview != null)

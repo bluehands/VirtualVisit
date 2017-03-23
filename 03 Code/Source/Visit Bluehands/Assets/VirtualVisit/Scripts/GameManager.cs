@@ -36,18 +36,18 @@ public class GameManager : MonoBehaviour, SwitchTourListener
             visitId = startVisit;
         }
 
-        welcomeTextController.SetTourTitle(m_VisitSettingsFactory.GetVisitSetting(visitId).title);
+        //welcomeTextController.SetTourTitle(m_VisitSettingsFactory.GetVisitSetting(visitId).title);
 
-        m_Visit = Instantiate(visitPrefab) as Visit;
-        m_Visit.Generate(visitId, m_VisitSettingsFactory);
+/*        m_Visit = Instantiate(visitPrefab) as Visit;
+        m_Visit.Generate(visitId, m_VisitSettingsFactory);*/
 
         m_Stage = Instantiate(stagePrefab) as Stage;
         m_Stage.Generate(m_VisitSettingsFactory, this);
 
-        m_Player = Instantiate(playerPrefab) as Player;
+/*        m_Player = Instantiate(playerPrefab) as Player;
         m_Player.Initialize(m_Visit, m_Stage);
 
-        m_Visit.Initialize(m_Player);
+        m_Visit.Initialize(m_Player);*/
     }
 
     public void SwitchTour(string nextVisitId)

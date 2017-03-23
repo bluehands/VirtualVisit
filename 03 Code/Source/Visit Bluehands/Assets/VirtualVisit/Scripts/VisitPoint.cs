@@ -91,6 +91,8 @@ namespace Assets.VirtualVisit.Scripts
 
             _paths = new List<VisitPath>();
             _marks = new List<VisitMark>();
+
+            LoadTextures();
         }
 
         public void Generate(VisitNodeSetting visitNodeSetting, VisitPointDictionary visitPointDictionary, VisitPathListener visitPathListener)

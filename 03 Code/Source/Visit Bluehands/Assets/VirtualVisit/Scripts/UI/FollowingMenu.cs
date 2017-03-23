@@ -17,7 +17,7 @@ public class FollowingMenu : FollowingBase, ButtonListener, FollowingDisplayList
         m_FollowingMenuListener = followingMenuListener;
 
         m_FriendsButton = Instantiate(friendsMenuPrefab) as ButtonFriends;
-        m_FriendsButton.Initialize(GameObject.Find("Canvas Menu").transform, this);
+        m_FriendsButton.Initialize(GameObject.Find("Canvas Friends").transform, this);
     }
 
     void Update()
