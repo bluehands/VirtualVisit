@@ -465,6 +465,10 @@ a {
     background-color: #FFFFFF;
 }
 
+.section-clients.video-container {
+    left: auto !important
+    
+}
 .section-gray {
     background-color: #EEEEEE;
 }
