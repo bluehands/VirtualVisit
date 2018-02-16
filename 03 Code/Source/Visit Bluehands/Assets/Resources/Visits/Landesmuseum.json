@@ -1,0 +1,82 @@
+{
+	"id":"Landesmuseum",
+	"title":"Badisches Landesmuseum Karlsruhe",
+	"author":"Marcel Weigel",
+	"created":"10.02.2018",
+	"previewNodeIndex":0,
+	"nodeSettings":[
+			{
+				"id":"P0",
+				"title":"Antike Villa",
+				"position":{	
+					"x":0.0,
+					"y":0.0,
+					"z":-30.0
+				},
+				"edgeSettings":[
+				{
+					"toId":"P1",
+					"u":0.3,
+					"v":0.5
+				}],
+				"markSettings":[
+				{
+					"title":"Meisterwerk der antiken Skulptur",
+					"description":"Der bestrafte Marsyas.",
+					"u":0.65,
+					"v":0.50
+				},
+				{
+					"title":"Mosaik",
+					"description":"Schiffstransport eines Elefanten.",
+					"u":0.25,
+					"v":0.50
+				},
+				{
+					"title":"Willkommen",
+					"description":"",
+					"u":0.80,
+					"v":0.61
+				}]
+			},
+			{
+				"id":"P1",
+				"title":"Kolonialwarenladen",
+				"position":{	
+					"x":10.0,
+					"y":0.0,
+					"z":0.0
+				},
+				"edgeSettings":[
+				{
+					"toId":"P0",
+					"u":0.37,
+					"v":0.57
+				},
+				{
+					"toId":"P2",
+					"u":0.81,
+					"v":0.57
+				}],
+				"markSettings":[
+				{
+					"title":"Willkommen",
+					"description":"",
+					"u":0.1,
+					"v":0.57
+				}]
+			},
+			{
+			
+				"id":"P2",
+				"title":"Künstler-Atelier",
+				"position":{	
+					"x":20.0,
+					"y":0.0,
+					"z":30.0
+				},
+				"edgeSettings":[],
+				"markSettings":[]
+			}
+	]
+}
