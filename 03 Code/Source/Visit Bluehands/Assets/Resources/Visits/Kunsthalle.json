@@ -23,7 +23,7 @@
 				"markSettings":[
 				{
 					"title":"Willkommen",
-					"description":"Tickets für die Kunsthalle sind auch online erhältlich.",
+					"description":"Tickets für die Kunsthalle sind auch online  erhältlich.",
 					"u":0.50,
 					"v":0.50
 				}
@@ -31,7 +31,7 @@
 			},
 			{
 				"id":"P0",
-				"title":"Entre",
+				"title":"Entrée",
 				"position":{	
 					"x":10.0,
 					"y":5.0,
