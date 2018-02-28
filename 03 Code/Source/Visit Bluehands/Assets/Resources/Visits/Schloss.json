@@ -11,9 +11,108 @@
 				"position":{	
 					"x":0.0,
 					"y":0.0,
-					"z":-30.0
+					"z":0.0
 				},
-				"edgeSettings":[],
+				"edgeSettings":[
+				{
+					"toId":"P1",
+					"u":0.50,
+					"v":0.55
+				}
+				],
+				"markSettings":[]
+			},
+			{
+				"id":"P1",
+				"title":"Turm vorne",
+				"position":{	
+					"x":0.0,
+					"y":0.0,
+					"z":40.0
+				},
+				"edgeSettings":[
+				{
+					"toId":"P2",
+					"u":0.04,
+					"v":0.70
+				},
+				{
+					"toId":"P4",
+					"u":0.68,
+					"v":0.70
+				}
+				],
+				"markSettings":[]
+			},
+			{
+				"id":"P2",
+				"title":"Turm rechts",
+				"position":{	
+					"x":5.0,
+					"y":0.0,
+					"z":45.0
+				},
+				"edgeSettings":[
+				{
+					"toId":"P1",
+					"u":0.71,
+					"v":0.70
+				},
+				{
+					"toId":"P3",
+					"u":0.07,
+					"v":0.70
+				}
+				],
+				"markSettings":[]
+			},
+			{
+				"id":"P3",
+				"title":"Turm hinten",
+				"position":{	
+					"x":0.0,
+					"y":0.0,
+					"z":50.0
+				},
+				"edgeSettings":[
+				{
+					"toId":"P2",
+					"u":0.72,
+					"v":0.70
+				},
+				{
+					"toId":"P4",
+					"u":0.10,
+					"v":0.70
+				},
+				{
+					"toId":"P0",
+					"u":0.93,
+					"v":0.70
+				}
+				],
+				"markSettings":[]
+			},
+			{
+				"id":"P4",
+				"title":"Turm links",
+				"position":{	
+					"x":-5.0,
+					"y":0.0,
+					"z":45.0
+				},
+				"edgeSettings":[
+				{
+					"toId":"P3",
+					"u":0.67,
+					"v":0.70
+				},
+				{
+					"toId":"P1",
+					"u":0.03,
+					"v":0.70
+				}
+				],
 				"markSettings":[]
 			}
 	]
