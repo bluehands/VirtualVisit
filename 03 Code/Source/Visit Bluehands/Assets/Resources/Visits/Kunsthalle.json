@@ -6,6 +6,29 @@
 	"previewNodeIndex":0,
 	"nodeSettings":[
 			{
+				"id":"P4",
+				"title":"Schwind-Fresko",
+				"position":{	
+					"x":0.0,
+					"y":20.0,
+					"z":0.0
+				},
+				"edgeSettings":[
+				{
+					"toId":"P3",
+					"u":0.60,
+					"v":0.71
+				}],
+				"markSettings":[
+				{
+					"title":"Der Olymp im Plafond",
+					"description":"Fresken von Moritz Schwind.",
+					"u":0.60,
+					"v":0.45
+				}
+				]
+			},
+			{
 				"id":"P2",
 				"title":"Foyer",
 				"position":{	
@@ -72,29 +95,6 @@
 				}
 				],
 				"markSettings":[]
-			},
-			{
-				"id":"P4",
-				"title":"Schwind-Fresko",
-				"position":{	
-					"x":0.0,
-					"y":20.0,
-					"z":0.0
-				},
-				"edgeSettings":[
-				{
-					"toId":"P3",
-					"u":0.60,
-					"v":0.71
-				}],
-				"markSettings":[
-				{
-					"title":"Der Olymp im Plafond",
-					"description":"Fresken von Moritz Schwind.",
-					"u":0.60,
-					"v":0.45
-				}
-				]
 			}
 	]
 }
