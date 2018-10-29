@@ -47,7 +47,7 @@ public class PanelMenuItem : MonoBehaviour, ButtonListener {
             m_ButtonInfo.GetComponent<RectTransform>().localPosition = new Vector3(-130, -80, 0);
         }
 
-        RawImage rawImage = transform.FindChild("Background Image").GetComponent<RawImage>();
+        RawImage rawImage = transform.Find("Background Image").GetComponent<RawImage>();
 
         Texture textureLeft = null;
         Texture textureRight = null;
@@ -56,7 +56,7 @@ public class PanelMenuItem : MonoBehaviour, ButtonListener {
 
         rawImage.texture = textureLeft;
 
-        Text text = transform.FindChild("Headline Text").GetComponent<Text>();
+        Text text = transform.Find("Headline Text").GetComponent<Text>();
         text.text = visitSetting.title;
     }
 

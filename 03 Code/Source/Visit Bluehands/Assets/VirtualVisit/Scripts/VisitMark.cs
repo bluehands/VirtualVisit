@@ -12,7 +12,7 @@ public class VisitMark : MonoBehaviour {
         rotateToMarke(u, v);
 
         m_ButtonMark = Instantiate(buttonMarkPrefab) as ButtonMark;
-        m_ButtonMark.Initialize(title, description, transform.FindChild("Canvas Mark").transform);
+        m_ButtonMark.Initialize(title, description, transform.Find("Canvas Mark").transform);
     }
 
     private void rotateToMarke(float u, float v)

@@ -13,10 +13,10 @@ public class FollowingDisplayBackItem : MonoBehaviour {
         transform.rotation = Quaternion.Euler(pitch, yaw, 0);
 
         m_ButtonInfoBack = Instantiate(buttonInfoBackPrefab) as ButtonInfoBack;
-        m_ButtonInfoBack.Initialize(transform.FindChild("Canvas Item"), buttonListener);
+        m_ButtonInfoBack.Initialize(transform.Find("Canvas Item"), buttonListener);
         m_ButtonInfoBack.transform.localScale = new Vector3(0.1f, 0.1f, 1f);
 
-        Text text = transform.FindChild("Canvas Item").FindChild("Text").GetComponent<Text>();
+        Text text = transform.Find("Canvas Item").Find("Text").GetComponent<Text>();
         text.text = "Schließen";
     }
 }
