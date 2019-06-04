@@ -11,5 +11,9 @@
 03 Code/Website/visit.bluehands.de/obj/Debug/
 03 Code/Website/visit.bluehands.de/obj/
 *.suo
-/.vs
+*.vs
+bin
+obj
+packages
+img
 03 Code/Website/visit.bluehands.de/visit.bluehands.de.csproj.user

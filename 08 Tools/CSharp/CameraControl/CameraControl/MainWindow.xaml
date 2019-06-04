@@ -1,0 +1,23 @@
+﻿<Window x:Class="CameraControl.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CameraControl"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="908.333">
+    <Grid>
+        <Slider x:Name="RotateSlider" HorizontalAlignment="Left" Margin="30,24,0,0" VerticalAlignment="Top" Width="250" ValueChanged="RotateSlider_ValueChanged" Maximum="100" TickFrequency="10" TickPlacement="BottomRight"/>
+        <Slider x:Name="TiltSlider" HorizontalAlignment="Left" Margin="30,77,0,0" VerticalAlignment="Top" Width="250" ValueChanged="TiltSlider_ValueChanged" Maximum="4000" TickPlacement="BottomRight" Minimum="1500" TickFrequency="250"/>
+        <Label x:Name="RotateValue" Content="Rot" HorizontalAlignment="Left" Margin="295,20,0,0" VerticalAlignment="Top" Width="30"/>
+        <Label x:Name="TiltValue" Content="Tilt" HorizontalAlignment="Left" Margin="295,73,0,0" VerticalAlignment="Top" Width="40"/>
+        <Label x:Name="RotateCurrentValue" Content="Rot" HorizontalAlignment="Left" Margin="342,20,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.539,-0.555" Width="30"/>
+        <Image x:Name="CameraLeft" HorizontalAlignment="Left" Height="300" Margin="100" VerticalAlignment="Top" Width="250" Source="img/noimage.png"/>
+        <Image x:Name="CameraRight" HorizontalAlignment="Left" Height="300" Margin="448,100,0,0" VerticalAlignment="Top" Width="250" Source="img/noimage.png"/>
+        <Slider x:Name="ExposureSlider" HorizontalAlignment="Left" Margin="420,24,0,0" VerticalAlignment="Top" Width="250" ValueChanged="ExposureSlider_ValueChanged" Maximum="11"/>
+        <Slider x:Name="GainSlider" HorizontalAlignment="Left" Margin="420,77,0,0" VerticalAlignment="Top" Width="250" ValueChanged="GainSlider_ValueChanged" Maximum="255"/>
+        <Label x:Name="ExposureValue" Content="Exp" HorizontalAlignment="Left" Margin="698,24,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="GainValue" Content="Gain" HorizontalAlignment="Left" Margin="698,73,0,0" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>

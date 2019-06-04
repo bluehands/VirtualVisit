@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.452
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CameraControl", "CameraControl\CameraControl.csproj", "{7F768B71-5FD9-4964-AC3E-4A25B95F393C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Serial", "Serial\Serial.csproj", "{5EC51D4D-CA42-40F9-9A84-D501CC578011}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerialConsole", "SerialConsole\SerialConsole.csproj", "{90D3CBCF-A15A-44BA-9D31-FE96C61DE559}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Motion", "Motion\Motion.csproj", "{AA7FD230-182B-4B28-ADD8-EBEE1D5B22DF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MotionConsole", "MotionConsole\MotionConsole.csproj", "{C9F705E8-2C36-4DE0-B9E0-D723DFC3FE23}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Camera", "Camera\Camera.csproj", "{1C25CF4C-687E-46B4-921E-C533DF84AD13}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7F768B71-5FD9-4964-AC3E-4A25B95F393C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F768B71-5FD9-4964-AC3E-4A25B95F393C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F768B71-5FD9-4964-AC3E-4A25B95F393C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F768B71-5FD9-4964-AC3E-4A25B95F393C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5EC51D4D-CA42-40F9-9A84-D501CC578011}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EC51D4D-CA42-40F9-9A84-D501CC578011}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EC51D4D-CA42-40F9-9A84-D501CC578011}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EC51D4D-CA42-40F9-9A84-D501CC578011}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90D3CBCF-A15A-44BA-9D31-FE96C61DE559}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90D3CBCF-A15A-44BA-9D31-FE96C61DE559}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90D3CBCF-A15A-44BA-9D31-FE96C61DE559}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90D3CBCF-A15A-44BA-9D31-FE96C61DE559}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA7FD230-182B-4B28-ADD8-EBEE1D5B22DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA7FD230-182B-4B28-ADD8-EBEE1D5B22DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA7FD230-182B-4B28-ADD8-EBEE1D5B22DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA7FD230-182B-4B28-ADD8-EBEE1D5B22DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9F705E8-2C36-4DE0-B9E0-D723DFC3FE23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9F705E8-2C36-4DE0-B9E0-D723DFC3FE23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9F705E8-2C36-4DE0-B9E0-D723DFC3FE23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9F705E8-2C36-4DE0-B9E0-D723DFC3FE23}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C25CF4C-687E-46B4-921E-C533DF84AD13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C25CF4C-687E-46B4-921E-C533DF84AD13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C25CF4C-687E-46B4-921E-C533DF84AD13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C25CF4C-687E-46B4-921E-C533DF84AD13}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {67999D7A-4AAB-4932-9906-A903AE7FD46E}
+	EndGlobalSection
+EndGlobal
