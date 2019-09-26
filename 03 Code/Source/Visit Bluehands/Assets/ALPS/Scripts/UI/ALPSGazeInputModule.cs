@@ -119,8 +119,8 @@ public class ALPSGazeInputModule : BaseInputModule {
     bool handlePendingClickRequired = !Input.GetMouseButton(0);
 
 #if UNITY_HAS_GOOGLEVR && (UNITY_ANDROID || UNITY_EDITOR)
-    handlePendingClickRequired &= !GvrController.ClickButton;
-    isGvrTriggered |= GvrController.ClickButtonDown;
+    handlePendingClickRequired &= !GvrControllerInput.ClickButton;
+    isGvrTriggered |= GvrControllerInput.ClickButtonDown;
 #endif  // UNITY_HAS_GOOGLEVR && (UNITY_ANDROID || UNITY_EDITOR)
 
     // Handle input
