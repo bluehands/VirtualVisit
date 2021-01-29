@@ -30,16 +30,6 @@ abstract class BaseDevice : IMobileDevice
 
     public float SampleRate => m_SensorFusion.getSampleRate();
 
-    public int WidthPixels()
-    {
-        return Screen.currentResolution.width;
-    }
-
-    public int HeightPixels()
-    {
-        return Screen.currentResolution.height;
-    }
-
     public Quaternion Orientation
     {
         get 

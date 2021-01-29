@@ -53,6 +53,8 @@ public class VrModeController : MonoBehaviour
 
 #if UNITY_EDITOR
         Device = new EditorDevice();
+#elif UNITY_STANDALONE
+        Device = new StandaloneDevice();
 #elif UNITY_ANDROID
         Device = new AndroidDevice();
 #elif UNITY_IOS

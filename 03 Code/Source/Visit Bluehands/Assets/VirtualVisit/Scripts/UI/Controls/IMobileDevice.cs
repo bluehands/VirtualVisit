@@ -11,8 +11,4 @@ public interface IMobileDevice
     Quaternion Orientation {get;}
 
     float SampleRate {get;}
-
-    // int WidthPixels();
-
-    // int HeightPixels();
 }
