@@ -22,11 +22,11 @@ public class FollowingDisplayItem : MonoBehaviour, ButtonListener
         transform.rotation = Quaternion.Euler(pitch, yaw, 0);
 
         m_ButtonGo = Instantiate(buttonGoPrefab) as ButtonGo;
-        m_ButtonGo.Initialize(transform.FindChild("Canvas Item"), this);
+        m_ButtonGo.Initialize(transform.Find("Canvas Item"), this);
         m_ButtonGo.transform.localScale = new Vector3(0.1f, 0.1f, 1f);
         m_ButtonGo.GetComponent<RectTransform>().localPosition = new Vector3(7, -2, 0);
 
-        Text text = transform.FindChild("Canvas Item").FindChild("Text").GetComponent<Text>();
+        Text text = transform.Find("Canvas Item").Find("Text").GetComponent<Text>();
         text.text = visitTitle;
 
         
@@ -34,7 +34,7 @@ public class FollowingDisplayItem : MonoBehaviour, ButtonListener
         TexturesFactory.TryToLoadPreviewTexture(visitId, out preview);
         if(preview != null)
         {
-            var rawImage = transform.FindChild("Canvas Item").FindChild("Background Image").GetComponent<RawImage>();
+            var rawImage = transform.Find("Canvas Item").Find("Background Image").GetComponent<RawImage>();
             rawImage.texture = preview;
         }
 
@@ -42,7 +42,7 @@ public class FollowingDisplayItem : MonoBehaviour, ButtonListener
         TexturesFactory.TryToLoadLogoTexture(visitId, out logo);
         if (logo != null)
         {
-            var rawImage = transform.FindChild("Canvas Item").FindChild("Logo Image").GetComponent<RawImage>();
+            var rawImage = transform.Find("Canvas Item").Find("Logo Image").GetComponent<RawImage>();
             rawImage.texture = logo;
         }
     }

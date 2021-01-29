@@ -36,8 +36,8 @@ public class Stage : MonoBehaviour {
     {
         m_VisitSettingsFactory = visitSettingsFactory;
         
-        m_CanvaseMenu = transform.FindChild("Menu Canvas");
-        var canvasePage = transform.FindChild("Page Canvas");
+        m_CanvaseMenu = transform.Find("Menu Canvas");
+        var canvasePage = transform.Find("Page Canvas");
 
         generatePage(canvasePage.transform);
         generateMainMenu(m_CanvaseMenu.transform, switchTourListener);

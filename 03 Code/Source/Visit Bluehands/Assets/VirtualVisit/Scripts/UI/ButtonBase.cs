@@ -86,7 +86,7 @@ public abstract class ButtonBase : MonoBehaviour, ISelectHandler, IPointerEnterH
 
     public void setSelected(bool visibility)
     {
-        Transform tranform = transform.FindChild("Selected");
+        Transform tranform = transform.Find("Selected");
         if(tranform != null)
         {
             if (!visibility)
