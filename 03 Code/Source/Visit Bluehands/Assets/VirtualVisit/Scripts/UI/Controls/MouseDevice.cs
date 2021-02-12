@@ -11,7 +11,6 @@ public abstract class MouseDevice : IMobileDevice
     protected MouseDevice()
     {
         Screen.orientation = ScreenOrientation.LandscapeLeft;
-        Cursor.visible = false;
     }
 
     public Vector3 Gyro => new Vector3();
@@ -30,8 +29,13 @@ public abstract class MouseDevice : IMobileDevice
         {
             if (ShouldRotate)
             {
+                Cursor.lockState = CursorLockMode.Locked;
                 rotationX += Input.GetAxis("Mouse X") * sensX * Time.deltaTime;
                 rotationY += Input.GetAxis("Mouse Y") * sensY * Time.deltaTime;
+            }
+            else 
+            {
+                Cursor.lockState = CursorLockMode.None;
             }
             return Quaternion.Euler(-rotationY, rotationX, 0f);
         }

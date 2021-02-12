@@ -30,13 +30,15 @@ public class VrModeController : MonoBehaviour
     /// <summary>
     /// Gets a value indicating whether the screen has been touched this frame.
     /// </summary>
-    private bool _isScreenTouched
+    private bool IsScreenTouched
     {
         get
         {
             return Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began;
         }
     }
+
+    private bool _isInVR = true;
 
     private IMobileDevice Device;
 
@@ -69,6 +71,8 @@ public class VrModeController : MonoBehaviour
         {
             Api.ScanDeviceParams();
         }
+
+        // EnterVR();
     }
 
     /// <summary>
@@ -76,17 +80,27 @@ public class VrModeController : MonoBehaviour
     /// </summary>
     public void Update()
     {
-        if (Api.IsCloseButtonPressed)
+        if (_isInVR)
         {
-            ExitVR();
-        }
+            if (Api.IsCloseButtonPressed)
+            {
+                ExitVR();
+            }
 
-        if (Api.IsGearButtonPressed)
+            if (Api.IsGearButtonPressed)
+            {
+                Api.ScanDeviceParams();
+            }
+
+            Api.UpdateScreenParams();
+        }
+        else
         {
-            Api.ScanDeviceParams();
+            if (IsScreenTouched)
+            {
+                EnterVR();
+            }
         }
-
-        Api.UpdateScreenParams();
     }
 
     public void LateUpdate()
@@ -99,11 +113,17 @@ public class VrModeController : MonoBehaviour
     /// </summary>
     private void EnterVR()
     {
+        if (_isInVR)
+        {
+            return;
+        }
         StartCoroutine(StartXR());
         if (Api.HasNewDeviceParams())
         {
             Api.ReloadDeviceParams();
         }
+
+        _isInVR = true;
     }
 
     /// <summary>
@@ -112,6 +132,7 @@ public class VrModeController : MonoBehaviour
     private void ExitVR()
     {
         StopXR();
+        _isInVR = false;
     }
 
     /// <summary>
